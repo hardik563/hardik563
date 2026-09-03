@@ -181,8 +181,6 @@ Personal developer portfolio showcasing my skills, projects and coding journey.
 
 ## 📊 GitHub Activity
 
-## 📊 GitHub Activity
-
 <p align="center">
   <a href="https://github.com/hardik563">
     <img src="https://img.shields.io/badge/GitHub-hardik563-181717?style=for-the-badge&logo=github" />
