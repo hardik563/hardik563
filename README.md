@@ -193,8 +193,8 @@ Personal developer portfolio showcasing my skills, projects and coding journey.
 <p align="center">
 
 📍 Lucknow, Uttar Pradesh  
-📧 YOUR_EMAIL  
-📱 YOUR_PHONE
+📧 hardikdhamija676@gmail.com
+📱 +91 7395007338
 
 </p>
 
