@@ -100,7 +100,6 @@
 
 ---
 
-## 🐍 Contribution Snake
 
 ## 🐍 Contribution Snake
 
