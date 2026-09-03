@@ -2,9 +2,9 @@
 
 # 👋 Hi, I'm Hardik Dhamija
 
-### B.Tech CSE (AI & ML) Student | Software Developer | AI/ML Enthusiast
+### 🚀 Computer Science Engineering Student | AI & ML Enthusiast | Problem Solver
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&center=true&vCenter=true&width=750&lines=Computer+Science+Engineering+Student;AI+%26+Machine+Learning+Enthusiast;Software+%26+Web+Developer;Data+Structures+%26+Algorithms+Learner;Building+Projects+%26+Solving+Problems" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=36BCF7&center=true&vCenter=true&width=700&lines=Computer+Science+Engineering+Student;AI+%26+Machine+Learning+Enthusiast;Java+%7C+Python+%7C+JavaScript;Data+Structures+%26+Algorithms;Building+Projects+%26+Solving+Problems" alt="Typing SVG" />
 
 </div>
 
@@ -12,130 +12,113 @@
 
 ## 👨‍💻 About Me
 
-🎓 **B.Tech Computer Science Engineering (AI & ML)** student at **Galgotias University**
-
-💻 Interested in **Software Development, Web Development, Artificial Intelligence & Machine Learning**
-
-🧠 Passionate about **Data Structures & Algorithms and Problem Solving**
-
-🚀 I enjoy building real-world projects and continuously improving my development and problem-solving skills.
-
-📍 Lucknow, Uttar Pradesh, India
+- 🎓 B.Tech Computer Science Engineering (AI & ML) student at Galgotias University
+- 💻 Passionate about Software Development, Artificial Intelligence and Machine Learning
+- 🧠 Strong interest in Data Structures & Algorithms and Problem Solving
+- 🚀 Building practical projects to strengthen my development skills
+- 📚 Continuously learning new technologies and improving my coding skills
+- 🎯 Focused on becoming a skilled Software Developer and AI/ML Engineer
 
 ---
 
 ## 🔗 Connect With Me
 
-<div align="center">
+<p align="center">
 
-<a href="PASTE_YOUR_LINKEDIN_LINK_HERE">
-<img src="https://img.shields.io/badge/LinkedIn-Profile-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
+<a href="YOUR_LINKEDIN_LINK">
+<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
 </a>
 
-<a href="PASTE_YOUR_LEETCODE_LINK_HERE">
-<img src="https://img.shields.io/badge/LeetCode-Profile-FFA116?style=for-the-badge&logo=leetcode&logoColor=black"/>
+<a href="YOUR_LEETCODE_LINK">
+<img src="https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=black"/>
 </a>
 
-<a href="PASTE_YOUR_CODOLIO_LINK_HERE">
-<img src="https://img.shields.io/badge/Codolio-Profile-7C3AED?style=for-the-badge"/>
+<a href="YOUR_CODOLIO_LINK">
+<img src="https://img.shields.io/badge/Codolio-6C3DF4?style=for-the-badge&logoColor=white"/>
 </a>
 
-<a href="mailto:hardikdhamija676@gmail.com">
-<img src="https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white"/>
-</a>
-
-</div>
+</p>
 
 ---
 
-## 🛠️ Technical Skills
+## 🛠️ Tech Stack
 
-### Languages
+### 💻 Languages
 
-<p>
-<img src="https://skillicons.dev/icons?i=java,python,javascript" />
+<p align="center">
+<img src="https://skillicons.dev/icons?i=java,python,javascript,sql" />
 </p>
 
-### Frontend Development
+### 🌐 Frontend
 
-<p>
+<p align="center">
 <img src="https://skillicons.dev/icons?i=html,css,react,tailwind" />
 </p>
 
-### AI / Machine Learning
+### 🤖 AI / ML
 
-<p>
+<p align="center">
 <img src="https://skillicons.dev/icons?i=python,tensorflow" />
 </p>
 
-### Databases & Tools
+### 🗄️ Databases & Tools
 
-<p>
+<p align="center">
 <img src="https://skillicons.dev/icons?i=mongodb,mysql,git,github,vscode" />
 </p>
 
-### Core Concepts
+### 🧠 Core Concepts
+
+<p align="center">
 
 `Data Structures & Algorithms` • `OOP` • `DBMS` • `Problem Solving`
 
----
-
-## 📊 GitHub Statistics
-
-<div align="center">
-
-<img src="https://github-readme-stats.vercel.app/api?username=hardik563&show_icons=true&theme=tokyonight&hide_border=true" />
-
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=hardik563&layout=compact&theme=tokyonight&hide_border=true" />
-
-</div>
+</p>
 
 ---
 
 ## 🔥 GitHub Contribution Streak
 
-<div align="center">
+<p align="center">
 
 <img src="https://streak-stats.demolab.com?user=hardik563&theme=tokyonight&hide_border=true" />
 
-</div>
+</p>
 
 ---
 
 ## 🧩 Problem Solving
 
-<div align="center">
-
 ### 💡 Coding Progress
 
 | Platform | Progress |
 |----------|----------|
-| 🟠 LeetCode | 1200+ Problems |
-| 🟢 Active Coding Days | 354+ |
-| 🔥 Maximum Streak | 131 Days |
-| 📈 Total Submissions | 2300+ |
+| 🟠 LeetCode | **1200+ Problems** |
+| 🟢 Active Coding Days | **354+** |
+| 🔥 Maximum Streak | **131 Days** |
+| 📈 Total Submissions | **2300+** |
 
-<br>
+<p align="center">
 
-<a href="PASTE_YOUR_CODOLIO_LINK_HERE">
-<img src="https://img.shields.io/badge/View%20Complete%20Problem%20Solving%20Profile-Codolio-7C3AED?style=for-the-badge"/>
+<a href="YOUR_CODOLIO_LINK">
+<img src="https://img.shields.io/badge/VIEW%20COMPLETE%20PROBLEM%20SOLVING%20PROFILE-CODOLIO-6C3DF4?style=for-the-badge"/>
 </a>
 
-</div>
+</p>
 
 ---
 
 ## 🐍 Contribution Snake
 
-<div align="center">
+<p align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/hardik563/hardik563/output/github-contribution-grid-snake-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/hardik563/hardik563/output/github-contribution-grid-snake.svg">
-  <img alt="GitHub Contribution Snake" src="https://raw.githubusercontent.com/hardik563/hardik563/output/github-contribution-grid-snake.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="dist/github-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="dist/github-snake.svg" />
+  <img alt="GitHub Contribution Snake" src="dist/github-snake.svg" />
 </picture>
 
-</div>
+</p>
 
 ---
 
@@ -150,62 +133,86 @@ Responsive Razorpay-inspired frontend project.
 - Responsive user interface
 - Modern payment-platform design
 - Mobile-friendly layout
-- Clean frontend implementation
 
 ---
 
-### 🌐 Portfolio Website
+### 🌐 Personal Portfolio
 
-Personal portfolio website showcasing my skills, projects and development journey.
+Personal developer portfolio showcasing my skills, projects and coding journey.
 
-**Tech:** HTML • CSS • JavaScript
+**Tech:** HTML5 • CSS3 • JavaScript
 
----
-
-### 🧠 DSA Road To Placement
-
-A dedicated repository focused on improving problem-solving and Data Structures & Algorithms skills using Java.
-
-**Focus:** Java • DSA • Algorithms • Problem Solving
+- Responsive design
+- Project showcase
+- Developer-focused UI
 
 ---
 
 ## 💼 Experience
 
-### Bharat Space Educational Research Centre — ISRO
+### 🚀 Bharat Space Educational Research Centre — ISRO
 
-**AI/ML Intern | Dec 2025 – Jan 2026**
+**Intern | Dec 2025 – Jan 2026**
 
-- Applied AI/ML concepts to practical technical problems.
-- Explored applications involving robotics, aircraft and drones.
-- Worked with real-world applications of emerging technologies.
-
----
-
-## 🏆 Certifications & Achievements
-
-- 🛰️ **ISRO** — Python for Machine Learning
-- ☕ **TCS iON** — Core Java
-- 🧠 **Infosys Springboard** — DSA with Java
-- 🏏 **Winner** — Under-19 Cricket Tournament, Lucknow
-- ♟️ **State & Regional Level Player** — Carrom & Chess
-- 🏅 **Active Member** — Galgotias Sports Council
+- Applied Artificial Intelligence and Machine Learning concepts to real-world applications
+- Worked around robotics, aircraft and drone-related applications
+- Explored practical applications of emerging technologies
+- Gained exposure to research-oriented technical environments
 
 ---
 
-## 🎯 Current Focus
+## 🏆 Certifications
 
-```text
-Data Structures & Algorithms
-        ↓
-Java & Problem Solving
-        ↓
-Web Development
-        ↓
-React & Full-Stack Development
-        ↓
-Artificial Intelligence & Machine Learning
-        ↓
-Building Real-World Projects
-        ↓
-Software Engineering 🚀
+- 🚀 ISRO — Python for Machine Learning
+- ☕ TCS iON — Core Java
+- 🧠 Infosys Springboard — Data Structures & Algorithms with Java
+
+---
+
+## 🏅 Achievements & Activities
+
+- 🏏 Winner — Under-19 Cricket Tournament, Lucknow
+- ♟️ State & Regional Level Player — Carrom & Chess
+- 🏃 Active Member — Galgotias Sports Council
+
+---
+
+## 🎯 Current Goals
+
+- 🔥 Strengthening Data Structures & Algorithms
+- 🤖 Deepening knowledge of Artificial Intelligence & Machine Learning
+- 💻 Building more real-world projects
+- 🚀 Preparing for software development internships and placements
+- 📈 Improving problem-solving consistency
+
+---
+
+## 📊 GitHub Activity
+
+<p align="center">
+
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=hardik563&theme=tokyo-night&hide_border=true" />
+
+</p>
+
+---
+
+## 📫 Contact
+
+<p align="center">
+
+📍 Lucknow, Uttar Pradesh  
+📧 YOUR_EMAIL  
+📱 YOUR_PHONE
+
+</p>
+
+---
+
+<div align="center">
+
+### ⭐ Thanks for visiting my profile!
+
+<img src="https://komarev.com/ghpvc/?username=hardik563&label=Profile%20Views&color=0e75b6&style=flat" />
+
+</div>
