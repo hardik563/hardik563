@@ -1,67 +1,68 @@
-
 <div align="center">
 
-# 👋 Hey, I'm Hardik Dhamija
+# 👋 Hi, I'm Hardik Dhamija
 
-### B.Tech Computer Science Engineering Student | AI & ML | Full-Stack Developer
+### B.Tech CSE (AI & ML) Student | Software Developer | AI/ML Enthusiast
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=2563EB&center=true&vCenter=true&width=700&lines=Computer+Science+Engineering+Student;AI+%26+Machine+Learning+Enthusiast;Full-Stack+Web+Developer;Data+Structures+%26+Algorithms+Learner;Building+Projects+and+Solving+Problems" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&center=true&vCenter=true&width=750&lines=Computer+Science+Engineering+Student;AI+%26+Machine+Learning+Enthusiast;Software+%26+Web+Developer;Data+Structures+%26+Algorithms+Learner;Building+Projects+%26+Solving+Problems" />
 
 </div>
 
 ---
 
-## 🚀 About Me
+## 👨‍💻 About Me
 
-🎓 **3rd Year B.Tech Computer Science Engineering (AI & ML)** student at **Galgotias University**.
+🎓 **B.Tech Computer Science Engineering (AI & ML)** student at **Galgotias University**
 
-💻 Passionate about **Software Development, Artificial Intelligence, Machine Learning, Web Development and Data Structures & Algorithms**.
+💻 Interested in **Software Development, Web Development, Artificial Intelligence & Machine Learning**
 
-🧠 I enjoy solving programming problems, building real-world projects and continuously improving my technical skills.
+🧠 Passionate about **Data Structures & Algorithms and Problem Solving**
 
-🔥 Currently focused on becoming a strong **Software Developer / AI-ML Engineer**.
+🚀 I enjoy building real-world projects and continuously improving my development and problem-solving skills.
+
+📍 Lucknow, Uttar Pradesh, India
 
 ---
 
-## 🌐 Connect With Me
+## 🔗 Connect With Me
 
 <div align="center">
 
-<a href="https://www.linkedin.com/in/hardik-dhamija-35932228b/">
-<img src="https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin" />
+<a href="PASTE_YOUR_LINKEDIN_LINK_HERE">
+<img src="https://img.shields.io/badge/LinkedIn-Profile-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
 </a>
 
-<a href="https://leetcode.com/u/hardikdhamija_/">
-<img src="https://img.shields.io/badge/LeetCode-Profile-orange?style=for-the-badge&logo=leetcode" />
+<a href="PASTE_YOUR_LEETCODE_LINK_HERE">
+<img src="https://img.shields.io/badge/LeetCode-Profile-FFA116?style=for-the-badge&logo=leetcode&logoColor=black"/>
 </a>
 
-<a href="https://codolio.com/profile/hardikdhamija">
-<img src="https://img.shields.io/badge/Codolio-Profile-purple?style=for-the-badge" />
+<a href="PASTE_YOUR_CODOLIO_LINK_HERE">
+<img src="https://img.shields.io/badge/Codolio-Profile-7C3AED?style=for-the-badge"/>
 </a>
 
 <a href="mailto:hardikdhamija676@gmail.com">
-<img src="https://img.shields.io/badge/Email-Contact-red?style=for-the-badge&logo=gmail" />
+<img src="https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white"/>
 </a>
 
 </div>
 
 ---
 
-## 💻 Tech Stack
+## 🛠️ Technical Skills
 
 ### Languages
 
 <p>
-<img src="https://skillicons.dev/icons?i=java,python,javascript,sql" />
+<img src="https://skillicons.dev/icons?i=java,python,javascript" />
 </p>
 
-### Frontend
+### Frontend Development
 
 <p>
 <img src="https://skillicons.dev/icons?i=html,css,react,tailwind" />
 </p>
 
-### AI / ML
+### AI / Machine Learning
 
 <p>
 <img src="https://skillicons.dev/icons?i=python,tensorflow" />
@@ -73,21 +74,25 @@
 <img src="https://skillicons.dev/icons?i=mongodb,mysql,git,github,vscode" />
 </p>
 
+### Core Concepts
+
+`Data Structures & Algorithms` • `OOP` • `DBMS` • `Problem Solving`
+
 ---
 
 ## 📊 GitHub Statistics
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=hardik563&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" height="180"/>
+<img src="https://github-readme-stats.vercel.app/api?username=hardik563&show_icons=true&theme=tokyonight&hide_border=true" />
 
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=hardik563&layout=compact&theme=tokyonight&hide_border=true" height="180"/>
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=hardik563&layout=compact&theme=tokyonight&hide_border=true" />
 
 </div>
 
 ---
 
-## 🔥 Contribution Streak
+## 🔥 GitHub Contribution Streak
 
 <div align="center">
 
@@ -97,11 +102,38 @@
 
 ---
 
+## 🧩 Problem Solving
+
+<div align="center">
+
+### 💡 Coding Progress
+
+| Platform | Progress |
+|----------|----------|
+| 🟠 LeetCode | 1200+ Problems |
+| 🟢 Active Coding Days | 354+ |
+| 🔥 Maximum Streak | 131 Days |
+| 📈 Total Submissions | 2300+ |
+
+<br>
+
+<a href="PASTE_YOUR_CODOLIO_LINK_HERE">
+<img src="https://img.shields.io/badge/View%20Complete%20Problem%20Solving%20Profile-Codolio-7C3AED?style=for-the-badge"/>
+</a>
+
+</div>
+
+---
+
 ## 🐍 Contribution Snake
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/hardik563/hardik563/output/github-contribution-grid-snake.svg" alt="GitHub Contribution Snake" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/hardik563/hardik563/output/github-contribution-grid-snake-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/hardik563/hardik563/output/github-contribution-grid-snake.svg">
+  <img alt="GitHub Contribution Snake" src="https://raw.githubusercontent.com/hardik563/hardik563/output/github-contribution-grid-snake.svg">
+</picture>
 
 </div>
 
@@ -111,54 +143,69 @@
 
 ### 💳 Razorpay Clone
 
-Responsive Razorpay-inspired payment website built using:
+Responsive Razorpay-inspired frontend project.
 
-**HTML • CSS • Tailwind CSS • JavaScript**
+**Tech:** HTML5 • CSS3 • Tailwind CSS • JavaScript
 
-- Responsive modern UI
-- Payment-focused interface
-- Reusable components
-- Mobile-friendly design
+- Responsive user interface
+- Modern payment-platform design
+- Mobile-friendly layout
+- Clean frontend implementation
 
 ---
 
 ### 🌐 Portfolio Website
 
-Personal portfolio website showcasing my:
+Personal portfolio website showcasing my skills, projects and development journey.
 
-- Skills
-- Projects
-- Development journey
-- Programming experience
-
-**HTML • CSS • JavaScript**
+**Tech:** HTML • CSS • JavaScript
 
 ---
 
 ### 🧠 DSA Road To Placement
 
-A dedicated repository documenting my journey through:
+A dedicated repository focused on improving problem-solving and Data Structures & Algorithms skills using Java.
 
-**Data Structures • Algorithms • Java • Problem Solving**
-
----
-
-## 🧩 Problem Solving
-
-<div align="center">
-
-<img src="https://leetcard.jacoblin.cool/hardikdhamija_?theme=dark&font=baloo" />
-
-</div>
+**Focus:** Java • DSA • Algorithms • Problem Solving
 
 ---
 
-## 🎯 Current Goals
+## 💼 Experience
+
+### Bharat Space Educational Research Centre — ISRO
+
+**AI/ML Intern | Dec 2025 – Jan 2026**
+
+- Applied AI/ML concepts to practical technical problems.
+- Explored applications involving robotics, aircraft and drones.
+- Worked with real-world applications of emerging technologies.
+
+---
+
+## 🏆 Certifications & Achievements
+
+- 🛰️ **ISRO** — Python for Machine Learning
+- ☕ **TCS iON** — Core Java
+- 🧠 **Infosys Springboard** — DSA with Java
+- 🏏 **Winner** — Under-19 Cricket Tournament, Lucknow
+- ♟️ **State & Regional Level Player** — Carrom & Chess
+- 🏅 **Active Member** — Galgotias Sports Council
+
+---
+
+## 🎯 Current Focus
 
 ```text
-✓ Strengthen Data Structures & Algorithms
-✓ Build production-quality projects
-✓ Improve Java & problem solving
-✓ Explore AI & Machine Learning
-✓ Learn Backend Development
-✓ Prepare for Software Engineering placements
+Data Structures & Algorithms
+        ↓
+Java & Problem Solving
+        ↓
+Web Development
+        ↓
+React & Full-Stack Development
+        ↓
+Artificial Intelligence & Machine Learning
+        ↓
+Building Real-World Projects
+        ↓
+Software Engineering 🚀
