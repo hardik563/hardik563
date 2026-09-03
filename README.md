@@ -92,7 +92,7 @@
 
 <p align="center">
 
-<a href="YOUR_CODOLIO_LINK">
+<a href="https://codolio.com/profile/hardikdhamija">
 <img src="https://img.shields.io/badge/VIEW%20COMPLETE%20PROBLEM%20SOLVING%20PROFILE-CODOLIO-6C3DF4?style=for-the-badge"/>
 </a>
 
