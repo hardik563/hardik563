@@ -25,15 +25,15 @@
 
 <p align="center">
 
-<a href="YOUR_LINKEDIN_LINK">
+<a href="https://www.linkedin.com/in/hardik-dhamija-35932228b/">
 <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
 </a>
 
-<a href="YOUR_LEETCODE_LINK">
+<a href="https://leetcode.com/u/hardikdhamija_/">
 <img src="https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=black"/>
 </a>
 
-<a href="YOUR_CODOLIO_LINK">
+<a href="https://codolio.com/profile/hardikdhamija">
 <img src="https://img.shields.io/badge/Codolio-6C3DF4?style=for-the-badge&logoColor=white"/>
 </a>
 
