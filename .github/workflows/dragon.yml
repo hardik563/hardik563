@@ -1,1 +1,500 @@
 
+name: Generate Contribution Dragon
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  dragon:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create dragon folder
+        run: mkdir -p dragon
+
+      - name: Generate contribution dragon
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import os
+          import json
+          import html
+          import urllib.request
+          import datetime
+
+          USERNAME = "hardik563"
+          TOKEN = os.environ["GITHUB_TOKEN"]
+
+          today = datetime.date.today()
+          start = today - datetime.timedelta(days=364)
+          end = today + datetime.timedelta(days=1)
+
+          query = """
+          query($login:String!, $from:DateTime!, $to:DateTime!) {
+            user(login:$login) {
+              contributionsCollection(from:$from, to:$to) {
+                contributionCalendar {
+                  totalContributions
+                  weeks {
+                    contributionDays {
+                      date
+                      contributionCount
+                      contributionLevel
+                    }
+                  }
+                }
+              }
+            }
+          }
+          """
+
+          payload = {
+              "query": query,
+              "variables": {
+                  "login": USERNAME,
+                  "from": f"{start}T00:00:00Z",
+                  "to": f"{end}T00:00:00Z"
+              }
+          }
+
+          request = urllib.request.Request(
+              "https://api.github.com/graphql",
+              data=json.dumps(payload).encode(),
+              headers={
+                  "Authorization": f"bearer {TOKEN}",
+                  "Content-Type": "application/json",
+                  "User-Agent": "github-contribution-dragon"
+              }
+          )
+
+          with urllib.request.urlopen(request) as response:
+              result = json.load(response)
+
+          if result.get("errors"):
+              raise RuntimeError(result["errors"])
+
+          calendar_data = result["data"]["user"]["contributionsCollection"]["contributionCalendar"]
+          weeks = calendar_data["weeks"]
+          total = calendar_data["totalContributions"]
+
+          colors = {
+              "NONE": "#161b22",
+              "FIRST_QUARTILE": "#0e4429",
+              "SECOND_QUARTILE": "#006d32",
+              "THIRD_QUARTILE": "#26a641",
+              "FOURTH_QUARTILE": "#39d353"
+          }
+
+          days = {}
+          positions = {}
+
+          for x, week in enumerate(weeks):
+              for day in week["contributionDays"]:
+                  date = day["date"]
+                  dt = datetime.date.fromisoformat(date)
+
+                  y = (dt.weekday() + 1) % 7
+
+                  days[date] = day
+                  positions[date] = (x, y)
+
+          cell = 13
+          step = 18
+          left = 55
+          top = 105
+
+          columns = len(weeks)
+          width = max(1150, left + columns * step + 80)
+          height = 310
+
+          cells = []
+
+          for date, day in days.items():
+              x, y = positions[date]
+
+              px = left + x * step
+              py = top + y * step
+
+              level = day["contributionLevel"]
+
+              cells.append(
+                  f'<rect x="{px}" y="{py}" width="{cell}" height="{cell}" '
+                  f'rx="3" fill="{colors[level]}"/>'
+              )
+
+          month_labels = []
+
+          for date in sorted(days):
+              dt = datetime.date.fromisoformat(date)
+
+              if dt.day == 1 and date in positions:
+                  x, _ = positions[date]
+                  px = left + x * step
+                  month_labels.append(
+                      f'<text x="{px}" y="94" class="month">{dt.strftime("%b")}</text>'
+                  )
+
+          weekday_labels = [
+              (1, "Mon"),
+              (3, "Wed"),
+              (5, "Fri")
+          ]
+
+          weekday_svg = []
+
+          for row, label in weekday_labels:
+              py = top + row * step + 10
+              weekday_svg.append(
+                  f'<text x="8" y="{py}" class="weekday">{label}</text>'
+              )
+
+          x0 = left + 6
+          xend = left + (columns - 1) * step + 6
+          span = xend - x0
+
+          dragon_points = [
+              (x0, top + 5 * step + 6),
+              (x0 + span * 0.15, top + 2 * step + 6),
+              (x0 + span * 0.30, top + 5 * step + 6),
+              (x0 + span * 0.45, top + 2 * step + 6),
+              (x0 + span * 0.60, top + 5 * step + 6),
+              (x0 + span * 0.75, top + 2 * step + 6),
+              (x0 + span * 0.90, top + 4 * step + 6),
+              (xend, top + 3 * step + 6)
+          ]
+
+          def smooth_path(points):
+              path = f"M {points[0][0]:.1f} {points[0][1]:.1f}"
+
+              for i in range(1, len(points)):
+                  x1, y1 = points[i - 1]
+                  x2, y2 = points[i]
+
+                  dx = (x2 - x1) / 3
+
+                  path += (
+                      f" C {x1 + dx:.1f} {y1:.1f}, "
+                      f"{x2 - dx:.1f} {y2:.1f}, "
+                      f"{x2:.1f} {y2:.1f}"
+                  )
+
+              return path
+
+          dragon_path = smooth_path(dragon_points)
+
+          head_x, head_y = dragon_points[-1]
+
+          title = html.escape("🐉 Contribution Dragon")
+          subtitle = html.escape(
+              "A dragon that grows with my contributions 💚"
+          )
+
+          svg = f'''<svg xmlns="http://www.w3.org/2000/svg"
+          width="{width}"
+          height="{height}"
+          viewBox="0 0 {width} {height}">
+
+          <defs>
+
+            <linearGradient id="dragonGradient"
+              x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#39d353"/>
+              <stop offset="50%" stop-color="#7CFF6B"/>
+              <stop offset="100%" stop-color="#0e8f3a"/>
+            </linearGradient>
+
+            <filter id="glow"
+              x="-50%" y="-50%"
+              width="200%" height="200%">
+
+              <feGaussianBlur
+                stdDeviation="5"
+                result="blur"/>
+
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+
+            </filter>
+
+          </defs>
+
+          <rect
+            width="100%"
+            height="100%"
+            rx="18"
+            fill="#0d1117"/>
+
+          <text
+            x="55"
+            y="38"
+            fill="#ffffff"
+            font-size="22"
+            font-family="Arial, sans-serif"
+            font-weight="700">
+
+            {title}
+
+          </text>
+
+          <text
+            x="55"
+            y="64"
+            fill="#8b949e"
+            font-size="14"
+            font-family="Arial, sans-serif">
+
+            {subtitle}
+
+          </text>
+
+          <style>
+            .month {{
+              fill: #8b949e;
+              font: 12px Arial, sans-serif;
+            }}
+
+            .weekday {{
+              fill: #8b949e;
+              font: 10px Arial, sans-serif;
+            }}
+          </style>
+
+          {"".join(month_labels)}
+
+          {"".join(weekday_svg)}
+
+          {"".join(cells)}
+
+          <path
+            d="{dragon_path}"
+            fill="none"
+            stroke="#39d353"
+            stroke-width="18"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            opacity="0.18"
+            filter="url(#glow)"/>
+
+          <path
+            d="{dragon_path}"
+            fill="none"
+            stroke="url(#dragonGradient)"
+            stroke-width="8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            filter="url(#glow)"/>
+
+          <path
+            d="{dragon_path}"
+            fill="none"
+            stroke="#b8ffb0"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-dasharray="2 14"
+            opacity="0.9">
+
+            <animate
+              attributeName="stroke-dashoffset"
+              from="0"
+              to="-32"
+              dur="2s"
+              repeatCount="indefinite"/>
+
+          </path>
+
+          <path
+            d="M {x0} {dragon_points[0][1]}
+               l -25 -12
+               l 10 12
+               l -14 13 Z"
+            fill="#39d353"
+            opacity="0.9"/>
+
+          <g transform="translate({head_x - 40},{head_y - 35})">
+
+            <g>
+
+              <animateTransform
+                attributeName="transform"
+                type="translate"
+                values="0 0; 0 -3; 0 0; 0 2; 0 0"
+                dur="1.6s"
+                repeatCount="indefinite"/>
+
+              <path
+                d="M 8 34
+                   C 18 12 42 5 68 16
+                   L 87 8
+                   L 80 25
+                   L 101 34
+                   L 82 41
+                   C 75 57 52 61 28 52
+                   L 12 45 Z"
+                fill="url(#dragonGradient)"
+                stroke="#7CFF6B"
+                stroke-width="2"/>
+
+              <polygon
+                points="25,16 12,-10 36,11"
+                fill="#26a641"/>
+
+              <polygon
+                points="48,13 50,-12 62,15"
+                fill="#26a641"/>
+
+              <path
+                d="M 73 27 L 96 22 L 86 32"
+                fill="#0e8f3a"/>
+
+              <circle
+                cx="65"
+                cy="28"
+                r="5"
+                fill="#fff200"/>
+
+              <circle
+                cx="66"
+                cy="28"
+                r="2"
+                fill="#111111"/>
+
+              <circle
+                cx="83"
+                cy="32"
+                r="2"
+                fill="#ff4d4d"/>
+
+              <path
+                d="M 70 42 Q 86 50 97 42"
+                fill="none"
+                stroke="#0b3d1b"
+                stroke-width="3"/>
+
+              <path
+                d="M 87 43 L 94 53
+                   M 79 44 L 84 54"
+                stroke="#d9ffd5"
+                stroke-width="2"/>
+
+            </g>
+
+          </g>
+
+          <circle
+            r="4"
+            fill="#ffffff"
+            opacity="0.85">
+
+            <animateMotion
+              dur="5s"
+              repeatCount="indefinite"
+              path="{dragon_path}"/>
+
+          </circle>
+
+          <text
+            x="55"
+            y="282"
+            fill="#8b949e"
+            font-size="13"
+            font-family="Arial, sans-serif">
+
+            More contributions. A longer dragon. 🔥
+
+          </text>
+
+          <text
+            x="{width - 190}"
+            y="282"
+            fill="#8b949e"
+            font-size="11"
+            font-family="Arial, sans-serif">
+
+            Less
+
+          </text>
+
+          <rect
+            x="{width - 150}"
+            y="271"
+            width="13"
+            height="13"
+            rx="3"
+            fill="#161b22"/>
+
+          <rect
+            x="{width - 132}"
+            y="271"
+            width="13"
+            height="13"
+            rx="3"
+            fill="#0e4429"/>
+
+          <rect
+            x="{width - 114}"
+            y="271"
+            width="13"
+            height="13"
+            rx="3"
+            fill="#006d32"/>
+
+          <rect
+            x="{width - 96}"
+            y="271"
+            width="13"
+            height="13"
+            rx="3"
+            fill="#26a641"/>
+
+          <rect
+            x="{width - 78}"
+            y="271"
+            width="13"
+            height="13"
+            rx="3"
+            fill="#39d353"/>
+
+          <text
+            x="{width - 58}"
+            y="282"
+            fill="#8b949e"
+            font-size="11"
+            font-family="Arial, sans-serif">
+
+            More
+
+          </text>
+
+          </svg>
+          '''
+
+          with open("dragon/contribution-dragon.svg", "w", encoding="utf-8") as f:
+              f.write(svg)
+
+          print(f"Generated dragon for {USERNAME}: {total} contributions")
+          PY
+
+      - name: Commit dragon
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add dragon/contribution-dragon.svg
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update contribution dragon"
+            git push
+          fi
