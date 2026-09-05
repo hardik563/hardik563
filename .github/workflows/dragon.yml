@@ -1,9 +1,9 @@
-name: Generate Contribution Dragon
+name: 3D Contribution Dragon
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 2 * * *"
 
 permissions:
   contents: write
@@ -16,27 +16,48 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Pillow
-        run: python3 -m pip install pillow
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y blender python3-pip imagemagick
+          pip3 install pillow requests
 
-      - name: Generate 3D Animated Dragon
+      - name: Download 3D dragon
+        run: |
+          mkdir -p dragon/assets
+
+          curl -L \
+            https://raw.githubusercontent.com/Furkath/threeJS-GLSL_STL-3D-webpage-design/master/bodyy.stl \
+            -o dragon/assets/body.stl
+
+          curl -L \
+            https://raw.githubusercontent.com/Furkath/threeJS-GLSL_STL-3D-webpage-design/master/head.stl \
+            -o dragon/assets/head.stl
+
+          curl -L \
+            https://raw.githubusercontent.com/Furkath/threeJS-GLSL_STL-3D-webpage-design/master/jiao.stl \
+            -o dragon/assets/jiao.stl
+
+          curl -L \
+            https://raw.githubusercontent.com/Furkath/threeJS-GLSL_STL-3D-webpage-design/master/jiao2.stl \
+            -o dragon/assets/jiao2.stl
+
+          curl -L \
+            https://raw.githubusercontent.com/Furkath/threeJS-GLSL_STL-3D-webpage-design/master/tou.stl \
+            -o dragon/assets/tou.stl
+
+          curl -L \
+            https://raw.githubusercontent.com/Furkath/threeJS-GLSL_STL-3D-webpage-design/master/wei.stl \
+            -o dragon/assets/wei.stl
+
+      - name: Get contribution data
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cat > /tmp/dragon.py <<'PY'
-          import os
-          import math
+          python3 <<'PY'
+          import requests
           import json
-          import urllib.request
-          from PIL import Image, ImageDraw, ImageFilter
-
-          USERNAME = "hardik563"
-
-          W = 1500
-          H = 520
-          FRAMES = 36
-
-          token = os.environ.get("GH_TOKEN", "")
+          import os
 
           query = """
           query($login:String!) {
@@ -56,624 +77,554 @@ jobs:
           }
           """
 
-          payload = json.dumps({
-              "query": query,
-              "variables": {"login": USERNAME}
-          }).encode()
-
-          req = urllib.request.Request(
+          r = requests.post(
               "https://api.github.com/graphql",
-              data=payload,
+              json={
+                  "query": query,
+                  "variables": {"login": "hardik563"}
+              },
               headers={
-                  "Authorization": f"Bearer {token}",
-                  "Content-Type": "application/json",
-                  "User-Agent": "github-dragon"
+                  "Authorization": f"bearer {os.environ['GH_TOKEN']}"
               }
           )
 
+          r.raise_for_status()
+
+          data = r.json()
+
+          with open("dragon/contributions.json", "w") as f:
+              json.dump(data, f)
+          PY
+
+      - name: Create Blender scene
+        run: |
+          cat > dragon/render_dragon.py <<'PY'
+          import bpy
+          import math
+          import os
+          import json
+          import glob
+          import random
+
+          from mathutils import Vector
+
+          ROOT = os.path.abspath(os.path.dirname(__file__))
+          ASSETS = os.path.join(ROOT, "assets")
+          FRAMES = os.path.join(ROOT, "frames")
+
+          os.makedirs(FRAMES, exist_ok=True)
+
+          bpy.ops.wm.read_factory_settings(use_empty=True)
+
+          scene = bpy.context.scene
+
+          scene.render.engine = "BLENDER_EEVEE_NEXT"
+          scene.render.resolution_x = 1000
+          scene.render.resolution_y = 420
+          scene.render.resolution_percentage = 100
+
+          scene.render.image_settings.file_format = "PNG"
+          scene.render.film_transparent = True
+
+          scene.render.image_settings.color_mode = "RGBA"
+
+          scene.render.fps = 12
+
+          world = bpy.data.worlds.new("DragonWorld")
+          scene.world = world
+          world.use_nodes = True
+
+          bg = world.node_tree.nodes.get("Background")
+          bg.inputs["Color"].default_value = (
+              0.002,
+              0.004,
+              0.008,
+              1
+          )
+          bg.inputs["Strength"].default_value = 0.12
+
+          def material(name, color, metallic, roughness):
+              m = bpy.data.materials.new(name)
+              m.diffuse_color = (*color, 1)
+              m.use_nodes = True
+
+              bsdf = m.node_tree.nodes.get("Principled BSDF")
+
+              bsdf.inputs["Base Color"].default_value = (*color, 1)
+              bsdf.inputs["Metallic"].default_value = metallic
+              bsdf.inputs["Roughness"].default_value = roughness
+
+              return m
+
+          red_gold = material(
+              "Dragon Red Gold",
+              (0.42, 0.018, 0.012),
+              0.72,
+              0.22
+          )
+
+          gold = material(
+              "Dragon Gold",
+              (0.65, 0.25, 0.025),
+              0.82,
+              0.18
+          )
+
+          dark_gold = material(
+              "Dragon Dark Gold",
+              (0.22, 0.055, 0.008),
+              0.8,
+              0.25
+          )
+
+          head_mat = material(
+              "Dragon Head",
+              (0.34, 0.008, 0.006),
+              0.78,
+              0.2
+          )
+
+          claw_mat = material(
+              "Dragon Claws",
+              (0.72, 0.48, 0.12),
+              0.9,
+              0.15
+          )
+
+          objects = []
+
+          def import_stl(path):
+              before = set(bpy.context.scene.objects)
+
+              try:
+                  bpy.ops.wm.stl_import(filepath=path)
+              except:
+                  bpy.ops.import_mesh.stl(filepath=path)
+
+              after = set(bpy.context.scene.objects)
+              new_objects = list(after - before)
+
+              return new_objects
+
+          files = [
+              ("body.stl", red_gold),
+              ("head.stl", head_mat),
+              ("jiao.stl", gold),
+              ("jiao2.stl", gold),
+              ("tou.stl", dark_gold),
+              ("wei.stl", gold)
+          ]
+
+          for filename, mat in files:
+              path = os.path.join(ASSETS, filename)
+
+              if not os.path.exists(path):
+                  continue
+
+              imported = import_stl(path)
+
+              for obj in imported:
+                  if obj.type == "MESH":
+                      obj.data.materials.append(mat)
+                      objects.append(obj)
+
+          if not objects:
+              raise RuntimeError("No STL dragon geometry was imported.")
+
+          root = bpy.data.objects.new("DRAGON_ROOT", None)
+          bpy.context.collection.objects.link(root)
+
+          for obj in objects:
+              obj.parent = root
+
+          min_v = Vector((999999, 999999, 999999))
+          max_v = Vector((-999999, -999999, -999999))
+
+          for obj in objects:
+              for corner in obj.bound_box:
+                  world_corner = obj.matrix_world @ Vector(corner)
+                  min_v.x = min(min_v.x, world_corner.x)
+                  min_v.y = min(min_v.y, world_corner.y)
+                  min_v.z = min(min_v.z, world_corner.z)
+
+                  max_v.x = max(max_v.x, world_corner.x)
+                  max_v.y = max(max_v.y, world_corner.y)
+                  max_v.z = max(max_v.z, world_corner.z)
+
+          center = (min_v + max_v) / 2
+          size = max_v - min_v
+          largest = max(size.x, size.y, size.z)
+
+          root.location -= center
+
+          scale = 5.5 / largest
+          root.scale = (scale, scale, scale)
+
+          root.rotation_euler = (
+              math.radians(90),
+              0,
+              math.radians(-25)
+          )
+
+          root.location.z = 0.1
+
+          for obj in objects:
+              if obj.type == "MESH":
+                  bevel = obj.modifiers.new(
+                      "Micro Surface",
+                      "BEVEL"
+                  )
+                  bevel.width = 0.008
+                  bevel.segments = 2
+
+          def add_light(name, location, energy, color, size):
+              data = bpy.data.lights.new(
+                  name,
+                  type="AREA"
+              )
+
+              data.energy = energy
+              data.color = color
+              data.shape = "DISK"
+              data.size = size
+
+              obj = bpy.data.objects.new(name, data)
+              bpy.context.collection.objects.link(obj)
+
+              obj.location = location
+
+              direction = Vector((0, 0, 0)) - obj.location
+              obj.rotation_euler = direction.to_track_quat(
+                  "-Z",
+                  "Y"
+              ).to_euler()
+
+          add_light(
+              "Key Light",
+              (3, -5, 5),
+              1100,
+              (1.0, 0.55, 0.25),
+              5
+          )
+
+          add_light(
+              "Rim Light",
+              (-4, 2, 4),
+              1400,
+              (0.15, 0.35, 1.0),
+              4
+          )
+
+          add_light(
+              "Top Light",
+              (0, 0, 7),
+              900,
+              (1.0, 0.75, 0.4),
+              3
+          )
+
+          camera_data = bpy.data.cameras.new("Dragon Camera")
+          camera = bpy.data.objects.new(
+              "Dragon Camera",
+              camera_data
+          )
+
+          bpy.context.collection.objects.link(camera)
+
+          scene.camera = camera
+
+          camera.location = (0, -10.5, 2.2)
+
+          target = Vector((0, 0, 0))
+
+          direction = target - camera.location
+
+          camera.rotation_euler = direction.to_track_quat(
+              "-Z",
+              "Y"
+          ).to_euler()
+
+          camera.data.lens = 52
+
+          root.rotation_mode = "XYZ"
+
+          TOTAL_FRAMES = 36
+
+          for frame in range(TOTAL_FRAMES):
+
+              t = frame / TOTAL_FRAMES
+              angle = t * math.tau
+
+              root.rotation_euler[0] = (
+                  math.radians(90)
+                  + math.sin(angle) * math.radians(3)
+              )
+
+              root.rotation_euler[1] = (
+                  math.sin(angle * 2) * math.radians(5)
+              )
+
+              root.rotation_euler[2] = (
+                  math.radians(-25)
+                  + math.sin(angle) * math.radians(7)
+              )
+
+              root.location.z = (
+                  0.08
+                  + math.sin(angle) * 0.16
+              )
+
+              root.scale = (
+                  scale * (1 + math.sin(angle) * 0.018),
+                  scale * (1 + math.sin(angle) * 0.018),
+                  scale * (1 + math.sin(angle) * 0.018)
+              )
+
+              camera.location.x = (
+                  math.sin(angle) * 0.65
+              )
+
+              camera.location.y = (
+                  -10.5
+                  + math.cos(angle) * 0.25
+              )
+
+              camera.location.z = (
+                  2.2
+                  + math.sin(angle * 2) * 0.18
+              )
+
+              direction = target - camera.location
+
+              camera.rotation_euler = direction.to_track_quat(
+                  "-Z",
+                  "Y"
+              ).to_euler()
+
+              scene.frame_set(frame + 1)
+
+              scene.render.filepath = os.path.join(
+                  FRAMES,
+                  f"frame_{frame:03d}.png"
+              )
+
+              bpy.ops.render.render(write_still=True)
+
+          print("3D dragon rendering complete.")
+          PY
+
+          blender \
+            --background \
+            --python dragon/render_dragon.py
+
+      - name: Build contribution background
+        run: |
+          cat > dragon/composite.py <<'PY'
+          from PIL import Image, ImageDraw, ImageFilter
+          import os
+          import json
+          import glob
+          import math
+
+          W = 1000
+          H = 420
+
+          OUT = "dragon/contribution-dragon.gif"
+
+          dark = (13, 17, 23)
+          border = (48, 54, 61)
+
+          green = [
+              (22, 27, 34),
+              (14, 68, 41),
+              (20, 105, 55),
+              (38, 166, 75),
+              (57, 211, 83)
+          ]
+
+          with open("dragon/contributions.json") as f:
+              data = json.load(f)
+
+          weeks = []
+
           try:
-              with urllib.request.urlopen(req) as response:
-                  data = json.loads(response.read().decode())
-              calendar = data["data"]["user"]["contributionsCollection"]["contributionCalendar"]
-          except Exception:
-              calendar = {
-                  "totalContributions": 0,
-                  "weeks": []
-              }
+              weeks = data["data"]["user"]["contributionsCollection"]["contributionCalendar"]["weeks"]
+          except:
+              weeks = []
 
-          weeks = calendar.get("weeks", [])
+          days = []
 
-          values = []
           for week in weeks:
-              for day in week.get("contributionDays", []):
-                  values.append(day.get("contributionCount", 0))
+              for day in week["contributionDays"]:
+                  days.append(day["contributionCount"])
 
-          while len(values) < 371:
-              values.append(0)
+          if not days:
+              days = [0] * 371
 
-          values = values[-371:]
+          maximum = max(days) if days else 1
 
-          maximum = max(values) if values else 1
+          background = Image.new(
+              "RGBA",
+              (W, H),
+              dark + (255,)
+          )
 
-          img = Image.new("RGB", (W, H), (8, 11, 17))
-
-          draw = ImageDraw.Draw(img)
+          draw = ImageDraw.Draw(background)
 
           draw.rounded_rectangle(
-              (2, 2, W - 3, H - 3),
-              radius=25,
-              fill=(10, 14, 21),
-              outline=(42, 49, 61),
+              (8, 8, W - 8, H - 8),
+              radius=20,
+              outline=border + (255,),
               width=2
           )
 
-          draw.text(
-              (55, 30),
-              "🐉  CONTRIBUTION DRAGON",
-              fill=(235, 242, 247)
-          )
+          start_x = 70
+          start_y = 78
 
-          draw.text(
-              (55, 65),
-              "A living 3D dragon powered by GitHub contributions",
-              fill=(115, 125, 138)
-          )
+          cell = 13
+          gap = 4
 
-          grid_x = 85
-          grid_y = 120
-          cell = 25
-          gap = 5
+          for i, value in enumerate(days[-371:]):
 
-          cols = 52
-          rows = 7
+              week = i // 7
+              day = i % 7
 
-          colors = [
-              (20, 28, 35),
-              (13, 70, 39),
-              (18, 110, 52),
-              (28, 160, 70),
-              (45, 205, 88),
-              (80, 235, 115)
-          ]
-
-          for i in range(cols * rows):
-              x = i // rows
-              y = i % rows
-
-              value = values[i] if i < len(values) else 0
+              x = start_x + week * (cell + gap)
+              y = start_y + day * (cell + gap)
 
               if value == 0:
                   level = 0
               else:
-                  ratio = value / max(1, maximum)
+                  ratio = value / maximum
 
-                  if ratio < 0.2:
+                  if ratio < 0.25:
                       level = 1
-                  elif ratio < 0.4:
+                  elif ratio < 0.5:
                       level = 2
-                  elif ratio < 0.7:
+                  elif ratio < 0.75:
                       level = 3
-                  elif ratio < 0.9:
-                      level = 4
                   else:
-                      level = 5
-
-              px = grid_x + x * (cell + gap)
-              py = grid_y + y * (cell + gap)
+                      level = 4
 
               draw.rounded_rectangle(
-                  (px, py, px + cell, py + cell),
-                  radius=5,
-                  fill=colors[level]
+                  (x, y, x + cell, y + cell),
+                  radius=3,
+                  fill=green[level] + (255,)
               )
 
-          def bezier(p0, p1, p2, p3, steps=100):
-              points = []
-
-              for i in range(steps + 1):
-                  t = i / steps
-                  u = 1 - t
-
-                  x = (
-                      u*u*u*p0[0]
-                      + 3*u*u*t*p1[0]
-                      + 3*u*t*t*p2[0]
-                      + t*t*t*p3[0]
-                  )
-
-                  y = (
-                      u*u*u*p0[1]
-                      + 3*u*u*t*p1[1]
-                      + 3*u*t*t*p2[1]
-                      + t*t*t*p3[1]
-                  )
-
-                  points.append((x, y))
-
-              return points
-
-          path = []
-
-          segments = [
-              ((85, 350), (180, 250), (220, 250), (310, 350)),
-              ((310, 350), (400, 450), (470, 450), (560, 340)),
-              ((560, 340), (650, 220), (720, 220), (810, 330)),
-              ((810, 330), (900, 440), (970, 420), (1040, 320)),
-              ((1040, 320), (1120, 235), (1190, 255), (1290, 315))
-          ]
-
-          for segment in segments:
-              part = bezier(*segment, steps=90)
-
-              if path:
-                  part = part[1:]
-
-              path.extend(part)
-
-          def point_at(distance):
-              if distance <= 0:
-                  return path[0]
-
-              if distance >= len(path) - 1:
-                  return path[-1]
-
-              i = int(distance)
-              f = distance - i
-
-              x1, y1 = path[i]
-              x2, y2 = path[i + 1]
-
-              return (
-                  x1 + (x2 - x1) * f,
-                  y1 + (y2 - y1) * f
-              )
-
-          def draw_dragon(frame):
-
-              base = img.copy()
-
-              glow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-              gd = ImageDraw.Draw(glow)
-
-              animated = frame * 4.5
-
-              moved_path = []
-
-              for i, (x, y) in enumerate(path):
-                  wave = math.sin(i / 22 + animated / 25) * 2.5
-                  moved_path.append((x, y + wave))
-
-              gd.line(
-                  moved_path,
-                  fill=(40, 255, 90, 90),
-                  width=70,
-                  joint="curve"
-              )
-
-              glow = glow.filter(ImageFilter.GaussianBlur(22))
-              base = Image.alpha_composite(base.convert("RGBA"), glow)
-
-              d = ImageDraw.Draw(base)
-
-              # Deep shadow under dragon
-              d.line(
-                  moved_path,
-                  fill=(0, 30, 10, 220),
-                  width=48,
-                  joint="curve"
-              )
-
-              # Dark green body
-              d.line(
-                  moved_path,
-                  fill=(12, 105, 35, 255),
-                  width=43,
-                  joint="curve"
-              )
-
-              # Main body
-              d.line(
-                  moved_path,
-                  fill=(28, 190, 62, 255),
-                  width=34,
-                  joint="curve"
-              )
-
-              # Bright center ridge
-              d.line(
-                  moved_path,
-                  fill=(85, 245, 105, 255),
-                  width=11,
-                  joint="curve"
-              )
-
-              # Dark lower body for 3D depth
-              lower = []
-
-              for i, (x, y) in enumerate(moved_path):
-                  lower.append((x, y + 13))
-
-              d.line(
-                  lower,
-                  fill=(5, 75, 25, 240),
-                  width=13,
-                  joint="curve"
-              )
-
-              # Scales
-              for i in range(12, len(moved_path) - 10, 10):
-                  x, y = moved_path[i]
-
-                  r = 7
-
-                  d.arc(
-                      (x-r, y-r, x+r, y+r),
-                      10,
-                      170,
-                      fill=(130, 255, 135, 170),
-                      width=2
-                  )
-
-                  d.arc(
-                      (x-r, y+2-r, x+r, y+2+r),
-                      190,
-                      350,
-                      fill=(3, 80, 25, 210),
-                      width=2
-                  )
-
-              # Animated energy highlights
-              for k in range(5):
-                  index = int((frame * 5 + k * 70) % (len(moved_path) - 1))
-                  x, y = moved_path[index]
-
-                  d.ellipse(
-                      (x-6, y-6, x+6, y+6),
-                      fill=(210, 255, 215, 255)
-                  )
-
-              # Tail spikes
-              for k in range(7):
-                  index = max(5, len(moved_path) - 20 - k * 14)
-                  x, y = moved_path[index]
-
-                  d.polygon(
-                      [
-                          (x-4, y-15),
-                          (x-28, y-35),
-                          (x-12, y+3)
-                      ],
-                      fill=(8, 95, 31, 255)
-                  )
-
-              # Dragon head position
-              hx, hy = moved_path[-1]
-
-              bob = math.sin(frame / 4) * 5
-              hx += 8
-              hy += bob
-
-              # Neck
-              neck = [
-                  (hx-70, hy-20),
-                  (hx-35, hy-40),
-                  (hx-10, hy+35),
-                  (hx-70, hy+30)
-              ]
-
-              d.polygon(
-                  neck,
-                  fill=(18, 125, 42, 255)
-              )
-
-              # Back spikes
-              for k in range(5):
-                  sx = hx - 25 - k * 15
-                  sy = hy - 27
-
-                  d.polygon(
-                      [
-                          (sx, sy),
-                          (sx-14, sy-35),
-                          (sx+8, sy-10)
-                      ],
-                      fill=(43, 205, 66, 255)
-                  )
-
-              # Head shadow
-              d.ellipse(
-                  (hx-35, hy-35, hx+75, hy+42),
-                  fill=(4, 60, 21, 255)
-              )
-
-              # Main head
-              d.polygon(
-                  [
-                      (hx-35, hy-30),
-                      (hx+35, hy-40),
-                      (hx+78, hy-5),
-                      (hx+45, hy+38),
-                      (hx-25, hy+28)
-                  ],
-                  fill=(45, 205, 66, 255)
-              )
-
-              # Head bright side
-              d.polygon(
-                  [
-                      (hx-20, hy-27),
-                      (hx+30, hy-35),
-                      (hx+57, hy-5),
-                      (hx+30, hy+5),
-                      (hx-15, hy+5)
-                  ],
-                  fill=(78, 230, 85, 255)
-              )
-
-              # Snout
-              d.polygon(
-                  [
-                      (hx+30, hy-8),
-                      (hx+105, hy-3),
-                      (hx+120, hy+10),
-                      (hx+38, hy+22)
-                  ],
-                  fill=(38, 170, 58, 255)
-              )
-
-              # Jaw
-              d.polygon(
-                  [
-                      (hx+35, hy+16),
-                      (hx+105, hy+12),
-                      (hx+75, hy+39),
-                      (hx+15, hy+30)
-                  ],
-                  fill=(9, 90, 30, 255)
-              )
-
-              # Horns
-              d.polygon(
-                  [
-                      (hx-5, hy-28),
-                      (hx-28, hy-75),
-                      (hx+5, hy-43)
-                  ],
-                  fill=(210, 215, 185, 255)
-              )
-
-              d.polygon(
-                  [
-                      (hx+28, hy-31),
-                      (hx+25, hy-80),
-                      (hx+48, hy-38)
-                  ],
-                  fill=(190, 200, 170, 255)
-              )
-
-              # Horn shadows
-              d.line(
-                  [(hx-5, hy-30), (hx-23, hy-67)],
-                  fill=(100, 105, 90, 255),
-                  width=5
-              )
-
-              d.line(
-                  [(hx+28, hy-34), (hx+27, hy-72)],
-                  fill=(95, 100, 85, 255),
-                  width=5
-              )
-
-              # Eye glow
-              eye_glow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-              eg = ImageDraw.Draw(eye_glow)
-
-              eg.ellipse(
-                  (hx+18, hy-22, hx+48, hy+8),
-                  fill=(255, 80, 0, 180)
-              )
-
-              eye_glow = eye_glow.filter(ImageFilter.GaussianBlur(12))
-              base = Image.alpha_composite(base, eye_glow)
-
-              d = ImageDraw.Draw(base)
-
-              # Eye
-              d.ellipse(
-                  (hx+23, hy-17, hx+43, hy+3),
-                  fill=(255, 170, 20, 255)
-              )
-
-              d.ellipse(
-                  (hx+30, hy-14, hx+37, hy+1),
-                  fill=(5, 5, 5, 255)
-              )
-
-              # Eye shine
-              d.ellipse(
-                  (hx+25, hy-15, hx+29, hy-11),
-                  fill=(255, 255, 220, 255)
-              )
-
-              # Teeth
-              for t in range(5):
-                  tx = hx + 55 + t * 9
-
-                  d.polygon(
-                      [
-                          (tx, hy+15),
-                          (tx+6, hy+15),
-                          (tx+3, hy+29)
-                      ],
-                      fill=(245, 245, 220, 255)
-                  )
-
-              # Mouth line
-              d.line(
-                  [(hx+37, hy+15), (hx+108, hy+9)],
-                  fill=(2, 35, 10, 255),
-                  width=4
-              )
-
-              # Wings
-              wing_wave = math.sin(frame / 3) * 12
-
-              left_wing = [
-                  (hx-25, hy-5),
-                  (hx-100, hy-100-wing_wave),
-                  (hx-175, hy-125-wing_wave),
-                  (hx-145, hy-35),
-                  (hx-80, hy+10)
-              ]
-
-              right_wing = [
-                  (hx-5, hy+5),
-                  (hx-60, hy-80+wing_wave),
-                  (hx-125, hy-105+wing_wave),
-                  (hx-100, hy-25),
-                  (hx-55, hy+20)
-              ]
-
-              d.polygon(
-                  left_wing,
-                  fill=(18, 115, 42, 230),
-                  outline=(70, 225, 90, 255)
-              )
-
-              d.polygon(
-                  right_wing,
-                  fill=(12, 90, 35, 230),
-                  outline=(65, 210, 85, 255)
-              )
-
-              # Wing bones
-              for wing in [left_wing, right_wing]:
-                  for j in range(1, len(wing)-1):
-                      d.line(
-                          [(hx-15, hy), wing[j]],
-                          fill=(100, 240, 110, 180),
-                          width=3
-                      )
-
-              # Front claws
-              for side in [-1, 1]:
-                  cx = hx - 20
-                  cy = hy + 35
-
-                  d.line(
-                      [(cx, cy), (cx+side*20, cy+35)],
-                      fill=(15, 90, 30, 255),
-                      width=9
-                  )
-
-                  d.polygon(
-                      [
-                          (cx+side*17, cy+32),
-                          (cx+side*34, cy+38),
-                          (cx+side*20, cy+43)
-                      ],
-                      fill=(210, 215, 180, 255)
-                  )
-
-              # Fire breath
-              fire_phase = frame * 0.9
-
-              for j in range(4):
-                  start_x = hx + 103 + j * 15
-                  start_y = hy + 7
-
-                  length = 55 + 20 * math.sin(fire_phase + j)
-
-                  end_x = start_x + length
-                  end_y = start_y + math.sin(fire_phase * 1.5 + j) * 9
-
-                  d.line(
-                      [(start_x, start_y), (end_x, end_y)],
-                      fill=(255, 120, 10, 180),
-                      width=18
-                  )
-
-                  d.line(
-                      [(start_x, start_y), (end_x, end_y)],
-                      fill=(255, 210, 40, 255),
-                      width=8
-                  )
-
-                  d.ellipse(
-                      (end_x-7, end_y-7, end_x+7, end_y+7),
-                      fill=(255, 240, 100, 255)
-                  )
-
-              # Moving floating particles
-              for p in range(18):
-                  px = 80 + ((p * 83 + frame * 9) % 1330)
-                  py = 95 + ((p * 47 + frame * 3) % 310)
-
-                  if p % 3 == 0:
-                      d.ellipse(
-                          (px-2, py-2, px+2, py+2),
-                          fill=(80, 255, 120, 130)
-                      )
-
-              # Frame label
-              d.text(
-                  (55, H-52),
-                  f"{calendar.get('totalContributions', 0)} contributions in the last year",
-                  fill=(125, 135, 148)
-              )
-
-              d.text(
-                  (W-300, H-52),
-                  "LESS      MORE",
-                  fill=(125, 135, 148)
-              )
-
-              for i, c in enumerate(colors[1:]):
-                  xx = W - 190 + i * 30
-
-                  d.rounded_rectangle(
-                      (xx, H-55, xx+20, H-35),
-                      radius=4,
-                      fill=c
-                  )
-
-              return base.convert("RGB")
+          glow = Image.new(
+              "RGBA",
+              (W, H),
+              (0, 0, 0, 0)
+          )
+
+          glow_draw = ImageDraw.Draw(glow)
+
+          glow_draw.ellipse(
+              (W - 420, 40, W + 100, 500),
+              fill=(255, 70, 10, 25)
+          )
+
+          glow = glow.filter(
+              ImageFilter.GaussianBlur(70)
+          )
+
+          background = Image.alpha_composite(
+              background,
+              glow
+          )
 
           frames = []
 
-          for frame in range(FRAMES):
-              frames.append(draw_dragon(frame))
-
-          os.makedirs("dragon", exist_ok=True)
-
-          frames[0].save(
-              "dragon/contribution-dragon.gif",
-              save_all=True,
-              append_images=frames[1:],
-              duration=90,
-              loop=0,
-              optimize=True
+          pngs = sorted(
+              glob.glob("dragon/frames/*.png")
           )
 
-          print("3D animated dragon GIF created.")
+          for i, path in enumerate(pngs):
+
+              dragon = Image.open(path).convert("RGBA")
+
+              dragon.thumbnail(
+                  (920, 340),
+                  Image.Resampling.LANCZOS
+              )
+
+              x = (W - dragon.width) // 2
+              y = 35 + int(
+                  math.sin(i / len(pngs) * math.tau) * 5
+              )
+
+              frame = background.copy()
+
+              frame.alpha_composite(
+                  dragon,
+                  (x, y)
+              )
+
+              frames.append(
+                  frame.convert("RGB")
+              )
+
+          if not frames:
+              raise RuntimeError("No rendered frames found.")
+
+          frames[0].save(
+              OUT,
+              save_all=True,
+              append_images=frames[1:],
+              duration=83,
+              loop=0,
+              optimize=True,
+              disposal=2
+          )
+
+          print("GIF created:", OUT)
           PY
 
-          python3 /tmp/dragon.py
+          python3 dragon/composite.py
+
+      - name: Optimize GIF
+        run: |
+          mkdir -p dragon/optimized
+
+          magick \
+            dragon/contribution-dragon.gif \
+            -coalesce \
+            -layers Optimize \
+            -colors 256 \
+            dragon/optimized/contribution-dragon.gif
+
+          mv \
+            dragon/optimized/contribution-dragon.gif \
+            dragon/contribution-dragon.gif
+
+      - name: Add license notice
+        run: |
+          cat > dragon/THIRD_PARTY_LICENSE.txt <<'EOF'
+          The 3D dragon STL assets used by this animation are from:
+
+          Furkath/threeJS-GLSL_STL-3D-webpage-design
+
+          Repository:
+          https://github.com/Furkath/threeJS-GLSL_STL-3D-webpage-design
+
+          The source repository is released under the MIT License.
+          EOF
 
       - name: Remove old SVG
         run: |
           rm -f dragon/contribution-dragon.svg
 
-      - name: Commit Dragon
+      - name: Commit dragon
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add dragon/
+          git add dragon/contribution-dragon.gif
+          git add dragon/contributions.json
+          git add dragon/THIRD_PARTY_LICENSE.txt
 
-          if git diff --cached --quiet; then
-            echo "No changes."
-          else
-            git commit -m "Create animated 3D contribution dragon"
-            git push
-          fi
+          git diff --cached --quiet || \
+            git commit -m "Update 3D contribution dragon"
+
+          git push
