@@ -107,7 +107,11 @@
 ## 🐉 Contribution Dragon
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/hardik563/hardik563/main/dragon/contribution-dragon.gif" width="100%" alt="Contribution Dragon">
+  <img
+    src="https://raw.githubusercontent.com/hardik563/hardik563/main/dragon/contribution-dragon.gif"
+    width="100%"
+    alt="3D Contribution Dragon"
+  />
 </p>
 
 
