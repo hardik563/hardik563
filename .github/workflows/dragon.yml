@@ -1,9 +1,9 @@
 name: Generate Contribution Dragon
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "0 0 * * *"
-  workflow_dispatch:
 
 permissions:
   contents: write
@@ -13,47 +13,41 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Install Pillow
-        run: |
-          python3 -m pip install --upgrade pip
-          python3 -m pip install pillow
+        run: python3 -m pip install pillow
 
-      - name: Create dragon folder
-        run: mkdir -p dragon
-
-      - name: Generate animated dragon
+      - name: Generate 3D Animated Dragon
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         run: |
-          python3 - <<'PY'
+          cat > /tmp/dragon.py <<'PY'
           import os
+          import math
           import json
           import urllib.request
-          import datetime
-          import math
-          from PIL import Image, ImageDraw, ImageFont, ImageFilter
+          from PIL import Image, ImageDraw, ImageFilter
 
           USERNAME = "hardik563"
-          TOKEN = os.environ["GITHUB_TOKEN"]
 
-          today = datetime.date.today()
-          start = today - datetime.timedelta(days=364)
-          end = today + datetime.timedelta(days=1)
+          W = 1500
+          H = 520
+          FRAMES = 36
+
+          token = os.environ.get("GH_TOKEN", "")
 
           query = """
-          query($login:String!, $from:DateTime!, $to:DateTime!) {
+          query($login:String!) {
             user(login:$login) {
-              contributionsCollection(from:$from, to:$to) {
+              contributionsCollection {
                 contributionCalendar {
                   totalContributions
                   weeks {
                     contributionDays {
-                      date
                       contributionCount
-                      contributionLevel
+                      date
                     }
                   }
                 }
@@ -62,641 +56,624 @@ jobs:
           }
           """
 
-          payload = {
+          payload = json.dumps({
               "query": query,
-              "variables": {
-                  "login": USERNAME,
-                  "from": f"{start}T00:00:00Z",
-                  "to": f"{end}T00:00:00Z"
-              }
-          }
+              "variables": {"login": USERNAME}
+          }).encode()
 
-          request = urllib.request.Request(
+          req = urllib.request.Request(
               "https://api.github.com/graphql",
-              data=json.dumps(payload).encode(),
+              data=payload,
               headers={
-                  "Authorization": f"bearer {TOKEN}",
+                  "Authorization": f"Bearer {token}",
                   "Content-Type": "application/json",
-                  "User-Agent": "github-contribution-dragon"
+                  "User-Agent": "github-dragon"
               }
           )
 
-          with urllib.request.urlopen(request) as response:
-              result = json.load(response)
+          try:
+              with urllib.request.urlopen(req) as response:
+                  data = json.loads(response.read().decode())
+              calendar = data["data"]["user"]["contributionsCollection"]["contributionCalendar"]
+          except Exception:
+              calendar = {
+                  "totalContributions": 0,
+                  "weeks": []
+              }
 
-          if result.get("errors"):
-              raise RuntimeError(result["errors"])
+          weeks = calendar.get("weeks", [])
 
-          calendar = result["data"]["user"]["contributionsCollection"]["contributionCalendar"]
-          weeks = calendar["weeks"]
-          total = calendar["totalContributions"]
+          values = []
+          for week in weeks:
+              for day in week.get("contributionDays", []):
+                  values.append(day.get("contributionCount", 0))
 
-          colors = {
-              "NONE": "#161b22",
-              "FIRST_QUARTILE": "#0e4429",
-              "SECOND_QUARTILE": "#006d32",
-              "THIRD_QUARTILE": "#26a641",
-              "FOURTH_QUARTILE": "#39d353"
-          }
+          while len(values) < 371:
+              values.append(0)
 
-          days = {}
-          positions = {}
+          values = values[-371:]
 
-          for x, week in enumerate(weeks):
-              for day in week["contributionDays"]:
-                  date = day["date"]
-                  dt = datetime.date.fromisoformat(date)
+          maximum = max(values) if values else 1
 
-                  y = (dt.weekday() + 1) % 7
+          img = Image.new("RGB", (W, H), (8, 11, 17))
 
-                  days[date] = day
-                  positions[date] = (x, y)
+          draw = ImageDraw.Draw(img)
 
-          CELL = 13
-          STEP = 18
-          LEFT = 65
-          TOP = 105
+          draw.rounded_rectangle(
+              (2, 2, W - 3, H - 3),
+              radius=25,
+              fill=(10, 14, 21),
+              outline=(42, 49, 61),
+              width=2
+          )
 
-          columns = len(weeks)
+          draw.text(
+              (55, 30),
+              "🐉  CONTRIBUTION DRAGON",
+              fill=(235, 242, 247)
+          )
 
-          WIDTH = max(1150, LEFT + columns * STEP + 70)
-          HEIGHT = 330
+          draw.text(
+              (55, 65),
+              "A living 3D dragon powered by GitHub contributions",
+              fill=(115, 125, 138)
+          )
 
-          SCALE = 2
+          grid_x = 85
+          grid_y = 120
+          cell = 25
+          gap = 5
 
-          W = WIDTH * SCALE
-          H = HEIGHT * SCALE
+          cols = 52
+          rows = 7
 
-          def font(size, bold=False):
-              paths = [
-                  "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
-                  if bold else
-                  "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
-              ]
-
-              for path in paths:
-                  if os.path.exists(path):
-                      return ImageFont.truetype(path, size * SCALE)
-
-              return ImageFont.load_default()
-
-          title_font = font(22, True)
-          small_font = font(13)
-          month_font = font(12)
-          weekday_font = font(10)
-          tiny_font = font(11)
-
-          # ------------------------------------------------------------
-          # Smooth dragon path
-          # ------------------------------------------------------------
-
-          x0 = LEFT + 8
-          xend = LEFT + (columns - 1) * STEP + 8
-
-          span = xend - x0
-
-          control = [
-              (x0, TOP + 5 * STEP + 7),
-              (x0 + span * 0.12, TOP + 1.5 * STEP),
-              (x0 + span * 0.25, TOP + 5.3 * STEP),
-              (x0 + span * 0.38, TOP + 1.5 * STEP),
-              (x0 + span * 0.51, TOP + 5.3 * STEP),
-              (x0 + span * 0.64, TOP + 1.5 * STEP),
-              (x0 + span * 0.77, TOP + 5.0 * STEP),
-              (x0 + span * 0.90, TOP + 2.0 * STEP),
-              (xend, TOP + 3.0 * STEP)
+          colors = [
+              (20, 28, 35),
+              (13, 70, 39),
+              (18, 110, 52),
+              (28, 160, 70),
+              (45, 205, 88),
+              (80, 235, 115)
           ]
 
-          def cubic(p0, p1, p2, p3, t):
-              u = 1 - t
-              x = (
-                  u*u*u*p0[0]
-                  + 3*u*u*t*p1[0]
-                  + 3*u*t*t*p2[0]
-                  + t*t*t*p3[0]
-              )
-              y = (
-                  u*u*u*p0[1]
-                  + 3*u*u*t*p1[1]
-                  + 3*u*t*t*p2[1]
-                  + t*t*t*p3[1]
-              )
-              return x, y
+          for i in range(cols * rows):
+              x = i // rows
+              y = i % rows
 
-          dragon_points = []
+              value = values[i] if i < len(values) else 0
 
-          for i in range(len(control) - 1):
-              p0 = control[i]
-              p3 = control[i + 1]
+              if value == 0:
+                  level = 0
+              else:
+                  ratio = value / max(1, maximum)
 
-              dx = (p3[0] - p0[0]) / 3
+                  if ratio < 0.2:
+                      level = 1
+                  elif ratio < 0.4:
+                      level = 2
+                  elif ratio < 0.7:
+                      level = 3
+                  elif ratio < 0.9:
+                      level = 4
+                  else:
+                      level = 5
 
-              p1 = (p0[0] + dx, p0[1])
-              p2 = (p3[0] - dx, p3[1])
+              px = grid_x + x * (cell + gap)
+              py = grid_y + y * (cell + gap)
 
-              for j in range(30):
-                  t = j / 30
-                  dragon_points.append(cubic(p0, p1, p2, p3, t))
-
-          dragon_points.append(control[-1])
-
-          # ------------------------------------------------------------
-          # Draw one frame
-          # ------------------------------------------------------------
-
-          def draw_frame(frame_index):
-
-              img = Image.new("RGB", (W, H), "#0d1117")
-
-              draw = ImageDraw.Draw(img)
-
-              # Card
               draw.rounded_rectangle(
-                  [0, 0, W - 1, H - 1],
-                  radius=18 * SCALE,
-                  fill="#0d1117",
-                  outline="#30363d",
-                  width=1 * SCALE
+                  (px, py, px + cell, py + cell),
+                  radius=5,
+                  fill=colors[level]
               )
 
-              # Title
-              draw.text(
-                  (55 * SCALE, 22 * SCALE),
-                  "🐉 Contribution Dragon",
-                  fill="#ffffff",
-                  font=title_font
+          def bezier(p0, p1, p2, p3, steps=100):
+              points = []
+
+              for i in range(steps + 1):
+                  t = i / steps
+                  u = 1 - t
+
+                  x = (
+                      u*u*u*p0[0]
+                      + 3*u*u*t*p1[0]
+                      + 3*u*t*t*p2[0]
+                      + t*t*t*p3[0]
+                  )
+
+                  y = (
+                      u*u*u*p0[1]
+                      + 3*u*u*t*p1[1]
+                      + 3*u*t*t*p2[1]
+                      + t*t*t*p3[1]
+                  )
+
+                  points.append((x, y))
+
+              return points
+
+          path = []
+
+          segments = [
+              ((85, 350), (180, 250), (220, 250), (310, 350)),
+              ((310, 350), (400, 450), (470, 450), (560, 340)),
+              ((560, 340), (650, 220), (720, 220), (810, 330)),
+              ((810, 330), (900, 440), (970, 420), (1040, 320)),
+              ((1040, 320), (1120, 235), (1190, 255), (1290, 315))
+          ]
+
+          for segment in segments:
+              part = bezier(*segment, steps=90)
+
+              if path:
+                  part = part[1:]
+
+              path.extend(part)
+
+          def point_at(distance):
+              if distance <= 0:
+                  return path[0]
+
+              if distance >= len(path) - 1:
+                  return path[-1]
+
+              i = int(distance)
+              f = distance - i
+
+              x1, y1 = path[i]
+              x2, y2 = path[i + 1]
+
+              return (
+                  x1 + (x2 - x1) * f,
+                  y1 + (y2 - y1) * f
               )
 
-              draw.text(
-                  (55 * SCALE, 53 * SCALE),
-                  "A living dragon powered by my GitHub contributions",
-                  fill="#8b949e",
-                  font=small_font
-              )
+          def draw_dragon(frame):
 
-              # --------------------------------------------------------
-              # Contribution calendar
-              # --------------------------------------------------------
+              base = img.copy()
 
-              for date, day in days.items():
-
-                  x, y = positions[date]
-
-                  px = (LEFT + x * STEP) * SCALE
-                  py = (TOP + y * STEP) * SCALE
-
-                  color = colors.get(
-                      day["contributionLevel"],
-                      "#161b22"
-                  )
-
-                  draw.rounded_rectangle(
-                      [
-                          px,
-                          py,
-                          px + CELL * SCALE,
-                          py + CELL * SCALE
-                      ],
-                      radius=3 * SCALE,
-                      fill=color
-                  )
-
-              # Month names
-              for date in sorted(days):
-
-                  dt = datetime.date.fromisoformat(date)
-
-                  if dt.day == 1 and date in positions:
-
-                      x, _ = positions[date]
-
-                      px = (LEFT + x * STEP) * SCALE
-
-                      draw.text(
-                          (px, 88 * SCALE),
-                          dt.strftime("%b"),
-                          fill="#8b949e",
-                          font=month_font
-                      )
-
-              # Weekday names
-              for row, label in [(1, "Mon"), (3, "Wed"), (5, "Fri")]:
-
-                  py = (TOP + row * STEP + 4) * SCALE
-
-                  draw.text(
-                      (8 * SCALE, py),
-                      label,
-                      fill="#8b949e",
-                      font=weekday_font
-                  )
-
-              # --------------------------------------------------------
-              # Dragon animation
-              # --------------------------------------------------------
-
-              # Slow travelling highlight
-              progress = (frame_index / 24.0) % 1.0
-
-              # Head bob
-              bob = math.sin(frame_index / 24.0 * math.pi * 2) * 4
-
-              # Draw dragon shadow/glow
               glow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
               gd = ImageDraw.Draw(glow)
 
-              scaled_path = [
-                  (int(x * SCALE), int(y * SCALE))
-                  for x, y in dragon_points
-              ]
+              animated = frame * 4.5
+
+              moved_path = []
+
+              for i, (x, y) in enumerate(path):
+                  wave = math.sin(i / 22 + animated / 25) * 2.5
+                  moved_path.append((x, y + wave))
 
               gd.line(
-                  scaled_path,
-                  fill=(57, 211, 83, 120),
-                  width=25 * SCALE,
+                  moved_path,
+                  fill=(40, 255, 90, 90),
+                  width=70,
                   joint="curve"
               )
 
-              glow = glow.filter(
-                  ImageFilter.GaussianBlur(9 * SCALE)
+              glow = glow.filter(ImageFilter.GaussianBlur(22))
+              base = Image.alpha_composite(base.convert("RGBA"), glow)
+
+              d = ImageDraw.Draw(base)
+
+              # Deep shadow under dragon
+              d.line(
+                  moved_path,
+                  fill=(0, 30, 10, 220),
+                  width=48,
+                  joint="curve"
               )
 
-              img = Image.alpha_composite(
-                  img.convert("RGBA"),
-                  glow
-              )
-
-              draw = ImageDraw.Draw(img)
-
-              # Dark outline of dragon body
-              draw.line(
-                  scaled_path,
-                  fill="#062b14",
-                  width=15 * SCALE,
+              # Dark green body
+              d.line(
+                  moved_path,
+                  fill=(12, 105, 35, 255),
+                  width=43,
                   joint="curve"
               )
 
               # Main body
-              draw.line(
-                  scaled_path,
-                  fill="#20a843",
-                  width=10 * SCALE,
+              d.line(
+                  moved_path,
+                  fill=(28, 190, 62, 255),
+                  width=34,
                   joint="curve"
               )
 
-              # Bright center
-              draw.line(
-                  scaled_path,
-                  fill="#58e86d",
-                  width=4 * SCALE,
+              # Bright center ridge
+              d.line(
+                  moved_path,
+                  fill=(85, 245, 105, 255),
+                  width=11,
                   joint="curve"
               )
 
-              # --------------------------------------------------------
-              # Dragon scales
-              # --------------------------------------------------------
+              # Dark lower body for 3D depth
+              lower = []
 
-              for i in range(5, len(dragon_points) - 5, 8):
+              for i, (x, y) in enumerate(moved_path):
+                  lower.append((x, y + 13))
 
-                  x, y = dragon_points[i]
+              d.line(
+                  lower,
+                  fill=(5, 75, 25, 240),
+                  width=13,
+                  joint="curve"
+              )
 
-                  r = 4 * SCALE
+              # Scales
+              for i in range(12, len(moved_path) - 10, 10):
+                  x, y = moved_path[i]
 
-                  draw.ellipse(
+                  r = 7
+
+                  d.arc(
+                      (x-r, y-r, x+r, y+r),
+                      10,
+                      170,
+                      fill=(130, 255, 135, 170),
+                      width=2
+                  )
+
+                  d.arc(
+                      (x-r, y+2-r, x+r, y+2+r),
+                      190,
+                      350,
+                      fill=(3, 80, 25, 210),
+                      width=2
+                  )
+
+              # Animated energy highlights
+              for k in range(5):
+                  index = int((frame * 5 + k * 70) % (len(moved_path) - 1))
+                  x, y = moved_path[index]
+
+                  d.ellipse(
+                      (x-6, y-6, x+6, y+6),
+                      fill=(210, 255, 215, 255)
+                  )
+
+              # Tail spikes
+              for k in range(7):
+                  index = max(5, len(moved_path) - 20 - k * 14)
+                  x, y = moved_path[index]
+
+                  d.polygon(
                       [
-                          x * SCALE - r,
-                          y * SCALE - r,
-                          x * SCALE + r,
-                          y * SCALE + r
+                          (x-4, y-15),
+                          (x-28, y-35),
+                          (x-12, y+3)
                       ],
-                      fill="#a5ff9a",
-                      outline="#116b2c",
-                      width=1 * SCALE
+                      fill=(8, 95, 31, 255)
                   )
 
-              # --------------------------------------------------------
-              # Moving energy along the dragon
-              # --------------------------------------------------------
+              # Dragon head position
+              hx, hy = moved_path[-1]
 
-              moving_index = int(progress * (len(dragon_points) - 1))
-
-              for j in range(7):
-
-                  idx = moving_index - j * 5
-
-                  if idx < 0:
-                      idx += len(dragon_points)
-
-                  x, y = dragon_points[idx]
-
-                  radius = max(
-                      2,
-                      int((7 - j) * 0.8)
-                  ) * SCALE
-
-                  alpha = max(30, 220 - j * 28)
-
-                  glow_dot = Image.new(
-                      "RGBA",
-                      (W, H),
-                      (0, 0, 0, 0)
-                  )
-
-                  dot = ImageDraw.Draw(glow_dot)
-
-                  dot.ellipse(
-                      [
-                          x * SCALE - radius,
-                          y * SCALE - radius,
-                          x * SCALE + radius,
-                          y * SCALE + radius
-                      ],
-                      fill=(190, 255, 170, alpha)
-                  )
-
-                  glow_dot = glow_dot.filter(
-                      ImageFilter.GaussianBlur(4 * SCALE)
-                  )
-
-                  img = Image.alpha_composite(
-                      img,
-                      glow_dot
-                  )
-
-                  draw = ImageDraw.Draw(img)
-
-              # --------------------------------------------------------
-              # Dragon head
-              # --------------------------------------------------------
-
-              hx, hy = dragon_points[-1]
-
-              hx *= SCALE
-              hy = hy * SCALE + bob * SCALE
+              bob = math.sin(frame / 4) * 5
+              hx += 8
+              hy += bob
 
               # Neck
-              draw.line(
-                  [
-                      (hx - 30 * SCALE, hy + 10 * SCALE),
-                      (hx - 8 * SCALE, hy)
-                  ],
-                  fill="#147a30",
-                  width=17 * SCALE
-              )
-
-              # Head shape
-              head = [
-                  (hx - 5 * SCALE, hy - 20 * SCALE),
-                  (hx + 20 * SCALE, hy - 32 * SCALE),
-                  (hx + 48 * SCALE, hy - 26 * SCALE),
-                  (hx + 66 * SCALE, hy - 38 * SCALE),
-                  (hx + 58 * SCALE, hy - 15 * SCALE),
-                  (hx + 78 * SCALE, hy - 2 * SCALE),
-                  (hx + 53 * SCALE, hy + 7 * SCALE),
-                  (hx + 43 * SCALE, hy + 24 * SCALE),
-                  (hx + 13 * SCALE, hy + 22 * SCALE),
-                  (hx - 5 * SCALE, hy + 8 * SCALE)
+              neck = [
+                  (hx-70, hy-20),
+                  (hx-35, hy-40),
+                  (hx-10, hy+35),
+                  (hx-70, hy+30)
               ]
 
-              draw.polygon(
-                  head,
-                  fill="#39d353",
-                  outline="#9aff91"
+              d.polygon(
+                  neck,
+                  fill=(18, 125, 42, 255)
+              )
+
+              # Back spikes
+              for k in range(5):
+                  sx = hx - 25 - k * 15
+                  sy = hy - 27
+
+                  d.polygon(
+                      [
+                          (sx, sy),
+                          (sx-14, sy-35),
+                          (sx+8, sy-10)
+                      ],
+                      fill=(43, 205, 66, 255)
+                  )
+
+              # Head shadow
+              d.ellipse(
+                  (hx-35, hy-35, hx+75, hy+42),
+                  fill=(4, 60, 21, 255)
+              )
+
+              # Main head
+              d.polygon(
+                  [
+                      (hx-35, hy-30),
+                      (hx+35, hy-40),
+                      (hx+78, hy-5),
+                      (hx+45, hy+38),
+                      (hx-25, hy+28)
+                  ],
+                  fill=(45, 205, 66, 255)
+              )
+
+              # Head bright side
+              d.polygon(
+                  [
+                      (hx-20, hy-27),
+                      (hx+30, hy-35),
+                      (hx+57, hy-5),
+                      (hx+30, hy+5),
+                      (hx-15, hy+5)
+                  ],
+                  fill=(78, 230, 85, 255)
+              )
+
+              # Snout
+              d.polygon(
+                  [
+                      (hx+30, hy-8),
+                      (hx+105, hy-3),
+                      (hx+120, hy+10),
+                      (hx+38, hy+22)
+                  ],
+                  fill=(38, 170, 58, 255)
+              )
+
+              # Jaw
+              d.polygon(
+                  [
+                      (hx+35, hy+16),
+                      (hx+105, hy+12),
+                      (hx+75, hy+39),
+                      (hx+15, hy+30)
+                  ],
+                  fill=(9, 90, 30, 255)
               )
 
               # Horns
-              draw.polygon(
+              d.polygon(
                   [
-                      (hx + 5 * SCALE, hy - 19 * SCALE),
-                      (hx - 3 * SCALE, hy - 48 * SCALE),
-                      (hx + 18 * SCALE, hy - 25 * SCALE)
+                      (hx-5, hy-28),
+                      (hx-28, hy-75),
+                      (hx+5, hy-43)
                   ],
-                  fill="#1c7f35"
+                  fill=(210, 215, 185, 255)
               )
 
-              draw.polygon(
+              d.polygon(
                   [
-                      (hx + 28 * SCALE, hy - 26 * SCALE),
-                      (hx + 30 * SCALE, hy - 55 * SCALE),
-                      (hx + 43 * SCALE, hy - 25 * SCALE)
+                      (hx+28, hy-31),
+                      (hx+25, hy-80),
+                      (hx+48, hy-38)
                   ],
-                  fill="#1c7f35"
+                  fill=(190, 200, 170, 255)
+              )
+
+              # Horn shadows
+              d.line(
+                  [(hx-5, hy-30), (hx-23, hy-67)],
+                  fill=(100, 105, 90, 255),
+                  width=5
+              )
+
+              d.line(
+                  [(hx+28, hy-34), (hx+27, hy-72)],
+                  fill=(95, 100, 85, 255),
+                  width=5
               )
 
               # Eye glow
-              eye_x = hx + 42 * SCALE
-              eye_y = hy - 12 * SCALE
+              eye_glow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+              eg = ImageDraw.Draw(eye_glow)
 
-              draw.ellipse(
-                  [
-                      eye_x - 6 * SCALE,
-                      eye_y - 6 * SCALE,
-                      eye_x + 6 * SCALE,
-                      eye_y + 6 * SCALE
-                  ],
-                  fill="#fff200"
+              eg.ellipse(
+                  (hx+18, hy-22, hx+48, hy+8),
+                  fill=(255, 80, 0, 180)
               )
 
-              draw.ellipse(
-                  [
-                      eye_x - 2 * SCALE,
-                      eye_y - 5 * SCALE,
-                      eye_x + 2 * SCALE,
-                      eye_y + 5 * SCALE
-                  ],
-                  fill="#111111"
+              eye_glow = eye_glow.filter(ImageFilter.GaussianBlur(12))
+              base = Image.alpha_composite(base, eye_glow)
+
+              d = ImageDraw.Draw(base)
+
+              # Eye
+              d.ellipse(
+                  (hx+23, hy-17, hx+43, hy+3),
+                  fill=(255, 170, 20, 255)
               )
 
-              # Nostril
-              draw.ellipse(
-                  [
-                      hx + 62 * SCALE,
-                      hy - 1 * SCALE,
-                      hx + 67 * SCALE,
-                      hy + 4 * SCALE
-                  ],
-                  fill="#111111"
+              d.ellipse(
+                  (hx+30, hy-14, hx+37, hy+1),
+                  fill=(5, 5, 5, 255)
               )
 
-              # Mouth
-              draw.arc(
-                  [
-                      hx + 35 * SCALE,
-                      hy - 1 * SCALE,
-                      hx + 70 * SCALE,
-                      hy + 20 * SCALE
-                  ],
-                  0,
-                  180,
-                  fill="#062b14",
-                  width=2 * SCALE
+              # Eye shine
+              d.ellipse(
+                  (hx+25, hy-15, hx+29, hy-11),
+                  fill=(255, 255, 220, 255)
               )
 
               # Teeth
-              draw.polygon(
-                  [
-                      (hx + 50 * SCALE, hy + 8 * SCALE),
-                      (hx + 55 * SCALE, hy + 19 * SCALE),
-                      (hx + 59 * SCALE, hy + 8 * SCALE)
-                  ],
-                  fill="#eaffdf"
-              )
+              for t in range(5):
+                  tx = hx + 55 + t * 9
 
-              draw.polygon(
-                  [
-                      (hx + 62 * SCALE, hy + 6 * SCALE),
-                      (hx + 66 * SCALE, hy + 16 * SCALE),
-                      (hx + 70 * SCALE, hy + 5 * SCALE)
-                  ],
-                  fill="#eaffdf"
-              )
-
-              # --------------------------------------------------------
-              # Fire breath animation
-              # --------------------------------------------------------
-
-              fire_phase = frame_index % 6
-
-              flame_length = (18 + fire_phase * 4) * SCALE
-
-              flame_x = hx + 74 * SCALE
-
-              flame = [
-                  (flame_x, hy + 1 * SCALE),
-                  (flame_x + flame_length, hy - 7 * SCALE),
-                  (flame_x + flame_length + 7 * SCALE, hy),
-                  (flame_x + flame_length, hy + 8 * SCALE),
-              ]
-
-              draw.polygon(
-                  flame,
-                  fill="#ff9d00"
-              )
-
-              inner = [
-                  (flame_x, hy + 1 * SCALE),
-                  (flame_x + flame_length * 0.65, hy - 3 * SCALE),
-                  (flame_x + flame_length * 0.65, hy + 5 * SCALE)
-              ]
-
-              draw.polygon(
-                  inner,
-                  fill="#fff36b"
-              )
-
-              # --------------------------------------------------------
-              # Tail spikes
-              # --------------------------------------------------------
-
-              for i in range(8, len(dragon_points) - 10, 12):
-
-                  x, y = dragon_points[i]
-
-                  draw.polygon(
+                  d.polygon(
                       [
-                          (x * SCALE, y * SCALE - 5 * SCALE),
-                          (x * SCALE - 10 * SCALE, y * SCALE - 16 * SCALE),
-                          (x * SCALE + 5 * SCALE, y * SCALE - 8 * SCALE)
+                          (tx, hy+15),
+                          (tx+6, hy+15),
+                          (tx+3, hy+29)
                       ],
-                      fill="#167c31"
+                      fill=(245, 245, 220, 255)
                   )
 
-              # Bottom information
-              draw.text(
-                  (55 * SCALE, 292 * SCALE),
-                  f"{total} contributions in the last year",
-                  fill="#8b949e",
-                  font=small_font
+              # Mouth line
+              d.line(
+                  [(hx+37, hy+15), (hx+108, hy+9)],
+                  fill=(2, 35, 10, 255),
+                  width=4
               )
 
-              # Legend
-              lx = WIDTH - 190
+              # Wings
+              wing_wave = math.sin(frame / 3) * 12
 
-              draw.text(
-                  (lx * SCALE, 292 * SCALE),
-                  "Less",
-                  fill="#8b949e",
-                  font=tiny_font
-              )
-
-              legend_colors = [
-                  "#161b22",
-                  "#0e4429",
-                  "#006d32",
-                  "#26a641",
-                  "#39d353"
+              left_wing = [
+                  (hx-25, hy-5),
+                  (hx-100, hy-100-wing_wave),
+                  (hx-175, hy-125-wing_wave),
+                  (hx-145, hy-35),
+                  (hx-80, hy+10)
               ]
 
-              for i, c in enumerate(legend_colors):
+              right_wing = [
+                  (hx-5, hy+5),
+                  (hx-60, hy-80+wing_wave),
+                  (hx-125, hy-105+wing_wave),
+                  (hx-100, hy-25),
+                  (hx-55, hy+20)
+              ]
 
-                  x = (lx + 38 + i * 18) * SCALE
+              d.polygon(
+                  left_wing,
+                  fill=(18, 115, 42, 230),
+                  outline=(70, 225, 90, 255)
+              )
 
-                  draw.rounded_rectangle(
+              d.polygon(
+                  right_wing,
+                  fill=(12, 90, 35, 230),
+                  outline=(65, 210, 85, 255)
+              )
+
+              # Wing bones
+              for wing in [left_wing, right_wing]:
+                  for j in range(1, len(wing)-1):
+                      d.line(
+                          [(hx-15, hy), wing[j]],
+                          fill=(100, 240, 110, 180),
+                          width=3
+                      )
+
+              # Front claws
+              for side in [-1, 1]:
+                  cx = hx - 20
+                  cy = hy + 35
+
+                  d.line(
+                      [(cx, cy), (cx+side*20, cy+35)],
+                      fill=(15, 90, 30, 255),
+                      width=9
+                  )
+
+                  d.polygon(
                       [
-                          x,
-                          287 * SCALE,
-                          x + 13 * SCALE,
-                          300 * SCALE
+                          (cx+side*17, cy+32),
+                          (cx+side*34, cy+38),
+                          (cx+side*20, cy+43)
                       ],
-                      radius=3 * SCALE,
+                      fill=(210, 215, 180, 255)
+                  )
+
+              # Fire breath
+              fire_phase = frame * 0.9
+
+              for j in range(4):
+                  start_x = hx + 103 + j * 15
+                  start_y = hy + 7
+
+                  length = 55 + 20 * math.sin(fire_phase + j)
+
+                  end_x = start_x + length
+                  end_y = start_y + math.sin(fire_phase * 1.5 + j) * 9
+
+                  d.line(
+                      [(start_x, start_y), (end_x, end_y)],
+                      fill=(255, 120, 10, 180),
+                      width=18
+                  )
+
+                  d.line(
+                      [(start_x, start_y), (end_x, end_y)],
+                      fill=(255, 210, 40, 255),
+                      width=8
+                  )
+
+                  d.ellipse(
+                      (end_x-7, end_y-7, end_x+7, end_y+7),
+                      fill=(255, 240, 100, 255)
+                  )
+
+              # Moving floating particles
+              for p in range(18):
+                  px = 80 + ((p * 83 + frame * 9) % 1330)
+                  py = 95 + ((p * 47 + frame * 3) % 310)
+
+                  if p % 3 == 0:
+                      d.ellipse(
+                          (px-2, py-2, px+2, py+2),
+                          fill=(80, 255, 120, 130)
+                      )
+
+              # Frame label
+              d.text(
+                  (55, H-52),
+                  f"{calendar.get('totalContributions', 0)} contributions in the last year",
+                  fill=(125, 135, 148)
+              )
+
+              d.text(
+                  (W-300, H-52),
+                  "LESS      MORE",
+                  fill=(125, 135, 148)
+              )
+
+              for i, c in enumerate(colors[1:]):
+                  xx = W - 190 + i * 30
+
+                  d.rounded_rectangle(
+                      (xx, H-55, xx+20, H-35),
+                      radius=4,
                       fill=c
                   )
 
-              draw.text(
-                  ((lx + 135) * SCALE, 292 * SCALE),
-                  "More",
-                  fill="#8b949e",
-                  font=tiny_font
-              )
-
-              # Downsample
-              img = img.convert("RGB").resize(
-                  (WIDTH, HEIGHT),
-                  Image.Resampling.LANCZOS
-              )
-
-              return img
-
-          # ------------------------------------------------------------
-          # Create 24 animation frames
-          # ------------------------------------------------------------
+              return base.convert("RGB")
 
           frames = []
 
-          for frame_index in range(24):
-              print(f"Creating frame {frame_index + 1}/24")
-              frames.append(draw_frame(frame_index))
+          for frame in range(FRAMES):
+              frames.append(draw_dragon(frame))
 
-          output = "dragon/contribution-dragon.gif"
+          os.makedirs("dragon", exist_ok=True)
 
           frames[0].save(
-              output,
+              "dragon/contribution-dragon.gif",
               save_all=True,
               append_images=frames[1:],
-              duration=120,
+              duration=90,
               loop=0,
               optimize=True
           )
 
-          print(f"Generated animated dragon: {output}")
-          print(f"Total contributions: {total}")
+          print("3D animated dragon GIF created.")
           PY
+
+          python3 /tmp/dragon.py
 
       - name: Remove old SVG
         run: |
           rm -f dragon/contribution-dragon.svg
 
-      - name: Commit dragon
+      - name: Commit Dragon
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add dragon/contribution-dragon.gif
-          git add -u dragon/
+          git add dragon/
 
           if git diff --cached --quiet; then
-            echo "No changes to commit"
+            echo "No changes."
           else
-            git commit -m "Create animated contribution dragon"
+            git commit -m "Create animated 3D contribution dragon"
             git push
           fi
