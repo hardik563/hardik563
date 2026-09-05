@@ -19,36 +19,39 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y blender python3-pip imagemagick
-          pip3 install pillow requests
+          sudo apt-get install -y blender imagemagick python3-pip
+          python3 -m pip install --break-system-packages pillow requests
 
       - name: Download 3D dragon
         run: |
           mkdir -p dragon/assets
 
-          curl -L \
+          curl -L --fail \
             https://raw.githubusercontent.com/Furkath/threeJS-GLSL_STL-3D-webpage-design/master/bodyy.stl \
             -o dragon/assets/body.stl
 
-          curl -L \
+          curl -L --fail \
             https://raw.githubusercontent.com/Furkath/threeJS-GLSL_STL-3D-webpage-design/master/head.stl \
             -o dragon/assets/head.stl
 
-          curl -L \
+          curl -L --fail \
             https://raw.githubusercontent.com/Furkath/threeJS-GLSL_STL-3D-webpage-design/master/jiao.stl \
             -o dragon/assets/jiao.stl
 
-          curl -L \
+          curl -L --fail \
             https://raw.githubusercontent.com/Furkath/threeJS-GLSL_STL-3D-webpage-design/master/jiao2.stl \
             -o dragon/assets/jiao2.stl
 
-          curl -L \
+          curl -L --fail \
             https://raw.githubusercontent.com/Furkath/threeJS-GLSL_STL-3D-webpage-design/master/tou.stl \
             -o dragon/assets/tou.stl
 
-          curl -L \
+          curl -L --fail \
             https://raw.githubusercontent.com/Furkath/threeJS-GLSL_STL-3D-webpage-design/master/wei.stl \
             -o dragon/assets/wei.stl
+
+          echo "Downloaded models:"
+          ls -lh dragon/assets
 
       - name: Get contribution data
         env:
@@ -64,7 +67,6 @@ jobs:
             user(login:$login) {
               contributionsCollection {
                 contributionCalendar {
-                  totalContributions
                   weeks {
                     contributionDays {
                       contributionCount
@@ -77,35 +79,37 @@ jobs:
           }
           """
 
-          r = requests.post(
+          response = requests.post(
               "https://api.github.com/graphql",
               json={
                   "query": query,
-                  "variables": {"login": "hardik563"}
+                  "variables": {
+                      "login": "hardik563"
+                  }
               },
               headers={
-                  "Authorization": f"bearer {os.environ['GH_TOKEN']}"
-              }
+                  "Authorization": "bearer " + os.environ["GH_TOKEN"]
+              },
+              timeout=30
           )
 
-          r.raise_for_status()
-
-          data = r.json()
+          response.raise_for_status()
 
           with open("dragon/contributions.json", "w") as f:
-              json.dump(data, f)
+              json.dump(response.json(), f)
+
+          print("Contribution data downloaded.")
           PY
 
-      - name: Create Blender scene
+      - name: Render real 3D dragon
         run: |
+          rm -rf dragon/frames
+          mkdir -p dragon/frames
+
           cat > dragon/render_dragon.py <<'PY'
           import bpy
-          import math
           import os
-          import json
-          import glob
-          import random
-
+          import math
           from mathutils import Vector
 
           ROOT = os.path.abspath(os.path.dirname(__file__))
@@ -119,168 +123,219 @@ jobs:
           scene = bpy.context.scene
 
           scene.render.engine = "BLENDER_EEVEE_NEXT"
+
           scene.render.resolution_x = 1000
           scene.render.resolution_y = 420
           scene.render.resolution_percentage = 100
 
           scene.render.image_settings.file_format = "PNG"
-          scene.render.film_transparent = True
-
           scene.render.image_settings.color_mode = "RGBA"
+          scene.render.film_transparent = True
 
           scene.render.fps = 12
 
-          world = bpy.data.worlds.new("DragonWorld")
+          world = bpy.data.worlds.new("Dragon World")
           scene.world = world
           world.use_nodes = True
 
-          bg = world.node_tree.nodes.get("Background")
-          bg.inputs["Color"].default_value = (
+          world.node_tree.nodes["Background"].inputs["Color"].default_value = (
               0.002,
               0.004,
               0.008,
               1
           )
-          bg.inputs["Strength"].default_value = 0.12
 
-          def material(name, color, metallic, roughness):
-              m = bpy.data.materials.new(name)
-              m.diffuse_color = (*color, 1)
-              m.use_nodes = True
+          world.node_tree.nodes["Background"].inputs["Strength"].default_value = 0.15
 
-              bsdf = m.node_tree.nodes.get("Principled BSDF")
+          def make_material(name, color, metallic, roughness):
 
-              bsdf.inputs["Base Color"].default_value = (*color, 1)
+              material = bpy.data.materials.new(name)
+
+              material.use_nodes = True
+
+              bsdf = material.node_tree.nodes.get("Principled BSDF")
+
+              bsdf.inputs["Base Color"].default_value = (
+                  color[0],
+                  color[1],
+                  color[2],
+                  1
+              )
+
               bsdf.inputs["Metallic"].default_value = metallic
               bsdf.inputs["Roughness"].default_value = roughness
 
-              return m
+              return material
 
-          red_gold = material(
-              "Dragon Red Gold",
-              (0.42, 0.018, 0.012),
-              0.72,
+          body_material = make_material(
+              "Red Dragon Scales",
+              (0.38, 0.012, 0.008),
+              0.8,
               0.22
           )
 
-          gold = material(
-              "Dragon Gold",
-              (0.65, 0.25, 0.025),
-              0.82,
-              0.18
-          )
-
-          dark_gold = material(
-              "Dragon Dark Gold",
-              (0.22, 0.055, 0.008),
-              0.8,
-              0.25
-          )
-
-          head_mat = material(
+          head_material = make_material(
               "Dragon Head",
-              (0.34, 0.008, 0.006),
-              0.78,
+              (0.28, 0.006, 0.004),
+              0.75,
               0.2
           )
 
-          claw_mat = material(
-              "Dragon Claws",
-              (0.72, 0.48, 0.12),
-              0.9,
-              0.15
+          gold_material = make_material(
+              "Golden Details",
+              (0.65, 0.22, 0.015),
+              0.85,
+              0.18
           )
 
-          objects = []
+          dark_material = make_material(
+              "Dark Details",
+              (0.06, 0.008, 0.004),
+              0.7,
+              0.3
+          )
 
           def import_stl(path):
+
               before = set(bpy.context.scene.objects)
+
+              imported = False
 
               try:
                   bpy.ops.wm.stl_import(filepath=path)
-              except:
-                  bpy.ops.import_mesh.stl(filepath=path)
+                  imported = True
+              except Exception:
+                  pass
+
+              if not imported:
+                  try:
+                      bpy.ops.import_mesh.stl(filepath=path)
+                      imported = True
+                  except Exception:
+                      pass
+
+              if not imported:
+                  raise RuntimeError(
+                      "Unable to import STL: " + path
+                  )
 
               after = set(bpy.context.scene.objects)
-              new_objects = list(after - before)
 
-              return new_objects
+              return list(after - before)
 
-          files = [
-              ("body.stl", red_gold),
-              ("head.stl", head_mat),
-              ("jiao.stl", gold),
-              ("jiao2.stl", gold),
-              ("tou.stl", dark_gold),
-              ("wei.stl", gold)
+          model_parts = [
+              ("body.stl", body_material),
+              ("head.stl", head_material),
+              ("jiao.stl", gold_material),
+              ("jiao2.stl", gold_material),
+              ("tou.stl", dark_material),
+              ("wei.stl", gold_material)
           ]
 
-          for filename, mat in files:
-              path = os.path.join(ASSETS, filename)
+          dragon_objects = []
+
+          for filename, material in model_parts:
+
+              path = os.path.join(
+                  ASSETS,
+                  filename
+              )
 
               if not os.path.exists(path):
+                  print("Missing:", filename)
                   continue
 
               imported = import_stl(path)
 
               for obj in imported:
-                  if obj.type == "MESH":
-                      obj.data.materials.append(mat)
-                      objects.append(obj)
 
-          if not objects:
-              raise RuntimeError("No STL dragon geometry was imported.")
+                  if obj.type != "MESH":
+                      continue
 
-          root = bpy.data.objects.new("DRAGON_ROOT", None)
+                  if len(obj.data.materials) == 0:
+                      obj.data.materials.append(material)
+                  else:
+                      obj.data.materials[0] = material
+
+                  dragon_objects.append(obj)
+
+                  print(
+                      "Imported:",
+                      filename,
+                      obj.name
+                  )
+
+          if len(dragon_objects) == 0:
+              raise RuntimeError(
+                  "No dragon meshes were imported."
+              )
+
+          root = bpy.data.objects.new(
+              "Dragon",
+              None
+          )
+
           bpy.context.collection.objects.link(root)
 
-          for obj in objects:
+          for obj in dragon_objects:
               obj.parent = root
 
-          min_v = Vector((999999, 999999, 999999))
-          max_v = Vector((-999999, -999999, -999999))
+          min_corner = Vector((999999, 999999, 999999))
+          max_corner = Vector((-999999, -999999, -999999))
 
-          for obj in objects:
+          for obj in dragon_objects:
+
               for corner in obj.bound_box:
-                  world_corner = obj.matrix_world @ Vector(corner)
-                  min_v.x = min(min_v.x, world_corner.x)
-                  min_v.y = min(min_v.y, world_corner.y)
-                  min_v.z = min(min_v.z, world_corner.z)
 
-                  max_v.x = max(max_v.x, world_corner.x)
-                  max_v.y = max(max_v.y, world_corner.y)
-                  max_v.z = max(max_v.z, world_corner.z)
+                  p = obj.matrix_world @ Vector(corner)
 
-          center = (min_v + max_v) / 2
-          size = max_v - min_v
-          largest = max(size.x, size.y, size.z)
+                  min_corner.x = min(min_corner.x, p.x)
+                  min_corner.y = min(min_corner.y, p.y)
+                  min_corner.z = min(min_corner.z, p.z)
 
-          root.location -= center
+                  max_corner.x = max(max_corner.x, p.x)
+                  max_corner.y = max(max_corner.y, p.y)
+                  max_corner.z = max(max_corner.z, p.z)
 
-          scale = 5.5 / largest
-          root.scale = (scale, scale, scale)
+          center = (min_corner + max_corner) / 2
+          dimensions = max_corner - min_corner
+
+          largest_dimension = max(
+              dimensions.x,
+              dimensions.y,
+              dimensions.z
+          )
+
+          for obj in dragon_objects:
+              obj.location -= center
+
+          scale = 5.8 / largest_dimension
+
+          root.scale = (
+              scale,
+              scale,
+              scale
+          )
+
+          root.rotation_mode = "XYZ"
 
           root.rotation_euler = (
               math.radians(90),
               0,
-              math.radians(-25)
+              math.radians(-20)
           )
 
-          root.location.z = 0.1
+          def add_area_light(
+              name,
+              location,
+              energy,
+              color,
+              size
+          ):
 
-          for obj in objects:
-              if obj.type == "MESH":
-                  bevel = obj.modifiers.new(
-                      "Micro Surface",
-                      "BEVEL"
-                  )
-                  bevel.width = 0.008
-                  bevel.segments = 2
-
-          def add_light(name, location, energy, color, size):
               data = bpy.data.lights.new(
                   name,
-                  type="AREA"
+                  "AREA"
               )
 
               data.energy = energy
@@ -288,42 +343,54 @@ jobs:
               data.shape = "DISK"
               data.size = size
 
-              obj = bpy.data.objects.new(name, data)
-              bpy.context.collection.objects.link(obj)
+              light = bpy.data.objects.new(
+                  name,
+                  data
+              )
 
-              obj.location = location
+              bpy.context.collection.objects.link(light)
 
-              direction = Vector((0, 0, 0)) - obj.location
-              obj.rotation_euler = direction.to_track_quat(
-                  "-Z",
-                  "Y"
-              ).to_euler()
+              light.location = location
 
-          add_light(
-              "Key Light",
-              (3, -5, 5),
-              1100,
-              (1.0, 0.55, 0.25),
+              direction = (
+                  Vector((0, 0, 0))
+                  - light.location
+              )
+
+              light.rotation_euler = (
+                  direction
+                  .to_track_quat("-Z", "Y")
+                  .to_euler()
+              )
+
+          add_area_light(
+              "Warm Key",
+              (4, -5, 5),
+              1300,
+              (1.0, 0.45, 0.15),
               5
           )
 
-          add_light(
-              "Rim Light",
+          add_area_light(
+              "Blue Rim",
               (-4, 2, 4),
-              1400,
+              1600,
               (0.15, 0.35, 1.0),
               4
           )
 
-          add_light(
-              "Top Light",
+          add_area_light(
+              "Gold Top",
               (0, 0, 7),
-              900,
-              (1.0, 0.75, 0.4),
+              1100,
+              (1.0, 0.7, 0.3),
               3
           )
 
-          camera_data = bpy.data.cameras.new("Dragon Camera")
+          camera_data = bpy.data.cameras.new(
+              "Dragon Camera"
+          )
+
           camera = bpy.data.objects.new(
               "Dragon Camera",
               camera_data
@@ -333,173 +400,250 @@ jobs:
 
           scene.camera = camera
 
-          camera.location = (0, -10.5, 2.2)
+          camera.location = (
+              0,
+              -10.5,
+              2.2
+          )
+
+          camera.data.lens = 52
 
           target = Vector((0, 0, 0))
 
           direction = target - camera.location
 
-          camera.rotation_euler = direction.to_track_quat(
-              "-Z",
-              "Y"
-          ).to_euler()
-
-          camera.data.lens = 52
-
-          root.rotation_mode = "XYZ"
+          camera.rotation_euler = (
+              direction
+              .to_track_quat("-Z", "Y")
+              .to_euler()
+          )
 
           TOTAL_FRAMES = 36
 
           for frame in range(TOTAL_FRAMES):
 
-              t = frame / TOTAL_FRAMES
-              angle = t * math.tau
+              progress = frame / TOTAL_FRAMES
 
-              root.rotation_euler[0] = (
+              angle = progress * math.tau
+
+              root.rotation_euler = (
                   math.radians(90)
-                  + math.sin(angle) * math.radians(3)
-              )
+                  + math.sin(angle) * math.radians(3),
 
-              root.rotation_euler[1] = (
-                  math.sin(angle * 2) * math.radians(5)
-              )
+                  math.sin(angle * 2)
+                  * math.radians(5),
 
-              root.rotation_euler[2] = (
-                  math.radians(-25)
-                  + math.sin(angle) * math.radians(7)
+                  math.radians(-20)
+                  + math.sin(angle)
+                  * math.radians(7)
               )
 
               root.location.z = (
-                  0.08
-                  + math.sin(angle) * 0.16
-              )
-
-              root.scale = (
-                  scale * (1 + math.sin(angle) * 0.018),
-                  scale * (1 + math.sin(angle) * 0.018),
-                  scale * (1 + math.sin(angle) * 0.018)
+                  math.sin(angle) * 0.18
               )
 
               camera.location.x = (
-                  math.sin(angle) * 0.65
+                  math.sin(angle) * 0.7
               )
 
               camera.location.y = (
                   -10.5
-                  + math.cos(angle) * 0.25
+                  + math.cos(angle) * 0.3
               )
 
               camera.location.z = (
                   2.2
-                  + math.sin(angle * 2) * 0.18
+                  + math.sin(angle * 2) * 0.15
               )
 
               direction = target - camera.location
 
-              camera.rotation_euler = direction.to_track_quat(
-                  "-Z",
-                  "Y"
-              ).to_euler()
+              camera.rotation_euler = (
+                  direction
+                  .to_track_quat("-Z", "Y")
+                  .to_euler()
+              )
 
               scene.frame_set(frame + 1)
 
-              scene.render.filepath = os.path.join(
+              output = os.path.join(
                   FRAMES,
-                  f"frame_{frame:03d}.png"
+                  "dragon_%03d.png" % frame
               )
 
-              bpy.ops.render.render(write_still=True)
+              scene.render.filepath = output
 
-          print("3D dragon rendering complete.")
+              print(
+                  "Rendering frame",
+                  frame + 1,
+                  "->",
+                  output
+              )
+
+              result = bpy.ops.render.render(
+                  write_still=True
+              )
+
+              if result != {"FINISHED"}:
+                  raise RuntimeError(
+                      "Render failed on frame "
+                      + str(frame + 1)
+                  )
+
+              if not os.path.exists(output):
+                  raise RuntimeError(
+                      "Blender did not create "
+                      + output
+                  )
+
+          print("")
+          print("================================")
+          print("3D RENDER COMPLETE")
+          print("================================")
+
+          print(
+              "Frames:",
+              len(os.listdir(FRAMES))
+          )
           PY
 
           blender \
             --background \
+            --factory-startup \
             --python dragon/render_dragon.py
 
-      - name: Build contribution background
+          echo "Checking rendered frames..."
+
+          find dragon/frames \
+            -type f \
+            -name "*.png" \
+            -print
+
+          COUNT=$(find dragon/frames \
+            -type f \
+            -name "*.png" | wc -l)
+
+          if [ "$COUNT" -lt 1 ]; then
+            echo "ERROR: Blender created zero PNG frames."
+            exit 1
+          fi
+
+          echo "SUCCESS: $COUNT frames rendered."
+
+      - name: Build animated GIF
         run: |
-          cat > dragon/composite.py <<'PY'
+          python3 <<'PY'
           from PIL import Image, ImageDraw, ImageFilter
-          import os
           import json
           import glob
+          import os
           import math
 
-          W = 1000
-          H = 420
+          WIDTH = 1000
+          HEIGHT = 420
 
-          OUT = "dragon/contribution-dragon.gif"
+          files = sorted(
+              glob.glob(
+                  os.path.abspath(
+                      "dragon/frames/*.png"
+                  )
+              )
+          )
 
-          dark = (13, 17, 23)
-          border = (48, 54, 61)
+          print("Found frames:", len(files))
 
-          green = [
-              (22, 27, 34),
-              (14, 68, 41),
-              (20, 105, 55),
-              (38, 166, 75),
-              (57, 211, 83)
-          ]
+          if not files:
+              raise RuntimeError(
+                  "No rendered frames found."
+              )
 
-          with open("dragon/contributions.json") as f:
+          with open(
+              "dragon/contributions.json"
+          ) as f:
               data = json.load(f)
-
-          weeks = []
-
-          try:
-              weeks = data["data"]["user"]["contributionsCollection"]["contributionCalendar"]["weeks"]
-          except:
-              weeks = []
 
           days = []
 
-          for week in weeks:
-              for day in week["contributionDays"]:
-                  days.append(day["contributionCount"])
+          try:
+              weeks = (
+                  data["data"]
+                  ["user"]
+                  ["contributionsCollection"]
+                  ["contributionCalendar"]
+                  ["weeks"]
+              )
 
-          if not days:
-              days = [0] * 371
+              for week in weeks:
+                  for day in week["contributionDays"]:
+                      days.append(
+                          day["contributionCount"]
+                      )
+
+          except Exception as e:
+              print(
+                  "Contribution data unavailable:",
+                  e
+              )
+
+          days = days[-371:]
+
+          while len(days) < 371:
+              days.insert(0, 0)
 
           maximum = max(days) if days else 1
 
           background = Image.new(
               "RGBA",
-              (W, H),
-              dark + (255,)
+              (WIDTH, HEIGHT),
+              (13, 17, 23, 255)
           )
 
           draw = ImageDraw.Draw(background)
 
           draw.rounded_rectangle(
-              (8, 8, W - 8, H - 8),
+              (8, 8, WIDTH - 8, HEIGHT - 8),
               radius=20,
-              outline=border + (255,),
+              outline=(48, 54, 61, 255),
               width=2
           )
 
-          start_x = 70
-          start_y = 78
+          colors = [
+              (22, 27, 34, 255),
+              (14, 68, 41, 255),
+              (20, 105, 55, 255),
+              (38, 166, 75, 255),
+              (57, 211, 83, 255)
+          ]
 
           cell = 13
           gap = 4
 
-          for i, value in enumerate(days[-371:]):
+          start_x = 55
+          start_y = 45
 
-              week = i // 7
-              day = i % 7
+          for index, count in enumerate(days):
 
-              x = start_x + week * (cell + gap)
-              y = start_y + day * (cell + gap)
+              week = index // 7
+              day = index % 7
 
-              if value == 0:
+              x = (
+                  start_x
+                  + week * (cell + gap)
+              )
+
+              y = (
+                  start_y
+                  + day * (cell + gap)
+              )
+
+              if count == 0:
                   level = 0
               else:
-                  ratio = value / maximum
+                  ratio = count / maximum
 
                   if ratio < 0.25:
                       level = 1
-                  elif ratio < 0.5:
+                  elif ratio < 0.50:
                       level = 2
                   elif ratio < 0.75:
                       level = 3
@@ -507,124 +651,119 @@ jobs:
                       level = 4
 
               draw.rounded_rectangle(
-                  (x, y, x + cell, y + cell),
+                  (
+                      x,
+                      y,
+                      x + cell,
+                      y + cell
+                  ),
                   radius=3,
-                  fill=green[level] + (255,)
+                  fill=colors[level]
               )
 
-          glow = Image.new(
-              "RGBA",
-              (W, H),
-              (0, 0, 0, 0)
-          )
+          result = []
 
-          glow_draw = ImageDraw.Draw(glow)
+          for index, path in enumerate(files):
 
-          glow_draw.ellipse(
-              (W - 420, 40, W + 100, 500),
-              fill=(255, 70, 10, 25)
-          )
-
-          glow = glow.filter(
-              ImageFilter.GaussianBlur(70)
-          )
-
-          background = Image.alpha_composite(
-              background,
-              glow
-          )
-
-          frames = []
-
-          pngs = sorted(
-              glob.glob("dragon/frames/*.png")
-          )
-
-          for i, path in enumerate(pngs):
-
-              dragon = Image.open(path).convert("RGBA")
+              dragon = Image.open(path).convert(
+                  "RGBA"
+              )
 
               dragon.thumbnail(
-                  (920, 340),
+                  (930, 350),
                   Image.Resampling.LANCZOS
               )
 
-              x = (W - dragon.width) // 2
-              y = 35 + int(
-                  math.sin(i / len(pngs) * math.tau) * 5
-              )
-
               frame = background.copy()
+
+              x = (
+                  WIDTH
+                  - dragon.width
+              ) // 2
+
+              y = (
+                  HEIGHT
+                  - dragon.height
+              ) // 2
+
+              y += int(
+                  math.sin(
+                      index / len(files)
+                      * math.tau
+                  ) * 4
+              )
 
               frame.alpha_composite(
                   dragon,
                   (x, y)
               )
 
-              frames.append(
+              result.append(
                   frame.convert("RGB")
               )
 
-          if not frames:
-              raise RuntimeError("No rendered frames found.")
-
-          frames[0].save(
-              OUT,
-              save_all=True,
-              append_images=frames[1:],
-              duration=83,
-              loop=0,
-              optimize=True,
-              disposal=2
+          output = (
+              "dragon/contribution-dragon.gif"
           )
 
-          print("GIF created:", OUT)
-          PY
+          result[0].save(
+              output,
+              save_all=True,
+              append_images=result[1:],
+              duration=83,
+              loop=0,
+              optimize=False
+          )
 
-          python3 dragon/composite.py
+          print(
+              "GIF created:",
+              output
+          )
+          PY
 
       - name: Optimize GIF
         run: |
-          mkdir -p dragon/optimized
+          mkdir -p dragon/final
 
           magick \
             dragon/contribution-dragon.gif \
             -coalesce \
             -layers Optimize \
             -colors 256 \
-            dragon/optimized/contribution-dragon.gif
+            dragon/final/dragon.gif
 
           mv \
-            dragon/optimized/contribution-dragon.gif \
+            dragon/final/dragon.gif \
             dragon/contribution-dragon.gif
 
-      - name: Add license notice
+          ls -lh \
+            dragon/contribution-dragon.gif
+
+      - name: Add license
         run: |
           cat > dragon/THIRD_PARTY_LICENSE.txt <<'EOF'
-          The 3D dragon STL assets used by this animation are from:
-
+          3D dragon assets:
           Furkath/threeJS-GLSL_STL-3D-webpage-design
 
-          Repository:
           https://github.com/Furkath/threeJS-GLSL_STL-3D-webpage-design
 
-          The source repository is released under the MIT License.
+          License: MIT
           EOF
 
       - name: Remove old SVG
         run: |
           rm -f dragon/contribution-dragon.svg
 
-      - name: Commit dragon
+      - name: Commit files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add dragon/contribution-dragon.gif
-          git add dragon/contributions.json
-          git add dragon/THIRD_PARTY_LICENSE.txt
+          git add dragon/
 
-          git diff --cached --quiet || \
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."
+          else
             git commit -m "Update 3D contribution dragon"
-
-          git push
+            git push
+          fi
