@@ -1,4 +1,3 @@
-
 name: Generate Contribution Dragon
 
 on:
@@ -17,19 +16,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install Pillow
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install pillow
+
       - name: Create dragon folder
         run: mkdir -p dragon
 
-      - name: Generate contribution dragon
+      - name: Generate animated dragon
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python3 - <<'PY'
           import os
           import json
-          import html
           import urllib.request
           import datetime
+          import math
+          from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
           USERNAME = "hardik563"
           TOKEN = os.environ["GITHUB_TOKEN"]
@@ -82,9 +87,9 @@ jobs:
           if result.get("errors"):
               raise RuntimeError(result["errors"])
 
-          calendar_data = result["data"]["user"]["contributionsCollection"]["contributionCalendar"]
-          weeks = calendar_data["weeks"]
-          total = calendar_data["totalContributions"]
+          calendar = result["data"]["user"]["contributionsCollection"]["contributionCalendar"]
+          weeks = calendar["weeks"]
+          total = calendar["totalContributions"]
 
           colors = {
               "NONE": "#161b22",
@@ -107,394 +112,591 @@ jobs:
                   days[date] = day
                   positions[date] = (x, y)
 
-          cell = 13
-          step = 18
-          left = 55
-          top = 105
+          CELL = 13
+          STEP = 18
+          LEFT = 65
+          TOP = 105
 
           columns = len(weeks)
-          width = max(1150, left + columns * step + 80)
-          height = 310
 
-          cells = []
+          WIDTH = max(1150, LEFT + columns * STEP + 70)
+          HEIGHT = 330
 
-          for date, day in days.items():
-              x, y = positions[date]
+          SCALE = 2
 
-              px = left + x * step
-              py = top + y * step
+          W = WIDTH * SCALE
+          H = HEIGHT * SCALE
 
-              level = day["contributionLevel"]
+          def font(size, bold=False):
+              paths = [
+                  "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+                  if bold else
+                  "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
+              ]
 
-              cells.append(
-                  f'<rect x="{px}" y="{py}" width="{cell}" height="{cell}" '
-                  f'rx="3" fill="{colors[level]}"/>'
-              )
+              for path in paths:
+                  if os.path.exists(path):
+                      return ImageFont.truetype(path, size * SCALE)
 
-          month_labels = []
+              return ImageFont.load_default()
 
-          for date in sorted(days):
-              dt = datetime.date.fromisoformat(date)
+          title_font = font(22, True)
+          small_font = font(13)
+          month_font = font(12)
+          weekday_font = font(10)
+          tiny_font = font(11)
 
-              if dt.day == 1 and date in positions:
-                  x, _ = positions[date]
-                  px = left + x * step
-                  month_labels.append(
-                      f'<text x="{px}" y="94" class="month">{dt.strftime("%b")}</text>'
-                  )
+          # ------------------------------------------------------------
+          # Smooth dragon path
+          # ------------------------------------------------------------
 
-          weekday_labels = [
-              (1, "Mon"),
-              (3, "Wed"),
-              (5, "Fri")
-          ]
+          x0 = LEFT + 8
+          xend = LEFT + (columns - 1) * STEP + 8
 
-          weekday_svg = []
-
-          for row, label in weekday_labels:
-              py = top + row * step + 10
-              weekday_svg.append(
-                  f'<text x="8" y="{py}" class="weekday">{label}</text>'
-              )
-
-          x0 = left + 6
-          xend = left + (columns - 1) * step + 6
           span = xend - x0
 
-          dragon_points = [
-              (x0, top + 5 * step + 6),
-              (x0 + span * 0.15, top + 2 * step + 6),
-              (x0 + span * 0.30, top + 5 * step + 6),
-              (x0 + span * 0.45, top + 2 * step + 6),
-              (x0 + span * 0.60, top + 5 * step + 6),
-              (x0 + span * 0.75, top + 2 * step + 6),
-              (x0 + span * 0.90, top + 4 * step + 6),
-              (xend, top + 3 * step + 6)
+          control = [
+              (x0, TOP + 5 * STEP + 7),
+              (x0 + span * 0.12, TOP + 1.5 * STEP),
+              (x0 + span * 0.25, TOP + 5.3 * STEP),
+              (x0 + span * 0.38, TOP + 1.5 * STEP),
+              (x0 + span * 0.51, TOP + 5.3 * STEP),
+              (x0 + span * 0.64, TOP + 1.5 * STEP),
+              (x0 + span * 0.77, TOP + 5.0 * STEP),
+              (x0 + span * 0.90, TOP + 2.0 * STEP),
+              (xend, TOP + 3.0 * STEP)
           ]
 
-          def smooth_path(points):
-              path = f"M {points[0][0]:.1f} {points[0][1]:.1f}"
+          def cubic(p0, p1, p2, p3, t):
+              u = 1 - t
+              x = (
+                  u*u*u*p0[0]
+                  + 3*u*u*t*p1[0]
+                  + 3*u*t*t*p2[0]
+                  + t*t*t*p3[0]
+              )
+              y = (
+                  u*u*u*p0[1]
+                  + 3*u*u*t*p1[1]
+                  + 3*u*t*t*p2[1]
+                  + t*t*t*p3[1]
+              )
+              return x, y
 
-              for i in range(1, len(points)):
-                  x1, y1 = points[i - 1]
-                  x2, y2 = points[i]
+          dragon_points = []
 
-                  dx = (x2 - x1) / 3
+          for i in range(len(control) - 1):
+              p0 = control[i]
+              p3 = control[i + 1]
 
-                  path += (
-                      f" C {x1 + dx:.1f} {y1:.1f}, "
-                      f"{x2 - dx:.1f} {y2:.1f}, "
-                      f"{x2:.1f} {y2:.1f}"
+              dx = (p3[0] - p0[0]) / 3
+
+              p1 = (p0[0] + dx, p0[1])
+              p2 = (p3[0] - dx, p3[1])
+
+              for j in range(30):
+                  t = j / 30
+                  dragon_points.append(cubic(p0, p1, p2, p3, t))
+
+          dragon_points.append(control[-1])
+
+          # ------------------------------------------------------------
+          # Draw one frame
+          # ------------------------------------------------------------
+
+          def draw_frame(frame_index):
+
+              img = Image.new("RGB", (W, H), "#0d1117")
+
+              draw = ImageDraw.Draw(img)
+
+              # Card
+              draw.rounded_rectangle(
+                  [0, 0, W - 1, H - 1],
+                  radius=18 * SCALE,
+                  fill="#0d1117",
+                  outline="#30363d",
+                  width=1 * SCALE
+              )
+
+              # Title
+              draw.text(
+                  (55 * SCALE, 22 * SCALE),
+                  "🐉 Contribution Dragon",
+                  fill="#ffffff",
+                  font=title_font
+              )
+
+              draw.text(
+                  (55 * SCALE, 53 * SCALE),
+                  "A living dragon powered by my GitHub contributions",
+                  fill="#8b949e",
+                  font=small_font
+              )
+
+              # --------------------------------------------------------
+              # Contribution calendar
+              # --------------------------------------------------------
+
+              for date, day in days.items():
+
+                  x, y = positions[date]
+
+                  px = (LEFT + x * STEP) * SCALE
+                  py = (TOP + y * STEP) * SCALE
+
+                  color = colors.get(
+                      day["contributionLevel"],
+                      "#161b22"
                   )
 
-              return path
+                  draw.rounded_rectangle(
+                      [
+                          px,
+                          py,
+                          px + CELL * SCALE,
+                          py + CELL * SCALE
+                      ],
+                      radius=3 * SCALE,
+                      fill=color
+                  )
 
-          dragon_path = smooth_path(dragon_points)
+              # Month names
+              for date in sorted(days):
 
-          head_x, head_y = dragon_points[-1]
+                  dt = datetime.date.fromisoformat(date)
 
-          title = html.escape("🐉 Contribution Dragon")
-          subtitle = html.escape(
-              "A dragon that grows with my contributions 💚"
+                  if dt.day == 1 and date in positions:
+
+                      x, _ = positions[date]
+
+                      px = (LEFT + x * STEP) * SCALE
+
+                      draw.text(
+                          (px, 88 * SCALE),
+                          dt.strftime("%b"),
+                          fill="#8b949e",
+                          font=month_font
+                      )
+
+              # Weekday names
+              for row, label in [(1, "Mon"), (3, "Wed"), (5, "Fri")]:
+
+                  py = (TOP + row * STEP + 4) * SCALE
+
+                  draw.text(
+                      (8 * SCALE, py),
+                      label,
+                      fill="#8b949e",
+                      font=weekday_font
+                  )
+
+              # --------------------------------------------------------
+              # Dragon animation
+              # --------------------------------------------------------
+
+              # Slow travelling highlight
+              progress = (frame_index / 24.0) % 1.0
+
+              # Head bob
+              bob = math.sin(frame_index / 24.0 * math.pi * 2) * 4
+
+              # Draw dragon shadow/glow
+              glow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+              gd = ImageDraw.Draw(glow)
+
+              scaled_path = [
+                  (int(x * SCALE), int(y * SCALE))
+                  for x, y in dragon_points
+              ]
+
+              gd.line(
+                  scaled_path,
+                  fill=(57, 211, 83, 120),
+                  width=25 * SCALE,
+                  joint="curve"
+              )
+
+              glow = glow.filter(
+                  ImageFilter.GaussianBlur(9 * SCALE)
+              )
+
+              img = Image.alpha_composite(
+                  img.convert("RGBA"),
+                  glow
+              )
+
+              draw = ImageDraw.Draw(img)
+
+              # Dark outline of dragon body
+              draw.line(
+                  scaled_path,
+                  fill="#062b14",
+                  width=15 * SCALE,
+                  joint="curve"
+              )
+
+              # Main body
+              draw.line(
+                  scaled_path,
+                  fill="#20a843",
+                  width=10 * SCALE,
+                  joint="curve"
+              )
+
+              # Bright center
+              draw.line(
+                  scaled_path,
+                  fill="#58e86d",
+                  width=4 * SCALE,
+                  joint="curve"
+              )
+
+              # --------------------------------------------------------
+              # Dragon scales
+              # --------------------------------------------------------
+
+              for i in range(5, len(dragon_points) - 5, 8):
+
+                  x, y = dragon_points[i]
+
+                  r = 4 * SCALE
+
+                  draw.ellipse(
+                      [
+                          x * SCALE - r,
+                          y * SCALE - r,
+                          x * SCALE + r,
+                          y * SCALE + r
+                      ],
+                      fill="#a5ff9a",
+                      outline="#116b2c",
+                      width=1 * SCALE
+                  )
+
+              # --------------------------------------------------------
+              # Moving energy along the dragon
+              # --------------------------------------------------------
+
+              moving_index = int(progress * (len(dragon_points) - 1))
+
+              for j in range(7):
+
+                  idx = moving_index - j * 5
+
+                  if idx < 0:
+                      idx += len(dragon_points)
+
+                  x, y = dragon_points[idx]
+
+                  radius = max(
+                      2,
+                      int((7 - j) * 0.8)
+                  ) * SCALE
+
+                  alpha = max(30, 220 - j * 28)
+
+                  glow_dot = Image.new(
+                      "RGBA",
+                      (W, H),
+                      (0, 0, 0, 0)
+                  )
+
+                  dot = ImageDraw.Draw(glow_dot)
+
+                  dot.ellipse(
+                      [
+                          x * SCALE - radius,
+                          y * SCALE - radius,
+                          x * SCALE + radius,
+                          y * SCALE + radius
+                      ],
+                      fill=(190, 255, 170, alpha)
+                  )
+
+                  glow_dot = glow_dot.filter(
+                      ImageFilter.GaussianBlur(4 * SCALE)
+                  )
+
+                  img = Image.alpha_composite(
+                      img,
+                      glow_dot
+                  )
+
+                  draw = ImageDraw.Draw(img)
+
+              # --------------------------------------------------------
+              # Dragon head
+              # --------------------------------------------------------
+
+              hx, hy = dragon_points[-1]
+
+              hx *= SCALE
+              hy = hy * SCALE + bob * SCALE
+
+              # Neck
+              draw.line(
+                  [
+                      (hx - 30 * SCALE, hy + 10 * SCALE),
+                      (hx - 8 * SCALE, hy)
+                  ],
+                  fill="#147a30",
+                  width=17 * SCALE
+              )
+
+              # Head shape
+              head = [
+                  (hx - 5 * SCALE, hy - 20 * SCALE),
+                  (hx + 20 * SCALE, hy - 32 * SCALE),
+                  (hx + 48 * SCALE, hy - 26 * SCALE),
+                  (hx + 66 * SCALE, hy - 38 * SCALE),
+                  (hx + 58 * SCALE, hy - 15 * SCALE),
+                  (hx + 78 * SCALE, hy - 2 * SCALE),
+                  (hx + 53 * SCALE, hy + 7 * SCALE),
+                  (hx + 43 * SCALE, hy + 24 * SCALE),
+                  (hx + 13 * SCALE, hy + 22 * SCALE),
+                  (hx - 5 * SCALE, hy + 8 * SCALE)
+              ]
+
+              draw.polygon(
+                  head,
+                  fill="#39d353",
+                  outline="#9aff91"
+              )
+
+              # Horns
+              draw.polygon(
+                  [
+                      (hx + 5 * SCALE, hy - 19 * SCALE),
+                      (hx - 3 * SCALE, hy - 48 * SCALE),
+                      (hx + 18 * SCALE, hy - 25 * SCALE)
+                  ],
+                  fill="#1c7f35"
+              )
+
+              draw.polygon(
+                  [
+                      (hx + 28 * SCALE, hy - 26 * SCALE),
+                      (hx + 30 * SCALE, hy - 55 * SCALE),
+                      (hx + 43 * SCALE, hy - 25 * SCALE)
+                  ],
+                  fill="#1c7f35"
+              )
+
+              # Eye glow
+              eye_x = hx + 42 * SCALE
+              eye_y = hy - 12 * SCALE
+
+              draw.ellipse(
+                  [
+                      eye_x - 6 * SCALE,
+                      eye_y - 6 * SCALE,
+                      eye_x + 6 * SCALE,
+                      eye_y + 6 * SCALE
+                  ],
+                  fill="#fff200"
+              )
+
+              draw.ellipse(
+                  [
+                      eye_x - 2 * SCALE,
+                      eye_y - 5 * SCALE,
+                      eye_x + 2 * SCALE,
+                      eye_y + 5 * SCALE
+                  ],
+                  fill="#111111"
+              )
+
+              # Nostril
+              draw.ellipse(
+                  [
+                      hx + 62 * SCALE,
+                      hy - 1 * SCALE,
+                      hx + 67 * SCALE,
+                      hy + 4 * SCALE
+                  ],
+                  fill="#111111"
+              )
+
+              # Mouth
+              draw.arc(
+                  [
+                      hx + 35 * SCALE,
+                      hy - 1 * SCALE,
+                      hx + 70 * SCALE,
+                      hy + 20 * SCALE
+                  ],
+                  0,
+                  180,
+                  fill="#062b14",
+                  width=2 * SCALE
+              )
+
+              # Teeth
+              draw.polygon(
+                  [
+                      (hx + 50 * SCALE, hy + 8 * SCALE),
+                      (hx + 55 * SCALE, hy + 19 * SCALE),
+                      (hx + 59 * SCALE, hy + 8 * SCALE)
+                  ],
+                  fill="#eaffdf"
+              )
+
+              draw.polygon(
+                  [
+                      (hx + 62 * SCALE, hy + 6 * SCALE),
+                      (hx + 66 * SCALE, hy + 16 * SCALE),
+                      (hx + 70 * SCALE, hy + 5 * SCALE)
+                  ],
+                  fill="#eaffdf"
+              )
+
+              # --------------------------------------------------------
+              # Fire breath animation
+              # --------------------------------------------------------
+
+              fire_phase = frame_index % 6
+
+              flame_length = (18 + fire_phase * 4) * SCALE
+
+              flame_x = hx + 74 * SCALE
+
+              flame = [
+                  (flame_x, hy + 1 * SCALE),
+                  (flame_x + flame_length, hy - 7 * SCALE),
+                  (flame_x + flame_length + 7 * SCALE, hy),
+                  (flame_x + flame_length, hy + 8 * SCALE),
+              ]
+
+              draw.polygon(
+                  flame,
+                  fill="#ff9d00"
+              )
+
+              inner = [
+                  (flame_x, hy + 1 * SCALE),
+                  (flame_x + flame_length * 0.65, hy - 3 * SCALE),
+                  (flame_x + flame_length * 0.65, hy + 5 * SCALE)
+              ]
+
+              draw.polygon(
+                  inner,
+                  fill="#fff36b"
+              )
+
+              # --------------------------------------------------------
+              # Tail spikes
+              # --------------------------------------------------------
+
+              for i in range(8, len(dragon_points) - 10, 12):
+
+                  x, y = dragon_points[i]
+
+                  draw.polygon(
+                      [
+                          (x * SCALE, y * SCALE - 5 * SCALE),
+                          (x * SCALE - 10 * SCALE, y * SCALE - 16 * SCALE),
+                          (x * SCALE + 5 * SCALE, y * SCALE - 8 * SCALE)
+                      ],
+                      fill="#167c31"
+                  )
+
+              # Bottom information
+              draw.text(
+                  (55 * SCALE, 292 * SCALE),
+                  f"{total} contributions in the last year",
+                  fill="#8b949e",
+                  font=small_font
+              )
+
+              # Legend
+              lx = WIDTH - 190
+
+              draw.text(
+                  (lx * SCALE, 292 * SCALE),
+                  "Less",
+                  fill="#8b949e",
+                  font=tiny_font
+              )
+
+              legend_colors = [
+                  "#161b22",
+                  "#0e4429",
+                  "#006d32",
+                  "#26a641",
+                  "#39d353"
+              ]
+
+              for i, c in enumerate(legend_colors):
+
+                  x = (lx + 38 + i * 18) * SCALE
+
+                  draw.rounded_rectangle(
+                      [
+                          x,
+                          287 * SCALE,
+                          x + 13 * SCALE,
+                          300 * SCALE
+                      ],
+                      radius=3 * SCALE,
+                      fill=c
+                  )
+
+              draw.text(
+                  ((lx + 135) * SCALE, 292 * SCALE),
+                  "More",
+                  fill="#8b949e",
+                  font=tiny_font
+              )
+
+              # Downsample
+              img = img.convert("RGB").resize(
+                  (WIDTH, HEIGHT),
+                  Image.Resampling.LANCZOS
+              )
+
+              return img
+
+          # ------------------------------------------------------------
+          # Create 24 animation frames
+          # ------------------------------------------------------------
+
+          frames = []
+
+          for frame_index in range(24):
+              print(f"Creating frame {frame_index + 1}/24")
+              frames.append(draw_frame(frame_index))
+
+          output = "dragon/contribution-dragon.gif"
+
+          frames[0].save(
+              output,
+              save_all=True,
+              append_images=frames[1:],
+              duration=120,
+              loop=0,
+              optimize=True
           )
 
-          svg = f'''<svg xmlns="http://www.w3.org/2000/svg"
-          width="{width}"
-          height="{height}"
-          viewBox="0 0 {width} {height}">
-
-          <defs>
-
-            <linearGradient id="dragonGradient"
-              x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#39d353"/>
-              <stop offset="50%" stop-color="#7CFF6B"/>
-              <stop offset="100%" stop-color="#0e8f3a"/>
-            </linearGradient>
-
-            <filter id="glow"
-              x="-50%" y="-50%"
-              width="200%" height="200%">
-
-              <feGaussianBlur
-                stdDeviation="5"
-                result="blur"/>
-
-              <feMerge>
-                <feMergeNode in="blur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-
-            </filter>
-
-          </defs>
-
-          <rect
-            width="100%"
-            height="100%"
-            rx="18"
-            fill="#0d1117"/>
-
-          <text
-            x="55"
-            y="38"
-            fill="#ffffff"
-            font-size="22"
-            font-family="Arial, sans-serif"
-            font-weight="700">
-
-            {title}
-
-          </text>
-
-          <text
-            x="55"
-            y="64"
-            fill="#8b949e"
-            font-size="14"
-            font-family="Arial, sans-serif">
-
-            {subtitle}
-
-          </text>
-
-          <style>
-            .month {{
-              fill: #8b949e;
-              font: 12px Arial, sans-serif;
-            }}
-
-            .weekday {{
-              fill: #8b949e;
-              font: 10px Arial, sans-serif;
-            }}
-          </style>
-
-          {"".join(month_labels)}
-
-          {"".join(weekday_svg)}
-
-          {"".join(cells)}
-
-          <path
-            d="{dragon_path}"
-            fill="none"
-            stroke="#39d353"
-            stroke-width="18"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            opacity="0.18"
-            filter="url(#glow)"/>
-
-          <path
-            d="{dragon_path}"
-            fill="none"
-            stroke="url(#dragonGradient)"
-            stroke-width="8"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            filter="url(#glow)"/>
-
-          <path
-            d="{dragon_path}"
-            fill="none"
-            stroke="#b8ffb0"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-dasharray="2 14"
-            opacity="0.9">
-
-            <animate
-              attributeName="stroke-dashoffset"
-              from="0"
-              to="-32"
-              dur="2s"
-              repeatCount="indefinite"/>
-
-          </path>
-
-          <path
-            d="M {x0} {dragon_points[0][1]}
-               l -25 -12
-               l 10 12
-               l -14 13 Z"
-            fill="#39d353"
-            opacity="0.9"/>
-
-          <g transform="translate({head_x - 40},{head_y - 35})">
-
-            <g>
-
-              <animateTransform
-                attributeName="transform"
-                type="translate"
-                values="0 0; 0 -3; 0 0; 0 2; 0 0"
-                dur="1.6s"
-                repeatCount="indefinite"/>
-
-              <path
-                d="M 8 34
-                   C 18 12 42 5 68 16
-                   L 87 8
-                   L 80 25
-                   L 101 34
-                   L 82 41
-                   C 75 57 52 61 28 52
-                   L 12 45 Z"
-                fill="url(#dragonGradient)"
-                stroke="#7CFF6B"
-                stroke-width="2"/>
-
-              <polygon
-                points="25,16 12,-10 36,11"
-                fill="#26a641"/>
-
-              <polygon
-                points="48,13 50,-12 62,15"
-                fill="#26a641"/>
-
-              <path
-                d="M 73 27 L 96 22 L 86 32"
-                fill="#0e8f3a"/>
-
-              <circle
-                cx="65"
-                cy="28"
-                r="5"
-                fill="#fff200"/>
-
-              <circle
-                cx="66"
-                cy="28"
-                r="2"
-                fill="#111111"/>
-
-              <circle
-                cx="83"
-                cy="32"
-                r="2"
-                fill="#ff4d4d"/>
-
-              <path
-                d="M 70 42 Q 86 50 97 42"
-                fill="none"
-                stroke="#0b3d1b"
-                stroke-width="3"/>
-
-              <path
-                d="M 87 43 L 94 53
-                   M 79 44 L 84 54"
-                stroke="#d9ffd5"
-                stroke-width="2"/>
-
-            </g>
-
-          </g>
-
-          <circle
-            r="4"
-            fill="#ffffff"
-            opacity="0.85">
-
-            <animateMotion
-              dur="5s"
-              repeatCount="indefinite"
-              path="{dragon_path}"/>
-
-          </circle>
-
-          <text
-            x="55"
-            y="282"
-            fill="#8b949e"
-            font-size="13"
-            font-family="Arial, sans-serif">
-
-            More contributions. A longer dragon. 🔥
-
-          </text>
-
-          <text
-            x="{width - 190}"
-            y="282"
-            fill="#8b949e"
-            font-size="11"
-            font-family="Arial, sans-serif">
-
-            Less
-
-          </text>
-
-          <rect
-            x="{width - 150}"
-            y="271"
-            width="13"
-            height="13"
-            rx="3"
-            fill="#161b22"/>
-
-          <rect
-            x="{width - 132}"
-            y="271"
-            width="13"
-            height="13"
-            rx="3"
-            fill="#0e4429"/>
-
-          <rect
-            x="{width - 114}"
-            y="271"
-            width="13"
-            height="13"
-            rx="3"
-            fill="#006d32"/>
-
-          <rect
-            x="{width - 96}"
-            y="271"
-            width="13"
-            height="13"
-            rx="3"
-            fill="#26a641"/>
-
-          <rect
-            x="{width - 78}"
-            y="271"
-            width="13"
-            height="13"
-            rx="3"
-            fill="#39d353"/>
-
-          <text
-            x="{width - 58}"
-            y="282"
-            fill="#8b949e"
-            font-size="11"
-            font-family="Arial, sans-serif">
-
-            More
-
-          </text>
-
-          </svg>
-          '''
-
-          with open("dragon/contribution-dragon.svg", "w", encoding="utf-8") as f:
-              f.write(svg)
-
-          print(f"Generated dragon for {USERNAME}: {total} contributions")
+          print(f"Generated animated dragon: {output}")
+          print(f"Total contributions: {total}")
           PY
+
+      - name: Remove old SVG
+        run: |
+          rm -f dragon/contribution-dragon.svg
 
       - name: Commit dragon
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add dragon/contribution-dragon.svg
+          git add dragon/contribution-dragon.gif
+          git add -u dragon/
 
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Update contribution dragon"
+            git commit -m "Create animated contribution dragon"
             git push
           fi
