@@ -1201,15 +1201,21 @@ def snake_grid() -> str:
     """Hero (rolling-365 snake) + 3 small per-year contribution heatmaps."""
     big_year, small_years = _hero_years()
 
-    snake_dark = f"https://raw.githubusercontent.com/{GH_USER}/{GH_USER}/output/github-contribution-grid-snake-dark.svg"
-    snake_light = f"https://raw.githubusercontent.com/{GH_USER}/{GH_USER}/output/github-contribution-grid-snake.svg"
+    generated_dark = Path("assets/generated/github-contribution-grid-snake-dark.svg")
+    generated_light = Path("assets/generated/github-contribution-grid-snake.svg")
+    if generated_dark.exists() and generated_light.exists():
+        snake_html = (
+            '<picture>'
+            '<source media="(prefers-color-scheme: dark)" srcset="./assets/generated/github-contribution-grid-snake-dark.svg">'
+            '<source media="(prefers-color-scheme: light)" srcset="./assets/generated/github-contribution-grid-snake.svg">'
+            '<img alt="GitHub contribution grid snake animation" src="./assets/generated/github-contribution-grid-snake-dark.svg" width="100%">'
+            '</picture>'
+        )
+    else:
+        snake_html = '<img alt="GitHub contribution grid snake animation preview" src="./assets/contribution-snake-preview.gif" width="100%">'
     hero_cell = (
         f'<td colspan="3" align="center">'
-        f'<picture>'
-        f'<source media="(prefers-color-scheme: dark)" srcset="{snake_dark}">'
-        f'<source media="(prefers-color-scheme: light)" srcset="{snake_light}">'
-        f'<img alt="GitHub contribution grid snake animation" src="{snake_dark}" width="100%">'
-        f'</picture>'
+        f'{snake_html}'
         f'<p><b>{big_year} <sub>(live · rolling 365 days)</sub></b></p>'
         f"</td>"
     )

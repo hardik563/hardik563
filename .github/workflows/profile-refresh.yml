@@ -1,6 +1,13 @@
 name: Profile Refresh
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'README.md'
+      - 'assets/**'
+      - '.github/scripts/**'
+      - '.github/workflows/profile-refresh.yml'
   schedule:
     - cron: "15 1 * * *"
   workflow_dispatch:
@@ -14,6 +21,7 @@ concurrency:
 
 jobs:
   refresh:
+    if: ${{ github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:

@@ -1,9 +1,11 @@
 <!-- ============================================================ -->
-<!-- 🎬 ANIMATED HEADER BANNER — capsule-render with wave gradient -->
+<!-- 🎬 ANIMATED HEADER BANNER — self-hosted SVG -->
 <!-- ============================================================ -->
-<a href="https://github.com/hardik563">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0D1117,100:F90001&height=260&section=header&text=Hardik%20Dhamija&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=36&desc=Full-Stack%20Developer%20%E2%80%A2%20AI%20%26%20ML%20Engineer%20%E2%80%A2%20Software%20Engineer&descAlignY=58&descSize=20&descColor=F0F0F0" width="100%" alt="Hardik Dhamija — Full-Stack Developer" />
-</a>
+<p align="center">
+  <a href="https://github.com/hardik563">
+    <img src="./assets/profile-header.svg" width="100%" alt="Hardik Dhamija — Full-Stack Developer · AI & ML Engineer · Software Engineer" />
+  </a>
+</p>
 
 <!-- 🐙 PROFESSIONAL GITHUB IDENTIFIER — pulsing brand-red halo + Invertocat -->
 <p align="center">
@@ -18,11 +20,13 @@
   </a>
 </p>
 
+<p align="center">
+  <img src="./assets/hardik.jpg" width="150" height="150" alt="Hardik Dhamija" />
+</p>
+
 <!-- 🪄 TYPING SVG — 31 rotating headlines (EN · DE · ar), JetBrains Mono -->
 <div align="center">
-  <a href="https://github.com/hardik563">
-    <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=33&duration=2400&pause=1000&color=F90001&center=true&vCenter=true&width=950&lines=Hi%20there%2C%20I%27m%20Hardik%20%F0%9F%91%8B;B.Tech%20CSE%20%28AI%20%26%20ML%29%20student%20%F0%9F%8E%93;Java%20%E2%80%A2%20DSA%20%E2%80%A2%20AI%20%2F%20ML%20%E2%80%A2%20Deep%20Learning;Full-Stack%20Development%20%E2%80%A2%20Software%20Engineering;Building%20practical%20software%20projects%20%F0%9F%9A%80;Currently%20strengthening%20DSA%20in%20Java;Exploring%20Machine%20Learning%20and%20AI;Full-Stack%20Web%20Development%20enthusiast;Based%20in%20Lucknow%2C%20Uttar%20Pradesh%20%F0%9F%87%AE%F0%9F%87%B3;Open%20to%20collaboration%20and%20learning%20%E2%9C%A8" alt="Typing animation with Hardik Dhamija profile highlights" />
-  </a>
+  <img src="./assets/about-typing.svg" width="100%" alt="Animated Hardik Dhamija profile headlines: Java, DSA, AI/ML, Deep Learning, Full-Stack Development and Software Engineering" />
 </div>
 
 <!-- 🏷️ PROFESSIONAL BADGES — stats row -->
@@ -30,7 +34,6 @@
   <a href="https://github.com/hardik563"><img src="https://komarev.com/ghpvc/?username=hardik563&label=PROFILE%20VIEWS&color=F90001&style=for-the-badge&v=20260922" alt="Profile views" /></a>
   <a href="https://github.com/hardik563?tab=followers"><img src="https://img.shields.io/github/followers/hardik563?label=FOLLOWERS&style=for-the-badge&color=F90001&logo=github&logoColor=white&v=20260922" alt="GitHub followers" /></a>
   <a href="https://github.com/hardik563"><img src="https://img.shields.io/github/stars/hardik563?affiliations=OWNER&label=TOTAL%20STARS&style=for-the-badge&color=F90001&logo=github&logoColor=white&v=20260922" alt="Total stars" /></a>
-  <a href="https://codetime.dev"><img src="https://img.shields.io/endpoint?style=for-the-badge&color=F90001&url=https%3A%2F%2Fapi.codetime.dev%2Fshield%3Fid%3D23432%26project%3D%26in=12096000000&v=20260922" alt="CodeTime hours" /></a>
 </p>
 
 <!-- 🏷️ PROFESSIONAL BADGES — contact / profile row -->
@@ -64,7 +67,7 @@
 
 <!-- 🎬 Personality break — Python coding GIF -->
 <p align="center">
-  <img src="./giphy1.gif" alt="Python coding animation" />
+  <img src="./assets/java-dsa.gif" alt="Java and DSA coding animation" width="720" />
 </p>
 
 <!-- 📋 Full bio — Python class block, always visible -->
@@ -284,9 +287,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <h2 id="stats" align="center">📊 GitHub Stats</h2>
 
 <div align="center">
-  <a href="https://github.com/hardik563">
-    <img src="https://github-readme-activity-graph.vercel.app/graph?username=hardik563&custom_title=hardik563&v=20260922's%20GitHub%20Activity%20Graph&bg_color=0D1117&color=ffde01&line=830203&point=FF652F&area_color=&title_color=da644d&area=true" width="100%" alt="Activity Graph" />
-  </a>
+  <img src="./assets/stats/activity.svg" width="100%" alt="Hardik Dhamija GitHub activity" />
 </div>
 
 <div align="center">
@@ -298,16 +299,14 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 
 <div align="center">
   <a href="https://github.com/hardik563">
-    <img src="./assets/stats/top-langs.svg" alt="Hardik Dhamija Most Used Languages" width="49%" />
+    <img src="./assets/stats/top-langs.svg alt="Hardik Dhamija Most Used Languages" width="49%" />
   </a>
 </div>
 
 </div>
 
 <div align="center">
-  <a href="https://github.com/hardik563">
-    <img src="https://github-profile-trophy.vercel.app/?username=hardik563&theme=radical&row=1&column=7&v=20260922" width="100%" alt="GitHub Trophies" />
-  </a>
+  <img src="./assets/stats/trophies.svg" width="100%" alt="Hardik Dhamija GitHub achievements" />
 </div>
 
 <div align="center">
@@ -455,16 +454,23 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <h2 id="contributions" align="center">🐍 Contribution Graph</h2>
 
 <!-- SNAKE_GRID:START -->
-<p align="center"><i>Contribution snake will appear after the first snake workflow run.</i></p>
+<table align="center" width="100%"><tr><td align="center">
+<img src="./assets/contribution-snake-preview.gif" width="100%" alt="Hardik Dhamija contribution snake preview" />
+<p><b>2026 <sub>(live · rolling 365 days)</sub></b></p>
+</td></tr></table>
 <!-- SNAKE_GRID:END -->
 
 <h3 align="center">🐲 Contribution Dragon</h3>
-<p align="center"><img src="https://raw.githubusercontent.com/hardik563/hardik563/output/github-contribution-grid-dragon.svg" width="100%" alt="Hardik Dhamija GitHub contribution dragon" /></p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/generated/github-contribution-grid-dragon-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/generated/github-contribution-grid-dragon.svg">
+  <img src="./assets/contribution-dragon-preview.gif" width="100%" alt="Hardik Dhamija GitHub contribution dragon" />
+</picture>
 
 <h3 align="center">🎨 3D Animated Profile</h3>
 
 <!-- 3D_GRID:START -->
-<p align="center"><i>3D contribution profile will be generated automatically from Hardik's GitHub contribution calendar.</i></p>
+<p align="center"><i>Live 3D contribution profile — generated automatically from Hardik's GitHub contribution calendar.</i></p>
 <!-- 3D_GRID:END -->
 
 <details>
@@ -495,7 +501,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <h3 align="center">🌆 GitHub Skylines</h3>
 
 <!-- SKYLINE_GRID:START -->
-<p align="center"><i>GitHub skyline will appear after the first metrics workflow run.</i></p>
+<p align="center"><i>Live contribution skyline — generated by the Profile Refresh workflow.</i></p>
 <!-- SKYLINE_GRID:END -->
 
 <!-- STL_LINKS:START -->
@@ -505,7 +511,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <h3 align="center">🏙️ GitHub Cities</h3>
 
 <!-- CITY_GRID:START -->
-<p align="center"><i>GitHub City contribution visuals will appear after the metrics workflow runs.</i></p>
+<p align="center"><i>Contribution-city visuals are generated from Hardik's GitHub contribution calendar.</i></p>
 <!-- CITY_GRID:END -->
 
 <!-- GITCITY_LINKS:START -->
@@ -514,9 +520,9 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 
 <h3 align="center">📍 Lucknow · 3D City</h3>
 <p align="center"><sub>My home city — Lucknow, Uttar Pradesh, India.</sub></p>
-<p align="center"><img src="./assets/lucknow-city-3d.svg" width="100%" alt="3D-style Lucknow city visual with Rumi Darwaza and Bara Imambara inspired landmarks" /></p>
-
-<p align="center"><em>⚡ Regenerated automatically from Hardik's GitHub contribution calendar. The current year stays live while previous years are kept as visual archives.</em></p>
+<p align="center"><img src="./assets/lucknow-3d.gif" width="100%" alt="Animated 3D-style Lucknow city visual for Hardik Dhamija" /></p>
+<p align="center"><a href="https://hardik563.github.io/hardik563/"><img src="https://img.shields.io/badge/🖱️_OPEN_INTERACTIVE_3D_LUCKNOW-F90001?style=for-the-badge&labelColor=0D1117" alt="Open interactive 3D Lucknow city" /></a></p>
+<p align="center"><em>Drag, rotate, zoom and pan the interactive Lucknow city. The README preview above is animated; the button opens the real 3D version.</em></p>
 
 <!-- CONNECT WITH ME -->
 <div align="center">
@@ -576,7 +582,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <p align="center"><em>Let’s build practical software and AI-powered solutions together!</em></p>
 
 <!-- ============================================================ -->
-<!-- 🎬 ANIMATED FOOTER BANNER — twinkling, mirrored gradient      -->
+<!-- 🎬 ANIMATED FOOTER -->
 <!-- ============================================================ -->
 
 <!-- snake animation as a visual handoff into the footer -->
@@ -587,5 +593,5 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 </div>
 
 <a href="#about">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:F90001,100:0D1117&height=180&section=footer&text=Thanks%20for%20visiting!&fontSize=42&fontColor=ffffff&animation=twinkling&fontAlignY=70&desc=Let's%20build%20something%20great%20together&descAlignY=92&descSize=14&descColor=F0F0F0&reversal=true" width="100%" alt="Thanks for visiting" />
+  <img src="./assets/profile-footer.svg" width="100%" alt="Thanks for visiting Hardik Dhamija's GitHub profile" />
 </a>
