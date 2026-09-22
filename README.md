@@ -266,7 +266,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <p align="center"><b>📊 This year, live from GitHub</b></p>
 
 <!-- HIGHLIGHTS_STATS:START -->
-<p align="center"><i>Live yearly statistics will appear after the first workflow run.</i></p>
+<p align="center"><img src="https://img.shields.io/badge/Commits-380-red?style=for-the-badge&logo=git&logoColor=white&v=20260922" alt="Commits" /> <img src="https://img.shields.io/badge/PRs-0-red?style=for-the-badge&logo=github&logoColor=white&v=20260922" alt="PRs" /> <img src="https://img.shields.io/badge/New_Repos-9-red?style=for-the-badge&logo=github&logoColor=white&v=20260922" alt="New repos" /> <img src="https://img.shields.io/badge/Active_in-10_repos-red?style=for-the-badge&logo=github&logoColor=white&v=20260922" alt="Active repos" /></p>
 <!-- HIGHLIGHTS_STATS:END -->
 
 <!-- The narrative bullets are still updated separately by you — kept as a marker
@@ -333,13 +333,21 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <h3 align="center">🌳 Branch Flow (last 7 days)</h3>
 
 <!-- GITGRAPH:START -->
-<p align="center"><i>Contribution branch flow will be generated automatically.</i></p>
+```mermaid
+gitGraph
+   commit id: "main"
+   branch CALLIVO
+   checkout CALLIVO
+   commit id: "c1"
+   checkout main
+   merge CALLIVO
+```
 <!-- GITGRAPH:END -->
 
 <h3 align="center">📜 Event Log</h3>
 
 <!-- ACTIVITY:START -->
-<p align="center"><i>Recent GitHub activity will be generated automatically.</i></p>
+_No recent public activity._
 <!-- ACTIVITY:END -->
 
 <!-- LATEST RELEASES -->
@@ -354,7 +362,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <h2 id="releases" align="center">📦 Latest Releases</h2>
 
 <!-- LATEST_RELEASES:START -->
-<p align="center"><i>Latest releases will be generated automatically.</i></p>
+_No releases yet._
 <!-- LATEST_RELEASES:END -->
 
 <!-- FEATURED PROJECTS -->
@@ -413,7 +421,53 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <p align="center"><sub>🔄 Auto-refreshed daily from GitHub's pinned-repos GraphQL API. Tracks new pins automatically.</sub></p>
 
 <!-- PINNED_REPOS:START -->
-<p align="center"><i>Pinned repositories will be generated automatically from <b>hardik563</b> after the first README workflow run.</i></p>
+<p align="center"><sub>🔄 Auto-refreshed daily · <b>10</b> active repos shown across <b>3</b> categories. Last updated 2026-09-22.</sub></p>
+
+<details>
+<summary align="center"><b>🛠️ Developer Tools</b> <sub>· 1</sub></summary>
+
+<p align="center"><sub><i>GitHub Apps, CLIs, and dev-experience tooling</i></sub></p>
+
+<div align="center">
+  <a href="https://github.com/hardik563/hardik563"><img src="./assets/pins/hardik563.svg" width="49%" alt="hardik563" /></a>
+</div>
+
+</details>
+
+<details>
+<summary align="center"><b>🌐 Backend / API</b> <sub>· 3</sub></summary>
+
+<p align="center"><sub><i>Django / DRF systems and reference APIs</i></sub></p>
+
+<div align="center">
+  <a href="https://github.com/hardik563/CODSOFT"><img src="./assets/pins/CODSOFT.svg" width="49%" alt="CODSOFT" /></a>
+  <a href="https://github.com/hardik563/DSA-ROAD-TO-PLACEMENT-"><img src="./assets/pins/DSA-ROAD-TO-PLACEMENT-.svg" width="49%" alt="DSA-ROAD-TO-PLACEMENT-" /></a>
+</div>
+<div align="center">
+  <a href="https://github.com/hardik563/WEB_DEVELOPMENT_ASSIGNMENT"><img src="./assets/pins/WEB_DEVELOPMENT_ASSIGNMENT.svg" width="49%" alt="WEB_DEVELOPMENT_ASSIGNMENT" /></a>
+</div>
+
+</details>
+
+<details>
+<summary align="center"><b>🎨 Frontend / UI</b> <sub>· 6</sub></summary>
+
+<p align="center"><sub><i>Vue, Nuxt, and design-forward web apps</i></sub></p>
+
+<div align="center">
+  <a href="https://github.com/hardik563/PORTFOLIO-PROJECT"><img src="./assets/pins/PORTFOLIO-PROJECT.svg" width="49%" alt="PORTFOLIO-PROJECT" /></a>
+  <a href="https://github.com/hardik563/RAZORPAY-CLONE--FRONTEND-PROJECT"><img src="./assets/pins/RAZORPAY-CLONE--FRONTEND-PROJECT.svg" width="49%" alt="RAZORPAY-CLONE--FRONTEND-PROJECT" /></a>
+</div>
+<div align="center">
+  <a href="https://github.com/hardik563/TAILWIND-WEB-DEVELOPMENT-JOURNEY"><img src="./assets/pins/TAILWIND-WEB-DEVELOPMENT-JOURNEY.svg" width="49%" alt="TAILWIND-WEB-DEVELOPMENT-JOURNEY" /></a>
+  <a href="https://github.com/hardik563/WEB-DEVELOPNMENT-AND-PROJECT"><img src="./assets/pins/WEB-DEVELOPNMENT-AND-PROJECT.svg" width="49%" alt="WEB-DEVELOPNMENT-AND-PROJECT" /></a>
+</div>
+<div align="center">
+  <a href="https://github.com/hardik563/BAVORA"><img src="./assets/pins/BAVORA.svg" width="49%" alt="BAVORA" /></a>
+  <a href="https://github.com/hardik563/CALLIVO"><img src="./assets/pins/CALLIVO.svg" width="49%" alt="CALLIVO" /></a>
+</div>
+
+</details>
 <!-- PINNED_REPOS:END -->
 
 <!-- DEVELOPER PROFILES -->
@@ -429,16 +483,16 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 
 <p align="center">
   <a href="https://leetcode.com/u/hardikdhamija_/">
-    <img src="https://img.shields.io/badge/LeetCode-hardikdhamija__-FFA116?style=for-the-badge&logo=leetcode&logoColor=white" alt="LeetCode" />
+    <img src="https://img.shields.io/badge/LeetCode-hardikdhamija__-FFA116?style=for-the-badge&logo=leetcode&logoColor=white&v=20260922" alt="LeetCode" />
   </a>
   <a href="https://codolio.com/profile/hardikdhamija">
-    <img src="https://img.shields.io/badge/Codolio-hardikdhamija-181717?style=for-the-badge&logo=codeforces&logoColor=white" alt="Codolio" />
+    <img src="https://img.shields.io/badge/Codolio-hardikdhamija-181717?style=for-the-badge&logo=codeforces&logoColor=white&v=20260922" alt="Codolio" />
   </a>
   <a href="https://www.linkedin.com/in/hardik-dhamija-35932228b/">
-    <img src="https://img.shields.io/badge/LinkedIn-Hardik%20Dhamija-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+    <img src="https://img.shields.io/badge/LinkedIn-Hardik%20Dhamija-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white&v=20260922" alt="LinkedIn" />
   </a>
   <a href="https://github.com/hardik563">
-    <img src="https://img.shields.io/badge/GitHub-hardik563-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+    <img src="https://img.shields.io/badge/GitHub-hardik563-181717?style=for-the-badge&logo=github&logoColor=white&v=20260922" alt="GitHub" />
   </a>
 </p>
 
@@ -454,10 +508,14 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <h2 id="contributions" align="center">🐍 Contribution Graph</h2>
 
 <!-- SNAKE_GRID:START -->
+<<<<<<< HEAD
 <table align="center" width="100%"><tr><td align="center">
 <img src="./assets/contribution-snake.gif" width="100%" alt="Hardik Dhamija dark animated contribution snake — auto-generated from GitHub contributions" />
 <p><b>2026 <sub>(live · rolling 365 days)</sub></b></p>
 </td></tr></table>
+=======
+<table align="center" width="100%"><tr><td colspan="3" align="center"><img alt="GitHub contribution grid snake animation preview" src="./assets/contribution-snake-preview.gif" width="100%"><p><b>2026 <sub>(live · rolling 365 days)</sub></b></p></td></tr><tr><td width="33%" align="center"><a href="https://github.com/hardik563?tab=overview&from=2023-01-01&to=2023-12-31"><img src="./assets/heatmap-2023.svg" width="100%" alt="hardik563 — 2023 contribution heatmap"></a><p><b>2023</b></p></td><td width="33%" align="center"><a href="https://github.com/hardik563?tab=overview&from=2024-01-01&to=2024-12-31"><img src="./assets/heatmap-2024.svg" width="100%" alt="hardik563 — 2024 contribution heatmap"></a><p><b>2024</b></p></td><td width="33%" align="center"><a href="https://github.com/hardik563?tab=overview&from=2025-01-01&to=2025-12-31"><img src="./assets/heatmap-2025.svg" width="100%" alt="hardik563 — 2025 contribution heatmap"></a><p><b>2025</b></p></td></tr></table>
+>>>>>>> aab107707075b9657f3ccafb804bb7547c8260e0
 <!-- SNAKE_GRID:END -->
 
 <h3 align="center">🐲 Contribution Dragon</h3>
@@ -466,7 +524,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <h3 align="center">🎨 3D Animated Profile</h3>
 
 <!-- 3D_GRID:START -->
-<p align="center"><i>Live 3D contribution profile — generated automatically from Hardik's GitHub contribution calendar.</i></p>
+<table align="center" width="100%"><tr><td colspan="3" align="center"><a href="./profile-3d-contrib/2026/profile-night-rainbow.svg"><img src="./profile-3d-contrib/2026/profile-night-rainbow.svg" width="100%" alt="hardik563 2026 3D contribution profile" /></a><p><b>2026 <sub>(live)</sub></b></p></td></tr><tr><td width="33%" align="center"><a href="./profile-3d-contrib/2023/profile-night-rainbow.svg"><img src="./profile-3d-contrib/2023/profile-night-rainbow.svg" width="100%" alt="hardik563 2023 3D contribution profile" /></a><p><b>2023</b></p></td><td width="33%" align="center"><a href="./profile-3d-contrib/2024/profile-night-rainbow.svg"><img src="./profile-3d-contrib/2024/profile-night-rainbow.svg" width="100%" alt="hardik563 2024 3D contribution profile" /></a><p><b>2024</b></p></td><td width="33%" align="center"><a href="./profile-3d-contrib/2025/profile-night-rainbow.svg"><img src="./profile-3d-contrib/2025/profile-night-rainbow.svg" width="100%" alt="hardik563 2025 3D contribution profile" /></a><p><b>2025</b></p></td></tr></table>
 <!-- 3D_GRID:END -->
 
 <details>
@@ -497,27 +555,41 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <h3 align="center">🌆 GitHub Skylines</h3>
 
 <!-- SKYLINE_GRID:START -->
-<p align="center"><i>Live contribution skyline — generated by the Profile Refresh workflow.</i></p>
+<table align="center" width="100%"><tr><td colspan="3" align="center"><a href="https://github.com/hardik563/hardik563/blob/main/assets/skyline-2026.svg"><img src="./assets/skyline-2026.svg" width="100%" alt="hardik563 contribution skyline 2026"></a><p><b>2026 <sub>(live)</sub></b></p></td></tr><tr><td width="33%" align="center"><a href="https://github.com/hardik563/hardik563/blob/main/assets/skyline-2023.svg"><img src="./assets/skyline-2023.svg" width="100%" alt="hardik563 contribution skyline 2023"></a><p><b>2023</b></p></td><td width="33%" align="center"><a href="https://github.com/hardik563/hardik563/blob/main/assets/skyline-2024.svg"><img src="./assets/skyline-2024.svg" width="100%" alt="hardik563 contribution skyline 2024"></a><p><b>2024</b></p></td><td width="33%" align="center"><a href="https://github.com/hardik563/hardik563/blob/main/assets/skyline-2025.svg"><img src="./assets/skyline-2025.svg" width="100%" alt="hardik563 contribution skyline 2025"></a><p><b>2025</b></p></td></tr></table>
 <!-- SKYLINE_GRID:END -->
 
 <!-- STL_LINKS:START -->
+<<<<<<< HEAD
 <p align="center"><i>Skyline links are refreshed automatically from Hardik Dhamija's contribution data.</i></p>
+=======
+<p align="center"><b>📐 Open contribution skyline:</b> <a href="https://github.com/hardik563/hardik563/blob/main/assets/skyline-2023.svg">2023 skyline</a> · <a href="https://github.com/hardik563/hardik563/blob/main/assets/skyline-2024.svg">2024 skyline</a> · <a href="https://github.com/hardik563/hardik563/blob/main/assets/skyline-2025.svg">2025 skyline</a> · <a href="https://github.com/hardik563/hardik563/blob/main/assets/skyline-2026.svg">2026 skyline <sub>(live)</sub></a></p>
+>>>>>>> aab107707075b9657f3ccafb804bb7547c8260e0
 <!-- STL_LINKS:END -->
 
 <h3 align="center">🏙️ GitHub Cities</h3>
 
 <!-- CITY_GRID:START -->
-<p align="center"><i>Contribution-city visuals are generated from Hardik's GitHub contribution calendar.</i></p>
+<table align="center" width="100%"><tr><td colspan="3" align="center"><a href="https://github.com/hardik563?tab=overview&from=2026-01-01&to=2026-12-31"><img src="./assets/city-2026.svg" width="100%" alt="GitHub City 2026"></a><p><b>2026 <sub>(live)</sub></b></p></td></tr><tr><td width="33%" align="center"><a href="https://github.com/hardik563?tab=overview&from=2023-01-01&to=2023-12-31"><img src="./assets/city-2023.svg" width="100%" alt="GitHub City 2023"></a><p><b>2023</b></p></td><td width="33%" align="center"><a href="https://github.com/hardik563?tab=overview&from=2024-01-01&to=2024-12-31"><img src="./assets/city-2024.svg" width="100%" alt="GitHub City 2024"></a><p><b>2024</b></p></td><td width="33%" align="center"><a href="https://github.com/hardik563?tab=overview&from=2025-01-01&to=2025-12-31"><img src="./assets/city-2025.svg" width="100%" alt="GitHub City 2025"></a><p><b>2025</b></p></td></tr></table>
 <!-- CITY_GRID:END -->
 
 <!-- GITCITY_LINKS:START -->
+<<<<<<< HEAD
 <p align="center"><i>Contribution-city visuals are refreshed automatically from Hardik Dhamija's contribution data.</i></p>
+=======
+<p align="center"><b>🏙️ Open contribution city:</b> <a href="https://github.com/hardik563/hardik563/blob/main/assets/city-2023.svg">2023 city</a> · <a href="https://github.com/hardik563/hardik563/blob/main/assets/city-2024.svg">2024 city</a> · <a href="https://github.com/hardik563/hardik563/blob/main/assets/city-2025.svg">2025 city</a> · <a href="https://github.com/hardik563/hardik563/blob/main/assets/city-2026.svg">2026 city <sub>(live)</sub></a></p>
+>>>>>>> aab107707075b9657f3ccafb804bb7547c8260e0
 <!-- GITCITY_LINKS:END -->
 
 <h3 align="center">📍 Lucknow · 3D City</h3>
 <p align="center"><sub>My home city — Lucknow, Uttar Pradesh, India.</sub></p>
+<<<<<<< HEAD
 <p align="center"><a href="https://hardik563.github.io/hardik563/"><img src="https://img.shields.io/badge/🖱️_OPEN_REAL--TIME_3D_LUCKNOW-F90001?style=for-the-badge&labelColor=0D1117" alt="Open interactive 3D Lucknow city" /></a></p>
 <p align="center"><em>Interactive real-time 3D Lucknow: drag to rotate, wheel to zoom, right-drag to pan, with animated traffic, lights, landmarks and day/night motion.</em></p>
+=======
+<p align="center"><img src="./assets/lucknow-3d.gif" width="100%" alt="Animated 3D-style Lucknow city visual for Hardik Dhamija" /></p>
+<p align="center"><a href="https://hardik563.github.io/hardik563/"><img src="https://img.shields.io/badge/🖱️_OPEN_INTERACTIVE_3D_LUCKNOW-F90001?style=for-the-badge&labelColor=0D1117&v=20260922" alt="Open interactive 3D Lucknow city" /></a></p>
+<p align="center"><em>Drag, rotate, zoom and pan the interactive Lucknow city. The README preview above is animated; the button opens the real 3D version.</em></p>
+>>>>>>> aab107707075b9657f3ccafb804bb7547c8260e0
 
 <!-- CONNECT WITH ME -->
 <div align="center">
@@ -531,10 +603,10 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <h2 id="connect" align="center">🌍 Connect With Me</h2>
 
 <p align="center">
-  <a href="https://www.linkedin.com/in/hardik-dhamija-35932228b/" aria-label="LinkedIn"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" width="140" alt="LinkedIn"></a>
-  <a href="https://leetcode.com/u/hardikdhamija_/" aria-label="LeetCode"><img src="https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=white" width="140" alt="LeetCode"></a>
-  <a href="https://codolio.com/profile/hardikdhamija" aria-label="Codolio"><img src="https://img.shields.io/badge/Codolio-181717?style=for-the-badge&logo=codeforces&logoColor=white" width="140" alt="Codolio"></a>
-  <a href="https://github.com/hardik563" aria-label="GitHub"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" width="140" alt="GitHub"></a>
+  <a href="https://www.linkedin.com/in/hardik-dhamija-35932228b/" aria-label="LinkedIn"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white&v=20260922" width="140" alt="LinkedIn"></a>
+  <a href="https://leetcode.com/u/hardikdhamija_/" aria-label="LeetCode"><img src="https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=white&v=20260922" width="140" alt="LeetCode"></a>
+  <a href="https://codolio.com/profile/hardikdhamija" aria-label="Codolio"><img src="https://img.shields.io/badge/Codolio-181717?style=for-the-badge&logo=codeforces&logoColor=white&v=20260922" width="140" alt="Codolio"></a>
+  <a href="https://github.com/hardik563" aria-label="GitHub"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white&v=20260922" width="140" alt="GitHub"></a>
 </p>
 
 <!-- 📝 GUESTBOOK — visitors leave a message via a pre-filled issue template -->
