@@ -61,7 +61,7 @@
 <!-- 🌟 Editorial hero banner — name, role, availability, stats -->
 <p align="center">
   <a href="https://github.com/hardik563">
-    <img src="./assets/about-hero.svg" width="100%" alt="Hardik Dhamija — Full-Stack Developer · editorial profile banner" />
+    <img src="./assets/profile-header.svg" width="100%" alt="Hardik Dhamija — Full-Stack Developer · editorial profile banner" />
   </a>
 </p>
 
@@ -299,7 +299,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 
 <div align="center">
   <a href="https://github.com/hardik563">
-    <img src="./assets/stats/top-langs.svg alt="Hardik Dhamija Most Used Languages" width="49%" />
+    <img src="./assets/stats/top-langs.svg" alt="Hardik Dhamija Most Used Languages" width="49%" />
   </a>
 </div>
 
@@ -455,17 +455,13 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 
 <!-- SNAKE_GRID:START -->
 <table align="center" width="100%"><tr><td align="center">
-<img src="./assets/contribution-snake-preview.gif" width="100%" alt="Hardik Dhamija contribution snake preview" />
+<img src="./assets/contribution-snake.gif" width="100%" alt="Hardik Dhamija dark animated contribution snake — auto-generated from GitHub contributions" />
 <p><b>2026 <sub>(live · rolling 365 days)</sub></b></p>
 </td></tr></table>
 <!-- SNAKE_GRID:END -->
 
 <h3 align="center">🐲 Contribution Dragon</h3>
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/generated/github-contribution-grid-dragon-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/generated/github-contribution-grid-dragon.svg">
-  <img src="./assets/contribution-dragon-preview.gif" width="100%" alt="Hardik Dhamija GitHub contribution dragon" />
-</picture>
+<img src="./assets/contribution-dragon-preview.gif" width="100%" alt="Hardik Dhamija GitHub contribution dragon animation" />
 
 <h3 align="center">🎨 3D Animated Profile</h3>
 
@@ -505,7 +501,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <!-- SKYLINE_GRID:END -->
 
 <!-- STL_LINKS:START -->
-<p align="center"><i>3D skyline STL links will appear after the metrics workflow runs.</i></p>
+<p align="center"><i>Skyline links are refreshed automatically from Hardik Dhamija's contribution data.</i></p>
 <!-- STL_LINKS:END -->
 
 <h3 align="center">🏙️ GitHub Cities</h3>
@@ -515,14 +511,13 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <!-- CITY_GRID:END -->
 
 <!-- GITCITY_LINKS:START -->
-<p align="center"><i>GitHub City links will appear after the metrics workflow runs.</i></p>
+<p align="center"><i>Contribution-city visuals are refreshed automatically from Hardik Dhamija's contribution data.</i></p>
 <!-- GITCITY_LINKS:END -->
 
 <h3 align="center">📍 Lucknow · 3D City</h3>
 <p align="center"><sub>My home city — Lucknow, Uttar Pradesh, India.</sub></p>
-<p align="center"><img src="./assets/lucknow-3d.gif" width="100%" alt="Animated 3D-style Lucknow city visual for Hardik Dhamija" /></p>
-<p align="center"><a href="https://hardik563.github.io/hardik563/"><img src="https://img.shields.io/badge/🖱️_OPEN_INTERACTIVE_3D_LUCKNOW-F90001?style=for-the-badge&labelColor=0D1117" alt="Open interactive 3D Lucknow city" /></a></p>
-<p align="center"><em>Drag, rotate, zoom and pan the interactive Lucknow city. The README preview above is animated; the button opens the real 3D version.</em></p>
+<p align="center"><a href="https://hardik563.github.io/hardik563/"><img src="https://img.shields.io/badge/🖱️_OPEN_REAL--TIME_3D_LUCKNOW-F90001?style=for-the-badge&labelColor=0D1117" alt="Open interactive 3D Lucknow city" /></a></p>
+<p align="center"><em>Interactive real-time 3D Lucknow: drag to rotate, wheel to zoom, right-drag to pan, with animated traffic, lights, landmarks and day/night motion.</em></p>
 
 <!-- CONNECT WITH ME -->
 <div align="center">
@@ -585,7 +580,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <!-- 🎬 ANIMATED FOOTER -->
 <!-- ============================================================ -->
 
-<!-- snake animation as a visual handoff into the footer -->
+<!-- dark animated snake is generated automatically by Profile Refresh -->
 <div align="center">
 
 [⬆ back to top](#about)

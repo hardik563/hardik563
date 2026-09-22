@@ -1198,84 +1198,24 @@ def three_d_grid() -> str:
 
 
 def snake_grid() -> str:
-    """Hero (rolling-365 snake) + 3 small per-year contribution heatmaps."""
+    """Animated dark contribution snake, regenerated from GitHub contribution data."""
     big_year, small_years = _hero_years()
-
-    generated_dark = Path("assets/generated/github-contribution-grid-snake-dark.svg")
-    generated_light = Path("assets/generated/github-contribution-grid-snake.svg")
-    if generated_dark.exists() and generated_light.exists():
-        snake_html = (
-            '<picture>'
-            '<source media="(prefers-color-scheme: dark)" srcset="./assets/generated/github-contribution-grid-snake-dark.svg">'
-            '<source media="(prefers-color-scheme: light)" srcset="./assets/generated/github-contribution-grid-snake.svg">'
-            '<img alt="GitHub contribution grid snake animation" src="./assets/generated/github-contribution-grid-snake-dark.svg" width="100%">'
-            '</picture>'
-        )
-    else:
-        snake_html = '<img alt="GitHub contribution grid snake animation preview" src="./assets/contribution-snake-preview.gif" width="100%">'
-    hero_cell = (
-        f'<td colspan="3" align="center">'
-        f'{snake_html}'
-        f'<p><b>{big_year} <sub>(live · rolling 365 days)</sub></b></p>'
-        f"</td>"
+    snake_html = (
+        '<img alt="Hardik Dhamija dark animated GitHub contribution snake" '
+        'src="./assets/contribution-snake.gif" width="100%">'
     )
-
+    hero_cell = (
+        f'<td colspan="3" align="center">{snake_html}'
+        f'<p><b>{big_year} <sub>(live · rolling 365 days)</sub></b></p></td>'
+    )
     def heatmap_cell(y: int) -> str:
         return (
             f'<td width="33%" align="center">'
             f'<a href="https://github.com/{GH_USER}?tab=overview&from={y}-01-01&to={y}-12-31">'
-            f'<img src="./{ASSETS_DIR}/heatmap-{y}.svg" '
-            f'width="100%" alt="{GH_USER} — {y} contribution heatmap">'
-            f"</a>"
-            f"<p><b>{y}</b></p>"
-            f"</td>"
+            f'<img src="./{ASSETS_DIR}/heatmap-{y}.svg" width="100%" alt="{GH_USER} — {y} contribution heatmap">'
+            f'</a><p><b>{y}</b></p></td>'
         )
-
-    small_cells = "".join(heatmap_cell(y) for y in small_years)
-    return (
-        '<table align="center" width="100%">'
-        f"<tr>{hero_cell}</tr>"
-        f"<tr>{small_cells}</tr>"
-        "</table>"
-    )
-
-
-# --- QUOTE OF THE DAY ---------------------------------------------------------
-
-QUOTES = [
-    ("First, solve the problem. Then, write the code.", "John Johnson"),
-    ("Programs must be written for people to read, and only incidentally for machines to execute.", "Harold Abelson"),
-    ("Premature optimization is the root of all evil.", "Donald Knuth"),
-    ("Simplicity is prerequisite for reliability.", "Edsger W. Dijkstra"),
-    ("The best error message is the one that never shows up.", "Thomas Fuchs"),
-    ("Make it work, make it right, make it fast.", "Kent Beck"),
-    ("Walking on water and developing software from a specification are easy if both are frozen.", "Edward V. Berard"),
-    ("Code is like humor. When you have to explain it, it's bad.", "Cory House"),
-    ("There are only two kinds of languages: the ones people complain about and the ones nobody uses.", "Bjarne Stroustrup"),
-    ("Any fool can write code that a computer can understand. Good programmers write code that humans can understand.", "Martin Fowler"),
-    ("Talk is cheap. Show me the code.", "Linus Torvalds"),
-    ("If debugging is the process of removing software bugs, then programming must be the process of putting them in.", "Edsger W. Dijkstra"),
-    ("Truth can only be found in one place: the code.", "Robert C. Martin"),
-    ("Programming isn't about what you know; it's about what you can figure out.", "Chris Pine"),
-    ("It's not a bug — it's an undocumented feature.", "Anonymous"),
-    ("The most damaging phrase in the language is: 'We've always done it this way!'", "Grace Hopper"),
-    ("Software is a great combination of artistry and engineering.", "Bill Gates"),
-    ("Java is to JavaScript what car is to carpet.", "Chris Heilmann"),
-    ("Good code is its own best documentation.", "Steve McConnell"),
-    ("In order to be irreplaceable, one must always be different.", "Coco Chanel"),
-    ("Don't comment bad code — rewrite it.", "Brian Kernighan"),
-    ("Programs are meant to be read by humans and only incidentally for computers to execute.", "Donald Knuth"),
-    ("The function of good software is to make the complex appear to be simple.", "Grady Booch"),
-    ("Code never lies, comments sometimes do.", "Ron Jeffries"),
-    ("Quality is more important than quantity. One home run is much better than two doubles.", "Steve Jobs"),
-    ("Software undergoes beta testing shortly before it's released. Beta is Latin for 'still doesn't work'.", "Anonymous"),
-    ("Real programmers count from 0.", "Anonymous"),
-    ("Programming is the art of telling another human being what one wants the computer to do.", "Donald Knuth"),
-    ("If you don't fail at least 90% of the time, you're not aiming high enough.", "Alan Kay"),
-    ("The only way to learn a new programming language is by writing programs in it.", "Dennis Ritchie"),
-    ("Computers are good at following instructions, but not at reading your mind.", "Donald Knuth"),
-]
-
+    return f'<table align="center" width="100%"><tr>{hero_cell}</tr><tr>{"".join(heatmap_cell(y) for y in small_years)}</tr></table>'
 
 def quote_of_the_day() -> str:
     """Pick a quote indexed by day-of-year so it rotates daily and is stable for the whole day."""

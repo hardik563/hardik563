@@ -3,11 +3,6 @@ name: Profile Refresh
 on:
   push:
     branches: [main]
-    paths:
-      - 'README.md'
-      - 'assets/**'
-      - '.github/scripts/**'
-      - '.github/workflows/profile-refresh.yml'
   schedule:
     - cron: "15 1 * * *"
   workflow_dispatch:
@@ -21,9 +16,8 @@ concurrency:
 
 jobs:
   refresh:
-    if: ${{ github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - name: Checkout profile repository
         uses: actions/checkout@v4
@@ -36,9 +30,16 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install --no-cache-dir requests==2.32.3
+        run: pip install --no-cache-dir requests==2.32.3 Pillow==11.3.0
 
-      - name: Generate self-hosted profile visuals
+      - name: Generate dark animated contribution snake
+        env:
+          GITHUB_USER: hardik563
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SNAKE_OUTPUT: assets/contribution-snake.gif
+        run: python scripts/generate_snake_gif.py
+
+      - name: Refresh self-hosted profile data and visuals
         env:
           GH_USER: hardik563
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -50,18 +51,17 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md assets/heatmap-*.svg assets/skyline-*.svg assets/city-*.svg assets/about-hero.svg assets/about-orbit.svg assets/stats/ profile-3d-contrib/
+          git add README.md assets/ profile-3d-contrib/ city/
           if git diff --cached --quiet; then
             echo "No generated changes."
             exit 0
           fi
-          git commit -m "chore(profile): refresh live contribution visuals"
+          git commit -m "chore(profile): refresh Hardik Dhamija animated profile"
           for i in 1 2 3 4 5; do
             if git push origin main; then
               echo "Push succeeded on attempt $i"
               exit 0
             fi
-            echo "Push attempt $i failed; rebasing..."
             git pull --rebase origin main
             sleep $((i * 5))
           done

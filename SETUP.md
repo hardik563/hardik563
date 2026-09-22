@@ -1,32 +1,44 @@
-# Hardik Dhamija GitHub Profile — Setup Guide
+# Hardik Dhamija GitHub Profile — Setup
 
-This repository is a customized version of the supplied reference profile repository, prepared for `hardik563`.
+## Automatic profile refresh
 
-## 1. Create the profile repository
-Create a **public** repository named exactly `hardik563` under the GitHub account `hardik563`.
+The repository uses one main workflow: **Profile Refresh**.
 
-## 2. Upload this repository
-Upload/push all files from this folder into that repository. Keep the `.github` folder and workflow files.
+It automatically regenerates:
+- GitHub contribution data and heatmaps
+- dark animated contribution Snake GIF
+- self-hosted 3D contribution visuals
+- skyline/city contribution visuals
+- live README sections
+- local stats cards
 
-## 3. Important workflow permissions
-In the repository go to **Settings → Actions → General** and make sure workflows are allowed to run and that **Workflow permissions** allow read and write access where available.
+It uses `GITHUB_TOKEN`; no third-party metrics token is required for the core profile.
 
-## 4. Run the workflows
-After the first push, open **Actions** and run these manually once:
-- `Profile Refresh` — generates the live stats, contribution heatmaps, skyline/city visuals, and 3D profile from GitHub GraphQL.
-- `Generate Snake and Dragon` — publishes the snake and dragon animations to the `output` branch.
-- `Update README` — refreshes activity and other lightweight README sections.
+## Interactive Lucknow 3D
 
-The old `Metrics`, `3D Profile Contributions`, and `PortfolioCraft` workflows were removed because they depended on external services/actions that were causing the broken API/error cards shown in the reference profile. The new profile assets are self-hosted in this repository.
+The `city/` folder is deployed to GitHub Pages by `Deploy Interactive 3D Lucknow`.
+The scene is a real-time Three.js 3D model inspired by Lucknow landmarks, with:
+- Rumi Darwaza-inspired gateway
+- Bara Imambara-inspired complex
+- Gomti River
+- Hazratganj-style roads and lamps
+- animated traffic
+- animated building lights
+- day/night lighting cycle
+- orbit, zoom and pan controls
 
-## 5. Optional WakaTime
-WakaTime is optional. The WakaTime workflow is configured to skip itself unless `WAKATIME_API_KEY` exists. If you want WakaTime statistics, add that repository secret later.
+Enable **Settings → Pages → Source: GitHub Actions** once if GitHub Pages has not been enabled for this repository.
 
-## 6. Personal links already configured
-- GitHub: https://github.com/hardik563
-- LinkedIn: https://www.linkedin.com/in/hardik-dhamija-35932228b/
-- LeetCode: https://leetcode.com/u/hardikdhamija_/
-- Codolio: https://codolio.com/profile/hardikdhamija
+The README button then opens:
+`https://hardik563.github.io/hardik563/`
 
-## 7. Do not add secrets to README or source files
-Use GitHub repository **Secrets and variables → Actions** for API keys/tokens. Never paste a personal access token into a YAML file.
+## Contribution Snake
+
+`assets/contribution-snake.gif` is generated automatically by `scripts/generate_snake_gif.py`.
+The workflow reads Hardik's GitHub contribution calendar through the GitHub GraphQL API and rebuilds the dark animation automatically.
+
+No token value should be pasted into the repository or into chat.
+
+## Optional WakaTime
+
+`WakaTime Weekly Stats` runs only when `WAKATIME_API_KEY` is configured. It is optional and does not affect the core profile.

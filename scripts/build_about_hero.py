@@ -38,7 +38,7 @@ NOW_SHIPPING = [
 ]
 
 STATS = [
-    ("DEGREE", "B.TECH", "CSE · AI & ML"),
+    ("DEGREE", "B.TECH", "CSE · AI &amp; ML"),
     ("DSA", "200+", "LeetCode practice"),
     ("FOCUS", "AI · ML", "DL · Java · Full-Stack"),
     ("LOCATION", "LUCKNOW", "Uttar Pradesh · India"),
