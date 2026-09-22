@@ -508,14 +508,7 @@ _No releases yet._
 <h2 id="contributions" align="center">🐍 Contribution Graph</h2>
 
 <!-- SNAKE_GRID:START -->
-<<<<<<< HEAD
-<table align="center" width="100%"><tr><td align="center">
-<img src="./assets/contribution-snake.gif" width="100%" alt="Hardik Dhamija dark animated contribution snake — auto-generated from GitHub contributions" />
-<p><b>2026 <sub>(live · rolling 365 days)</sub></b></p>
-</td></tr></table>
-=======
-<table align="center" width="100%"><tr><td colspan="3" align="center"><img alt="GitHub contribution grid snake animation preview" src="./assets/contribution-snake-preview.gif" width="100%"><p><b>2026 <sub>(live · rolling 365 days)</sub></b></p></td></tr><tr><td width="33%" align="center"><a href="https://github.com/hardik563?tab=overview&from=2023-01-01&to=2023-12-31"><img src="./assets/heatmap-2023.svg" width="100%" alt="hardik563 — 2023 contribution heatmap"></a><p><b>2023</b></p></td><td width="33%" align="center"><a href="https://github.com/hardik563?tab=overview&from=2024-01-01&to=2024-12-31"><img src="./assets/heatmap-2024.svg" width="100%" alt="hardik563 — 2024 contribution heatmap"></a><p><b>2024</b></p></td><td width="33%" align="center"><a href="https://github.com/hardik563?tab=overview&from=2025-01-01&to=2025-12-31"><img src="./assets/heatmap-2025.svg" width="100%" alt="hardik563 — 2025 contribution heatmap"></a><p><b>2025</b></p></td></tr></table>
->>>>>>> aab107707075b9657f3ccafb804bb7547c8260e0
+<table align="center" width="100%"><tr><td colspan="3" align="center"><img alt="Hardik Dhamija dark animated GitHub contribution snake" src="./assets/contribution-snake.gif" width="100%"><p><b>2026 <sub>(live · rolling 365 days)</sub></b></p></td></tr><tr><td width="33%" align="center"><a href="https://github.com/hardik563?tab=overview&from=2023-01-01&to=2023-12-31"><img src="./assets/heatmap-2023.svg" width="100%" alt="hardik563 — 2023 contribution heatmap"></a><p><b>2023</b></p></td><td width="33%" align="center"><a href="https://github.com/hardik563?tab=overview&from=2024-01-01&to=2024-12-31"><img src="./assets/heatmap-2024.svg" width="100%" alt="hardik563 — 2024 contribution heatmap"></a><p><b>2024</b></p></td><td width="33%" align="center"><a href="https://github.com/hardik563?tab=overview&from=2025-01-01&to=2025-12-31"><img src="./assets/heatmap-2025.svg" width="100%" alt="hardik563 — 2025 contribution heatmap"></a><p><b>2025</b></p></td></tr></table>
 <!-- SNAKE_GRID:END -->
 
 <h3 align="center">🐲 Contribution Dragon</h3>
@@ -559,11 +552,7 @@ _No releases yet._
 <!-- SKYLINE_GRID:END -->
 
 <!-- STL_LINKS:START -->
-<<<<<<< HEAD
-<p align="center"><i>Skyline links are refreshed automatically from Hardik Dhamija's contribution data.</i></p>
-=======
 <p align="center"><b>📐 Open contribution skyline:</b> <a href="https://github.com/hardik563/hardik563/blob/main/assets/skyline-2023.svg">2023 skyline</a> · <a href="https://github.com/hardik563/hardik563/blob/main/assets/skyline-2024.svg">2024 skyline</a> · <a href="https://github.com/hardik563/hardik563/blob/main/assets/skyline-2025.svg">2025 skyline</a> · <a href="https://github.com/hardik563/hardik563/blob/main/assets/skyline-2026.svg">2026 skyline <sub>(live)</sub></a></p>
->>>>>>> aab107707075b9657f3ccafb804bb7547c8260e0
 <!-- STL_LINKS:END -->
 
 <h3 align="center">🏙️ GitHub Cities</h3>
@@ -573,17 +562,13 @@ _No releases yet._
 <!-- CITY_GRID:END -->
 
 <!-- GITCITY_LINKS:START -->
-<<<<<<< HEAD
-<p align="center"><i>Contribution-city visuals are refreshed automatically from Hardik Dhamija's contribution data.</i></p>
-=======
 <p align="center"><b>🏙️ Open contribution city:</b> <a href="https://github.com/hardik563/hardik563/blob/main/assets/city-2023.svg">2023 city</a> · <a href="https://github.com/hardik563/hardik563/blob/main/assets/city-2024.svg">2024 city</a> · <a href="https://github.com/hardik563/hardik563/blob/main/assets/city-2025.svg">2025 city</a> · <a href="https://github.com/hardik563/hardik563/blob/main/assets/city-2026.svg">2026 city <sub>(live)</sub></a></p>
->>>>>>> aab107707075b9657f3ccafb804bb7547c8260e0
 <!-- GITCITY_LINKS:END -->
 
 <h3 align="center">📍 Lucknow · 3D City</h3>
 <p align="center"><sub>My home city — Lucknow, Uttar Pradesh, India.</sub></p>
 <<<<<<< HEAD
-<p align="center"><a href="https://hardik563.github.io/hardik563/"><img src="https://img.shields.io/badge/🖱️_OPEN_REAL--TIME_3D_LUCKNOW-F90001?style=for-the-badge&labelColor=0D1117" alt="Open interactive 3D Lucknow city" /></a></p>
+<p align="center"><a href="https://hardik563.github.io/hardik563/"><img src="https://img.shields.io/badge/🖱️_OPEN_REAL--TIME_3D_LUCKNOW-F90001?style=for-the-badge&labelColor=0D1117&v=20260922" alt="Open interactive 3D Lucknow city" /></a></p>
 <p align="center"><em>Interactive real-time 3D Lucknow: drag to rotate, wheel to zoom, right-drag to pan, with animated traffic, lights, landmarks and day/night motion.</em></p>
 =======
 <p align="center"><img src="./assets/lucknow-3d.gif" width="100%" alt="Animated 3D-style Lucknow city visual for Hardik Dhamija" /></p>
