@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="800" viewBox="0 0 1300 800" role="img" aria-label="Abdullah's neural skill atlas — anatomical neon brain with 6 skill labels in side columns">
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="800" viewBox="0 0 1300 800" role="img" aria-label="Hardik Dhamija's neural skill atlas — anatomical neon brain with 6 skill labels in side columns">
   <!--
     NEON BRAIN SKILL ATLAS v3 (anatomy-first redesign)
       • Detailed side-view brain silhouette with 6 visible gyri bumps,
@@ -324,7 +324,7 @@
 
   <!-- ═══ LAYER 6 — Title at top ═══ -->
   <text x="650" y="40"  class="t-tag"     text-anchor="middle">⏵ NEURAL · COGNITIVE · SKILL · ATLAS ⏴</text>
-  <text x="650" y="76" class="t-display" text-anchor="middle">Abdullah's Skill Brain</text>
+  <text x="650" y="76" class="t-display" text-anchor="middle">Hardik Dhamija's Skill Brain</text>
 
   <!-- ═══════════════════════════════════════════════════════════════════
        LAYER 7 — 6 SKILL CARDS in 2 columns flanking the brain
@@ -342,7 +342,7 @@
       <rect x="0" y="0" width="6"   height="80" rx="3" fill="#FF652F"/>
       <text x="100" y="22" class="t-cat-cap" text-anchor="middle" fill="#FF652F">CLIENT · UI</text>
       <text x="100" y="46" class="t-cat-title" text-anchor="middle">🎨 Frontend</text>
-      <text x="100" y="65" class="t-cat-tools" text-anchor="middle">Vue · Nuxt · TypeScript</text>
+      <text x="100" y="65" class="t-cat-tools" text-anchor="middle">React · HTML · CSS · JavaScript</text>
     </g>
   </g>
 
@@ -353,7 +353,7 @@
       <rect x="0" y="0" width="6"   height="80" rx="3" fill="#A78BFA"/>
       <text x="100" y="22" class="t-cat-cap" text-anchor="middle" fill="#A78BFA">INTELLIGENCE</text>
       <text x="100" y="46" class="t-cat-title" text-anchor="middle">🤖 AI &amp; Data</text>
-      <text x="100" y="65" class="t-cat-tools" text-anchor="middle">PyTorch · LLMs · RAG</text>
+      <text x="100" y="65" class="t-cat-tools" text-anchor="middle">Python · PyTorch · TensorFlow</text>
     </g>
   </g>
 
@@ -377,7 +377,7 @@
       <rect x="0" y="0" width="6"   height="80" rx="3" fill="#F90001"/>
       <text x="100" y="22" class="t-cat-cap" text-anchor="middle" fill="#F90001">SERVER · APIS</text>
       <text x="100" y="46" class="t-cat-title" text-anchor="middle">⚙️ Backend</text>
-      <text x="100" y="65" class="t-cat-tools" text-anchor="middle">Python · Django · DRF</text>
+      <text x="100" y="65" class="t-cat-tools" text-anchor="middle">Java · Spring concepts · Node.js</text>
     </g>
   </g>
 
@@ -399,7 +399,7 @@
       <rect x="0" y="0" width="6"   height="80" rx="3" fill="#34D399"/>
       <text x="100" y="22" class="t-cat-cap" text-anchor="middle" fill="#34D399">SYSTEMS · DESIGN</text>
       <text x="100" y="46" class="t-cat-title" text-anchor="middle">🏗️ Architecture</text>
-      <text x="100" y="65" class="t-cat-tools" text-anchor="middle">µservices · RabbitMQ</text>
+      <text x="100" y="65" class="t-cat-tools" text-anchor="middle">Java · DSA · System Design</text>
     </g>
   </g>
 </svg>

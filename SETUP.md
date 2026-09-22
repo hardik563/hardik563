@@ -12,14 +12,12 @@ Upload/push all files from this folder into that repository. Keep the `.github` 
 In the repository go to **Settings → Actions → General** and make sure workflows are allowed to run and that **Workflow permissions** allow read and write access where available.
 
 ## 4. Run the workflows
-After the first push, open **Actions**. Run these workflows manually once where `workflow_dispatch` is available:
-- `3D Profile Contributions`
-- `Metrics`
-- `Update README`
-- `Generate Snake and Dragon` / `Generate snake animation` (whichever is present)
-- `PortfolioCraft (live dogfood)`
+After the first push, open **Actions** and run these manually once:
+- `Profile Refresh` — generates the live stats, contribution heatmaps, skyline/city visuals, and 3D profile from GitHub GraphQL.
+- `Generate Snake and Dragon` — publishes the snake and dragon animations to the `output` branch.
+- `Update README` — refreshes activity and other lightweight README sections.
 
-The README workflow and contribution workflows then keep the profile data refreshed automatically.
+The old `Metrics`, `3D Profile Contributions`, and `PortfolioCraft` workflows were removed because they depended on external services/actions that were causing the broken API/error cards shown in the reference profile. The new profile assets are self-hosted in this repository.
 
 ## 5. Optional WakaTime
 WakaTime is optional. The WakaTime workflow is configured to skip itself unless `WAKATIME_API_KEY` exists. If you want WakaTime statistics, add that repository secret later.

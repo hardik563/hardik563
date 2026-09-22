@@ -19,6 +19,7 @@ import math
 import os
 import random
 import re
+import shutil
 import sys
 import urllib.parse
 from pathlib import Path
@@ -31,7 +32,7 @@ GH_TOKEN = os.environ.get("GH_TOKEN", "")
 PSI_API_KEY = os.environ.get("PSI_API_KEY", "")
 PSI_URL = os.environ.get("PSI_URL", "")
 README_PATH = os.environ.get("README_PATH", "README.md")
-START_YEAR = int(os.environ.get("START_YEAR", "2024"))
+START_YEAR = int(os.environ.get("START_YEAR", "2023"))
 
 GH_HEADERS = {"Accept": "application/vnd.github+json"}
 if GH_TOKEN:
@@ -930,6 +931,19 @@ def regenerate_yearly_assets() -> None:
         try:
             render_heatmap_svg(y, cal, os.path.join(ASSETS_DIR, f"heatmap-{y}.svg"))
             render_skyline_svg(y, cal, os.path.join(ASSETS_DIR, f"skyline-{y}.svg"))
+            # Self-host the contribution-city visual too. This avoids the old
+            # browser screenshot/GitHub-City API path that can fail intermittently.
+            render_skyline_svg(y, cal, os.path.join(ASSETS_DIR, f"city-{y}.svg"))
+            # Self-host the 3D profile from the same GraphQL contribution data.
+            os.makedirs(os.path.join("profile-3d-contrib", str(y)), exist_ok=True)
+            year_3d = os.path.join("profile-3d-contrib", str(y), "profile-night-rainbow.svg")
+            render_3d_rainbow_svg(y, cal, year_3d)
+            # Keep the familiar style filenames used by the reference layout.
+            # They are self-hosted copies, so none of the README image URLs depend
+            # on a third-party 3D-contribution API.
+            if y == CURRENT_YEAR:
+                for style in ("profile-night-view.svg", "profile-gitblock.svg", "profile-season-animate.svg", "profile-south-season.svg"):
+                    shutil.copyfile(year_3d, os.path.join("profile-3d-contrib", style))
             print(f"refreshed assets for {y} (total={cal['totalContributions']})")
         except Exception as e:
             warn(f"asset render failed for {y}: {e}")
@@ -1102,7 +1116,6 @@ def render_3d_rainbow_svg(year: int, calendar: dict, dest: str) -> None:
 
 # --- SKYLINE / CITY GRIDS -----------------------------------------------------
 
-RAW_BASE = f"https://raw.githubusercontent.com/{GH_USER}/{GH_USER}/metrics-output"
 
 
 def _years() -> list[int]:
@@ -1150,25 +1163,38 @@ def _grid(href_for: Callable[[int], str], svg_for: Callable[[int], str], alt_kin
 
 
 def skyline_grid() -> str:
-    # skyline.github.com was retired in late 2024 and the public Deno
-    # contributions API ignores its ?year= parameter (returns the same
-    # rolling-year SVG no matter what). We render real per-year skyline
-    # SVGs ourselves from GitHub's GraphQL contributionCalendar — see
-    # render_skyline_svg() above. Tile clicks open the gh-skyline-CLI
-    # STL on metrics-output (rendered by GitHub's built-in 3D viewer).
+    # Self-hosted contribution skyline generated from GitHub's GraphQL calendar.
     return _grid(
-        href_for=lambda y: f"https://github.com/{GH_USER}/{GH_USER}/blob/metrics-output/skyline-{y}.stl",
+        href_for=lambda y: f"https://github.com/{GH_USER}/{GH_USER}/blob/main/assets/skyline-{y}.svg",
         svg_for=lambda y: f"./{ASSETS_DIR}/skyline-{y}.svg",
         alt_kind=f"{GH_USER} contribution skyline",
     )
 
 
 def city_grid() -> str:
+    # Self-hosted contribution city generated from GitHub's GraphQL calendar.
     return _grid(
-        href_for=lambda y: f"https://honzaap.github.io/GithubCity?name={GH_USER}&year={y}",
-        svg_for=lambda y: f"{RAW_BASE}/github-metrics-city-{y}.svg",
+        href_for=lambda y: f"https://github.com/{GH_USER}?tab=overview&from={y}-01-01&to={y}-12-31",
+        svg_for=lambda y: f"./{ASSETS_DIR}/city-{y}.svg",
         alt_kind="GitHub City",
     )
+
+
+def three_d_grid() -> str:
+    """Render the self-hosted 3D contribution profile and year tiles."""
+    big_year, small_years = _hero_years()
+    hero = (
+        f'<td colspan="3" align="center"><a href="./profile-3d-contrib/{big_year}/profile-night-rainbow.svg">'
+        f'<img src="./profile-3d-contrib/{big_year}/profile-night-rainbow.svg" width="100%" alt="{GH_USER} {big_year} 3D contribution profile" />'
+        f'</a><p><b>{big_year} <sub>(live)</sub></b></p></td>'
+    )
+    small = "".join(
+        f'<td width="33%" align="center"><a href="./profile-3d-contrib/{y}/profile-night-rainbow.svg">'
+        f'<img src="./profile-3d-contrib/{y}/profile-night-rainbow.svg" width="100%" alt="{GH_USER} {y} 3D contribution profile" />'
+        f'</a><p><b>{y}</b></p></td>'
+        for y in small_years
+    )
+    return f'<table align="center" width="100%"><tr>{hero}</tr><tr>{small}</tr></table>'
 
 
 def snake_grid() -> str:
@@ -1309,7 +1335,6 @@ def gitgraph_from_activity(limit: int = 8) -> str:
 
 # --- INLINE LINK BARS (STL + GitCity) -----------------------------------------
 
-STL_BASE = f"https://github.com/{GH_USER}/{GH_USER}/blob/metrics-output"
 
 
 def _link_bar(prefix: str, href_for: Callable[[int], str], label_for: Callable[[int], str]) -> str:
@@ -1324,16 +1349,16 @@ def _link_bar(prefix: str, href_for: Callable[[int], str], label_for: Callable[[
 
 def stl_links() -> str:
     return _link_bar(
-        prefix="📐 Spin a 3D model:",
-        href_for=lambda y: f"{STL_BASE}/skyline-{y}.stl",
-        label_for=lambda y: f"{y} STL",
+        prefix="📐 Open contribution skyline:",
+        href_for=lambda y: f"https://github.com/{GH_USER}/{GH_USER}/blob/main/assets/skyline-{y}.svg",
+        label_for=lambda y: f"{y} skyline",
     )
 
 
 def gitcity_links() -> str:
     return _link_bar(
-        prefix="🚗 Drive through:",
-        href_for=lambda y: f"https://honzaap.github.io/GithubCity?name={GH_USER}&year={y}",
+        prefix="🏙️ Open contribution city:",
+        href_for=lambda y: f"https://github.com/{GH_USER}/{GH_USER}/blob/main/assets/city-{y}.svg",
         label_for=lambda y: f"{y} city",
     )
 
@@ -2380,7 +2405,7 @@ def _categorize_repo(repo: dict) -> str:
         return "game"
     if topics & {"vue", "react", "nuxt", "frontend", "tailwindcss"} or lang in {"Vue", "TypeScript"}:
         return "frontend"
-    if name in {"HardikBakir97"}:
+    if name in {"hardik563"}:
         return "tools"
     if lang == "HTML" or lang == "CSS":
         return "frontend"
@@ -2583,6 +2608,7 @@ def main() -> int:
             ("PAGESPEED", fetch_pagespeed),
             ("HIGHLIGHTS_STATS", fetch_year_stats),
             ("SNAKE_GRID", snake_grid),
+            ("3D_GRID", three_d_grid),
             ("SKYLINE_GRID", skyline_grid),
             ("STL_LINKS", stl_links),
             ("CITY_GRID", city_grid),

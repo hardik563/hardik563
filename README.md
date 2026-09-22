@@ -2,7 +2,7 @@
 <!-- 🎬 ANIMATED HEADER BANNER — capsule-render with wave gradient -->
 <!-- ============================================================ -->
 <a href="https://github.com/hardik563">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0D1117,100:F90001&height=260&section=header&text=Hardik%20Bakir&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=36&desc=Full-Stack%20Developer%20%E2%9A%A1%20Python%20%E2%80%A2%20Django%20%E2%80%A2%20Vue%20%E2%80%A2%20Nuxt&descAlignY=58&descSize=20&descColor=F0F0F0" width="100%" alt="Hardik Dhamija — Full-Stack Developer" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0D1117,100:F90001&height=260&section=header&text=Hardik%20Dhamija&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=36&desc=Full-Stack%20Developer%20%E2%80%A2%20AI%20%26%20ML%20Engineer%20%E2%80%A2%20Software%20Engineer&descAlignY=58&descSize=20&descColor=F0F0F0" width="100%" alt="Hardik Dhamija — Full-Stack Developer" />
 </a>
 
 <!-- 🐙 PROFESSIONAL GITHUB IDENTIFIER — pulsing brand-red halo + Invertocat -->
@@ -21,7 +21,7 @@
 <!-- 🪄 TYPING SVG — 31 rotating headlines (EN · DE · ar), JetBrains Mono -->
 <div align="center">
   <a href="https://github.com/hardik563">
-    <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=33&duration=2400&pause=1000&color=F90001&center=true&vCenter=true&width=950&lines=Hi%20there%2C%20I%27m%20Hardik%20%F0%9F%91%8B;B.Tech%20CSE%20%28AI%20%26%20ML%29%20student%20%F0%9F%8E%93;Java%20%E2%80%A2%20C%2B%2B%20%E2%80%A2%20Python%20%E2%80%A2%20JavaScript;AI%20%2F%20ML%20%E2%80%A2%20Web%20Development%20%E2%80%A2%20DSA;Building%20practical%20software%20projects%20%F0%9F%9A%80;Currently%20strengthening%20DSA%20in%20Java;Exploring%20Machine%20Learning%20and%20AI;Full-Stack%20Web%20Development%20enthusiast;Based%20in%20Lucknow%2C%20Uttar%20Pradesh%20%F0%9F%87%AE%F0%9F%87%B3;Open%20to%20collaboration%20and%20learning%20%E2%9C%A8" alt="Typing animation with Hardik Dhamija profile highlights" />
+    <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=33&duration=2400&pause=1000&color=F90001&center=true&vCenter=true&width=950&lines=Hi%20there%2C%20I%27m%20Hardik%20%F0%9F%91%8B;B.Tech%20CSE%20%28AI%20%26%20ML%29%20student%20%F0%9F%8E%93;Java%20%E2%80%A2%20DSA%20%E2%80%A2%20AI%20%2F%20ML%20%E2%80%A2%20Deep%20Learning;Full-Stack%20Development%20%E2%80%A2%20Software%20Engineering;Building%20practical%20software%20projects%20%F0%9F%9A%80;Currently%20strengthening%20DSA%20in%20Java;Exploring%20Machine%20Learning%20and%20AI;Full-Stack%20Web%20Development%20enthusiast;Based%20in%20Lucknow%2C%20Uttar%20Pradesh%20%F0%9F%87%AE%F0%9F%87%B3;Open%20to%20collaboration%20and%20learning%20%E2%9C%A8" alt="Typing animation with Hardik Dhamija profile highlights" />
   </a>
 </div>
 
@@ -75,12 +75,12 @@ class HardikDhamija:
 
     education       = "B.Tech — Computer Science & Engineering (AI & ML)"
     location        = "🇮🇳 Lucknow, Uttar Pradesh, India"
-    languages       = ["C", "C++", "Java", "Python", "JavaScript"]
+    languages       = ["Java", "Python", "JavaScript", "C", "C++"]
     frontend        = ["HTML", "CSS", "JavaScript", "React"]
     cloud_devops    = ["AWS", "Azure", "Docker"]
     automation      = ["Selenium", "PyTest"]
-    currently_into  = ["DSA in Java", "AI/ML", "Web Development"]
-    projects        = ["TradeX", "Fake News Prediction"]
+    currently_into  = ["AI/ML", "Deep Learning", "Full-Stack Development", "DSA in Java", "Software Engineering"]
+    projects        = ["CALLIVO", "TradeX", "Fake News Prediction"]
     achievements    = ["National-level Cricket", "State-level Chess", "Regional-level Carrom"]
 
     def philosophy(self) -> str:
@@ -152,7 +152,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
      back to this URL — they render as empty slots and break the grid. -->
 <p align="center">
   <a href="https://github.com/hardik563">
-    <img src="https://skillicons.dev/icons?i=python,django,fastapi,flask,graphql,nodejs,vue,nuxt,react,bootstrap,tailwind,htmx,ts,js,html,css,md,postgres,mysql,redis,sqlite,mongodb,rabbitmq,docker,kubernetes,aws,heroku,vercel,nginx,githubactions,git,github,linux,bash,powershell,vscode,pycharm,postman,figma,pytorch,tensorflow,sklearn,numpy,pandas,jupyter&perline=15" alt="Full tech stack" />
+    <img src="https://skillicons.dev/icons?i=java,python,cpp,c,js,ts,html,css,react,tailwind,nodejs,express,mongodb,mysql,postgres,prisma,docker,aws,azure,git,github,selenium,postman,pytorch,tensorflow,sklearn,numpy,pandas,jupyter&perline=15" alt="Full tech stack" />
   </a>
 </p>
 
@@ -188,11 +188,11 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/hardik563/cortex/main/examples/rendered/extreme/brain-anatomical.svg" width="100%" alt="Neural Skill Atlas — anatomically-accurate human brain (lateral view) recolored with neon gradient, pulsing" />
+  <img src="./assets/brain-anatomical.svg" width="100%" alt="Neural Skill Atlas — anatomically-accurate human brain (lateral view) recolored with neon gradient, pulsing" />
 </p>
 
 <p align="center">
-  <a href="https://abdullahbakir97.github.io/hardik563/"><img src="https://img.shields.io/badge/🖱️_Explore_in_Interactive_3D-F90001?style=for-the-badge&labelColor=0D1117&logo=three.js&logoColor=white&v=20260922" alt="Interactive 3D — drag to rotate" /></a>
+  <a href="https://hardik563.github.io/hardik563/"><img src="https://img.shields.io/badge/🖱️_Explore_in_Interactive_3D-F90001?style=for-the-badge&labelColor=0D1117&logo=three.js&logoColor=white&v=20260922" alt="Interactive 3D — drag to rotate" /></a>
   &nbsp;
   <a href="https://commons.wikimedia.org/wiki/File:Human-brain.SVG"><img src="https://img.shields.io/badge/Anatomy-Hugh_Guiney_·_CC--BY--SA_3.0-7C3AED?style=for-the-badge&labelColor=0D1117&v=20260922" alt="Brain anatomy attribution"/></a>
 </p>
@@ -218,7 +218,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <tr>
 <td align="center" width="33%" valign="top"><h4>🔐 APIs &amp; Security</h4><p><img src="https://img.shields.io/badge/REST_APIs-111111?style=for-the-badge&logo=api&logoColor=white&v=20260922" alt="REST APIs"> <img src="https://img.shields.io/badge/GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white&v=20260922" alt="GraphQL"> <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black&v=20260922" alt="Swagger"> <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white&v=20260922" alt="Postman"> <img src="https://img.shields.io/badge/JWT-323330?style=for-the-badge&logo=json-web-tokens&logoColor=pink&v=20260922" alt="JWT"></p></td>
 <td align="center" width="33%" valign="top"><h4>🎨 Design &amp; Docs</h4><p><img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white&v=20260922" alt="Figma"> <img src="https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white&v=20260922" alt="Markdown"> <img src="https://img.shields.io/badge/Canva-00C4CC?style=for-the-badge&logo=canva&logoColor=white&v=20260922" alt="Canva"></p></td>
-<td align="center" width="33%" valign="top"><h4>🌐 Languages</h4><p><img src="https://img.shields.io/badge/English-Native-F90001?style=for-the-badge&v=20260922" alt="English"> <img src="https://img.shields.io/badge/Deutsch-Fluent-FF652F?style=for-the-badge&v=20260922" alt="Deutsch"> <img src="https://img.shields.io/badge/العربية-Native-FFD700?style=for-the-badge&v=20260922" alt="Arabic"></p></td>
+<td align="center" width="33%" valign="top"><h4>☕ Core Languages</h4><p><img src="https://img.shields.io/badge/Java-Core-F90001?style=for-the-badge&logo=openjdk&logoColor=white&v=20260922" alt="Java"> <img src="https://img.shields.io/badge/C++-DSA-00599C?style=for-the-badge&logo=cplusplus&logoColor=white&v=20260922" alt="C++"> <img src="https://img.shields.io/badge/Python-AI%2FML-3776AB?style=for-the-badge&logo=python&logoColor=white&v=20260922" alt="Python"> <img src="https://img.shields.io/badge/JavaScript-Full--Stack-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black&v=20260922" alt="JavaScript"></p></td>
 </tr>
 <tr>
 <td align="center" width="33%" valign="top"><h4>🟢 Backend Runtimes</h4><p><img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white&v=20260922" alt="Python"> <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white&v=20260922" alt="Node.js"></p></td>
@@ -241,7 +241,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <h2 id="focus" align="center">🎯 Current Focus</h2>
 
 <p align="center">
-  <img src="./assets/current-focus-nobg.svg" width="100%" alt="Now working on: PyDev, Baeckrei, Stock-Manager, Generative AI, Docker/CI-CD, Media Archive — 6 active focus tiles" />
+  <img src="./assets/current-focus-nobg.svg" width="100%" alt="Current focus: AI/ML, Deep Learning, Full-Stack Development, DSA in Java, Software Engineering, CALLIVO" />
 </p>
 
 <!-- YEARLY HIGHLIGHTS -->
@@ -291,15 +291,17 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 
 <div align="center">
   <a href="https://github.com/hardik563">
-    <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=hardik563&theme=codeSTACKr&v=20260922" width="100%" alt="Profile Summary" />
-    <img src="https://github-readme-stats.vercel.app/api?username=hardik563&theme=codeSTACKr&show_icons=true&rank_icon=github&title_color=c6c6c2&icon_color=ffde01&text_color=da644d&ring_color=830203&hide_border=true&v=20260922" width="49%" alt="GitHub Stats" />
-    <img src="https://github-readme-streak-stats.herokuapp.com/?user=hardik563&theme=codeSTACKr&hide_border=true&stroke=ffD700&color=d60606&v=20260922" width="49%" alt="GitHub Streak" />
+    <img src="./assets/stats/main-stats.svg" width="49%" alt="Hardik Dhamija GitHub Stats" />
+    <img src="./assets/stats/streak.svg" width="49%" alt="Hardik Dhamija GitHub Contribution Streak" />
   </a>
 </div>
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=hardik563&theme=codeSTACKr&hide_border=true&include_all_commits=false&count_private=true&layout=compact&title_color=ff6f00&v=20260922" alt="Top Languages" width="49%" />
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=hardik563&theme=codeSTACKr&title_color=ff6f00&v=20260922" alt="Language Distribution" width="49%" />
+  <a href="https://github.com/hardik563">
+    <img src="./assets/stats/top-langs.svg" alt="Hardik Dhamija Most Used Languages" width="49%" />
+  </a>
+</div>
+
 </div>
 
 <div align="center">
@@ -309,9 +311,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 </div>
 
 <div align="center">
-  <a href="https://github.com/hardik563">
-    <img src="./github-metrics.svg" width="100%" alt="Detailed GitHub Metrics" />
-  </a>
+  <img src="./assets/stats/main-stats.svg" width="100%" alt="Live self-hosted GitHub metrics for Hardik Dhamija" />
 </div>
 
 
@@ -379,102 +379,31 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <br/>
 
 <details>
-<summary align="center"><b>📖 Hand-written narrative cards</b> — Problem · Approach · Stack · Outcome</summary>
+<summary align="center"><b>📖 Hand-written project cards</b> — Problem · Approach · Stack · Outcome</summary>
 
 <br/>
-
-<!-- ============================================================ -->
-<!-- 🌟 NARRATIVE CARDS — Problem · Approach · Stack · Outcome     -->
-<!-- ============================================================ -->
 
 <table width="100%">
   <tr>
     <td valign="top" width="50%">
-      <h3>🥖 Baeckrei — Bakery Management</h3>
-      <p>
-        <b>Problem.</b> Small bakeries juggle inventory, recipes, and customer orders on paper or fragmented tools.<br/>
-        <b>Approach.</b> One Django/Vue app: real-time production scheduling, recipe-driven inventory deduction, customer accounts, online orders.<br/>
-        <b>Stack.</b> <code>Django · DRF · Vue 3 · PostgreSQL · Redis · Docker</code><br/>
-        <b>Outcome.</b> Live with one bakery; expanding to two more in 2026.
-      </p>
-      <p><a href="https://github.com/hardik563/Baeckrei"><img src="https://img.shields.io/badge/View_Repo-F90001?style=for-the-badge&logo=github&logoColor=white&labelColor=0D1117&v=20260922" alt="View repo" /></a></p>
+      <h3>📹 CALLIVO — Full-Stack Video Conferencing</h3>
+      <p><b>Project.</b> Real-time video conferencing application with audio/video communication, chat, screen sharing and participant management.<br/>
+      <b>Stack.</b> <code>React.js · TypeScript · Node.js · Express.js · Socket.IO · WebRTC · PostgreSQL · Prisma</code></p>
     </td>
     <td valign="top" width="50%">
-      <h3>📦 Stock-Manager — Desktop Inventory</h3>
-      <p>
-        <b>Problem.</b> Browser-based inventory tools force constant network round-trips for shop-floor users.<br/>
-        <b>Approach.</b> Native Python desktop app — local-first inventory with sync; barcode-aware; multi-user with role separation.<br/>
-        <b>Stack.</b> <code>Python · Tkinter/PyQt · SQLite · Sync layer</code><br/>
-        <b>Outcome.</b> v2.4.3 shipped; daily-driver for the inventory clerk role.
-      </p>
-      <p><a href="https://github.com/hardik563/Stock-Manager"><img src="https://img.shields.io/badge/View_Repo-F90001?style=for-the-badge&logo=github&logoColor=white&labelColor=0D1117&v=20260922" alt="View repo" /></a></p>
+      <h3>📈 TradeX — Trading Platform Clone</h3>
+      <p><b>Project.</b> Full-stack online stock brokerage platform inspired by Zerodha with authentication, order placement, portfolio tracking and transaction history.<br/>
+      <b>Stack.</b> <code>HTML · CSS · JavaScript · Java · Node.js · MongoDB · Bootstrap</code></p>
     </td>
   </tr>
   <tr>
     <td valign="top" colspan="2">
-      <h3>🛠️ PyDev — Python Development Platform</h3>
-      <p>
-        <b>Problem.</b> Python dev tooling is fragmented — CLI scaffolds, template marketplaces, and AI assistants live in separate worlds.<br/>
-        <b>Approach.</b> One enterprise-grade platform combining a CLI, a secure template marketplace, and AI-driven dev features (issue triage, PR coaching, conventional commits, README generation, AI-quality gating).<br/>
-        <b>Stack.</b> <code>Python · GitHub Apps API · LLM tooling · CLI ergonomics</code><br/>
-        <b>Outcome.</b> 5 supporting GitHub Apps shipped April 2026 — issue-triage-bot, pr-coach, commit-craft, repodoc-ai, ai-quality-gate.
-      </p>
-      <p><a href="https://github.com/hardik563?tab=repositories&q=pr-coach+OR+commit-craft+OR+repodoc-ai+OR+ai-quality-gate+OR+issue-triage-bot"><img src="https://img.shields.io/badge/Browse_Apps-F90001?style=for-the-badge&logo=github&logoColor=white&labelColor=0D1117&v=20260922" alt="Browse apps" /></a></p>
+      <h3>📰 Fake News Prediction — Machine Learning</h3>
+      <p><b>Project.</b> Machine-learning project for classifying news content as fake or real as part of STTP project work.<br/>
+      <b>Focus.</b> <code>Machine Learning · NLP · Python</code></p>
     </td>
   </tr>
 </table>
-
-</details>
-
-<!-- 🎬 TERMINAL DEMO — record once with `vhs` or asciinema and drop the GIF/SVG below -->
-<details>
-<summary align="center"><b>🎥 Watch a CLI demo</b> — record with <code>vhs</code> or <code>asciinema</code> (instructions below)</summary>
-
-<br/>
-
-<p align="center">
-  <img src="./assets/cli-demo.gif" alt="CLI demo placeholder — record with vhs or asciinema" onerror="this.style.display='none'"/>
-  <br/>
-  <i>Place your recorded demo at <code>assets/cli-demo.gif</code>.</i>
-</p>
-
-<br/>
-
-<details>
-<summary><b>How to record (5 minutes)</b></summary>
-
-**Option A — `vhs` (Charm) — produces clean GIF/MP4:**
-```bash
-brew install vhs                    # macOS
-# or: go install github.com/charmbracelet/vhs@latest
-
-# Create assets/demo.tape:
-cat > assets/demo.tape <<'EOF'
-Output assets/cli-demo.gif
-Set FontSize 16
-Set Width 1200
-Set Height 600
-Type "stock-manager --help"
-Enter
-Sleep 2s
-Type "stock-manager list --low-stock"
-Enter
-Sleep 3s
-EOF
-
-vhs assets/demo.tape
-git add assets/cli-demo.gif && git commit -m "demo: stock-manager CLI" && git push
-```
-
-**Option B — `asciinema` — embeds a playable terminal recording:**
-```bash
-asciinema rec demo.cast
-# do your thing in the terminal, exit when done
-asciinema upload demo.cast    # gives you a public URL
-```
-Then replace the `<img>` above with `<a href="...asciinema URL..."><img src="...thumbnail..." /></a>`.
-
-</details>
 
 </details>
 
@@ -529,16 +458,21 @@ Then replace the `<img>` above with `<a href="...asciinema URL..."><img src="...
 <p align="center"><i>Contribution snake will appear after the first snake workflow run.</i></p>
 <!-- SNAKE_GRID:END -->
 
+<h3 align="center">🐲 Contribution Dragon</h3>
+<p align="center"><img src="https://raw.githubusercontent.com/hardik563/hardik563/output/github-contribution-grid-dragon.svg" width="100%" alt="Hardik Dhamija GitHub contribution dragon" /></p>
+
 <h3 align="center">🎨 3D Animated Profile</h3>
 
 <!-- 3D_GRID:START -->
-<p align="center"><i>3D contribution profile will appear after the first 3D workflow run.</i></p>
+<p align="center"><i>3D contribution profile will be generated automatically from Hardik's GitHub contribution calendar.</i></p>
 <!-- 3D_GRID:END -->
 
 <details>
 <summary align="center"><b>More 3D styles</b> — night-view, gitblock, season-animate, south-season</summary>
 
 <br/>
+
+<p align="center"><i>These additional self-hosted styles are generated together with the main 3D profile by <b>Profile Refresh</b>.</i></p>
 
 <p align="center">
   <img src="./profile-3d-contrib/profile-night-view.svg" width="100%" alt="Night view style" />
@@ -571,14 +505,18 @@ Then replace the `<img>` above with `<a href="...asciinema URL..."><img src="...
 <h3 align="center">🏙️ GitHub Cities</h3>
 
 <!-- CITY_GRID:START -->
-<p align="center"><i>GitHub City visuals will appear after the metrics workflow runs.</i></p>
+<p align="center"><i>GitHub City contribution visuals will appear after the metrics workflow runs.</i></p>
 <!-- CITY_GRID:END -->
 
 <!-- GITCITY_LINKS:START -->
 <p align="center"><i>GitHub City links will appear after the metrics workflow runs.</i></p>
 <!-- GITCITY_LINKS:END -->
 
-<p align="center"><em>⚠️ Regenerated daily. The current year refreshes with new contributions; past years are frozen archives. Click a Skyline tile to open its <code>.stl</code> in GitHub's built-in 3D viewer, or a City tile to drive through it at <a href="https://honzaap.github.io/GithubCity">honzaap.github.io/GithubCity</a>.</em></p>
+<h3 align="center">📍 Lucknow · 3D City</h3>
+<p align="center"><sub>My home city — Lucknow, Uttar Pradesh, India.</sub></p>
+<p align="center"><img src="./assets/lucknow-city-3d.svg" width="100%" alt="3D-style Lucknow city visual with Rumi Darwaza and Bara Imambara inspired landmarks" /></p>
+
+<p align="center"><em>⚡ Regenerated automatically from Hardik's GitHub contribution calendar. The current year stays live while previous years are kept as visual archives.</em></p>
 
 <!-- CONNECT WITH ME -->
 <div align="center">
@@ -631,11 +569,11 @@ Then replace the `<img>` above with `<a href="...asciinema URL..."><img src="...
 
 <h2 id="support" align="center">☕ Support My Work</h2>
 
-<p align="center">If you find my projects helpful or want to support my work:</p>
+<p align="center">If you find my projects helpful, feel free to connect, collaborate, or explore my work:</p>
 
-<p align="center"><i>Support links can be added later when you choose a platform.</i></p>
+<p align="center"><i>AI/ML · Deep Learning · Full-Stack Development · Java · DSA · Software Engineering</i></p>
 
-<p align="center"><em>Your support helps me create more open-source projects and tutorials!</em></p>
+<p align="center"><em>Let’s build practical software and AI-powered solutions together!</em></p>
 
 <!-- ============================================================ -->
 <!-- 🎬 ANIMATED FOOTER BANNER — twinkling, mirrored gradient      -->

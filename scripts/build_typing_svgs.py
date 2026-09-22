@@ -58,27 +58,27 @@ ABOUT_LINES = [
     ("PS> npm list -g --depth=0",                      "#EC4899"),  # win: magenta
     ("$ make build",                                   "#F90001"),  # mac: red
     ("PS> echo $env:LANG",                             "#A78BFA"),  # win: purple
-    # ─── 20 personal lines: Hardik's actual projects & daily commands ─────
-    ("$ cd ~/projects/baeckrei && make dev",           "#34D399"),  # mac: bakery dev
-    ("PS> python -m pydev create my-app",              "#FFD700"),  # win: PyDev
-    ("$ deploy.sh barber-salon-prod",                  "#00C853"),  # mac: client deploy
-    ("PS> stock-manager --inventory --low-stock",      "#22D3EE"),  # win: Stock-Manager
-    ("$ python -m issue_triage_bot run",               "#FF652F"),  # mac: GitHub App
-    ("PS> python -m pr_coach review",                  "#EC4899"),  # win: GitHub App
-    ("$ python -m commit_craft check HEAD",            "#F90001"),  # mac: GitHub App
-    ("PS> python -m repodoc_ai generate",              "#A78BFA"),  # win: GitHub App
-    ("$ python -m ai_quality_gate scan",               "#34D399"),  # mac: GitHub App
-    ("PS> docker compose -f baeckrei.yml up -d",       "#FFD700"),  # win: bakery prod
-    ("$ tail -f /var/log/baeckrei.log",                "#00C853"),  # mac: monitoring
-    ("PS> npx nuxt build; npx nuxt start",             "#22D3EE"),  # win: Vue/Nuxt
-    ("$ python manage.py migrate baeckrei",            "#FF652F"),  # mac: Django
-    ("PS> rabbitmq-plugins enable management",         "#EC4899"),  # win: RabbitMQ
-    ("$ ssh tawil-media-prod",                         "#F90001"),  # mac: client server
-    ("PS> git checkout -b feature/recipe-scheduler",   "#A78BFA"),  # win: branch
-    ("$ pytest baeckrei/tests/test_orders.py",         "#34D399"),  # mac: test
-    ("PS> gh extension install Hardik/pydev",        "#FFD700"),  # win: PyDev install
-    ("$ python -c 'import abdullah; help(abdullah)'",  "#00C853"),  # mac: meta
-    ("PS> # made in Germany, for small shops",         "#22D3EE"),  # win: signature
+    # ─── personal lines: Hardik's actual focus & projects ────────────────
+    ("$ java DSA/arrays/twoPointer.java",               "#34D399"),
+    ("PS> python train_fake_news_model.py",              "#FFD700"),
+    ("$ npm run dev # CALLIVO",                          "#00C853"),
+    ("PS> git checkout -b feature/ai-ml",                "#22D3EE"),
+    ("$ python -c 'import tensorflow as tf'",            "#FF652F"),
+    ("PS> docker build -t software-project .",            "#EC4899"),
+    ("$ git push origin main",                           "#F90001"),
+    ("PS> pytest",                                       "#A78BFA"),
+    ("$ java DSA/graphs/dijkstra.java",                  "#34D399"),
+    ("PS> npm run build",                                "#FFD700"),
+    ("$ python -m pip install scikit-learn",             "#00C853"),
+    ("PS> git log --oneline --decorate",                 "#22D3EE"),
+    ("$ node server.js # full-stack",                    "#FF652F"),
+    ("PS> java DSA/dp/lcs.java",                         "#EC4899"),
+    ("$ python train_ml.py",                             "#F90001"),
+    ("PS> git status",                                   "#A78BFA"),
+    ("$ npm run test",                                   "#34D399"),
+    ("PS> docker compose up -d",                         "#FFD700"),
+    ("$ git commit -m 'build: keep learning'",           "#00C853"),
+    ("PS> echo 'Lucknow → AI/ML → Software'",             "#22D3EE"),
 ]
 
 # ── MOTTO (dev philosophy quotes) — 30 lines, 90s cycle, 3s per line ─────────
@@ -113,27 +113,27 @@ MOTTO_LINES = [
     ("// Build with care, deploy with confidence",                  "#34D399"),
     ("// Stay hungry, stay foolish -- keep shipping",               "#A78BFA"),
     ("// Done > Perfect > Started",                                 "#22D3EE"),
-    # ─── 20 personal mottos: Hardik's work philosophy & roots ─────────────
-    ("// I build for small businesses, not hyperscalers",           "#FFD700"),
-    ("// Three languages, one keyboard, one ambition",              "#FF652F"),
-    ("// Code I write today runs at the bakery tomorrow",           "#34D399"),
-    ("// Started in HTML, ended up in production",                  "#F90001"),
-    ("// Berlin coffee, Damascus passion, daily commits",           "#A78BFA"),
-    ("// Built Baeckrei to make small bakeries thrive",             "#22D3EE"),
-    ("// PyDev: pip install developer, but make it real",           "#EC4899"),
-    ("// 5 GitHub Apps, 1 vision: respect maintainer time",         "#00C853"),
-    ("// Production beats demo, every single Friday",               "#FF652F"),
-    ("// I write Python the way I'd explain it to a friend",        "#FFD700"),
-    ("// Vue 3 because composition beats inheritance",              "#34D399"),
-    ("// The bakery never sleeps, the code shouldn't crash",        "#F90001"),
-    ("// Open-source what you wish others had shared with you",     "#A78BFA"),
-    ("// Every commit is a small gift to my future team",           "#22D3EE"),
-    ("// From learning loop to long-running production",            "#EC4899"),
-    ("// Build it once for yourself, then share it widely",         "#00C853"),
-    ("// Microservices for problems, monoliths for solutions",      "#FFD700"),
-    ("// 4+ years in, still excited to type 'git init'",            "#FF652F"),
-    ("// English, Deutsch, Arabic -- code is the fourth tongue",    "#34D399"),
-    ("// Made in Germany, for the world's small shops",             "#A78BFA"),
+    # ─── personal mottos: Hardik's learning & engineering focus ─────────
+    ("// AI/ML with strong software engineering fundamentals",          "#FFD700"),
+    ("// Java + DSA: practice today, build better tomorrow",            "#FF652F"),
+    ("// Learn -> build -> practice -> improve",                         "#34D399"),
+    ("// Deep learning is a journey, not a shortcut",                    "#F90001"),
+    ("// Full-stack means understanding the whole system",                "#A78BFA"),
+    ("// Build practical software, not just demos",                       "#22D3EE"),
+    ("// Strong fundamentals make better AI engineers",                   "#EC4899"),
+    ("// Every DSA problem is another pattern understood",                 "#00C853"),
+    ("// Keep the code clean and the reasoning clear",                    "#FFD700"),
+    ("// Machine learning meets software engineering",                     "#FF652F"),
+    ("// From Lucknow to building for the world",                          "#34D399"),
+    ("// Consistency beats intensity",                                     "#F90001"),
+    ("// Practice Java, understand algorithms, ship software",            "#A78BFA"),
+    ("// Explore AI, build full-stack, improve every day",                 "#22D3EE"),
+    ("// CALLIVO: real-time systems, real engineering",                    "#EC4899"),
+    ("// Learn the theory, then make it work",                             "#00C853"),
+    ("// Good software starts with clear problem solving",                 "#FFD700"),
+    ("// Keep shipping projects that teach something new",                 "#FF652F"),
+    ("// AI/ML + Java + DSA + full-stack",                                 "#34D399"),
+    ("// Stay curious. Keep building. Keep improving.",                    "#A78BFA"),
 ]
 
 

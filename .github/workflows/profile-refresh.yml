@@ -1,0 +1,61 @@
+name: Profile Refresh
+
+on:
+  schedule:
+    - cron: "15 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout profile repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install --no-cache-dir requests==2.32.3
+
+      - name: Generate self-hosted profile visuals
+        env:
+          GH_USER: hardik563
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          START_YEAR: "2023"
+          PSI_URL: ""
+        run: python .github/scripts/update_readme.py
+
+      - name: Commit generated profile assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md assets/heatmap-*.svg assets/skyline-*.svg assets/city-*.svg assets/about-hero.svg assets/about-orbit.svg assets/stats/ profile-3d-contrib/
+          if git diff --cached --quiet; then
+            echo "No generated changes."
+            exit 0
+          fi
+          git commit -m "chore(profile): refresh live contribution visuals"
+          for i in 1 2 3 4 5; do
+            if git push origin main; then
+              echo "Push succeeded on attempt $i"
+              exit 0
+            fi
+            echo "Push attempt $i failed; rebasing..."
+            git pull --rebase origin main
+            sleep $((i * 5))
+          done
+          echo "::error::Could not push generated profile assets."
+          exit 1

@@ -7,7 +7,7 @@ the user's name, role, and locations — so this hero focuses on what's
 NEXT: what I'm actively shipping, my philosophy, and live stats. The
 right-hand avatar block stays as the visual anchor.
 
-The avatar embeds assets/abdullah.jpg as base64 data URI so the SVG is
+The avatar embeds assets/hardik.jpg as base64 data URI so the SVG is
 fully self-contained (no relative-path resolution gotchas inside
 GitHub's camo image proxy).
 """
@@ -18,7 +18,7 @@ from pathlib import Path
 
 ASSETS = Path(__file__).resolve().parents[1] / "assets"
 OUT = ASSETS / "about-hero.svg"
-PHOTO = ASSETS / "abdullah.jpg"
+PHOTO = ASSETS / "hardik.jpg"
 
 
 def _photo_data_uri() -> str | None:
@@ -31,15 +31,16 @@ W, H = 1400, 460
 
 # What I'm currently shipping — narrative, recognizable repo names
 NOW_SHIPPING = [
-    ("TradeX", "project", "full-stack trading platform clone"),
-    ("Fake News Prediction", "project", "machine-learning classification project"),
-    ("DSA in Java", "focus", "problem solving and placement preparation"),
-    ("AI / ML", "focus", "applied machine-learning projects"),
+    ("CALLIVO", "project", "full-stack video conferencing application"),
+    ("AI / ML", "focus", "machine learning and deep learning"),
+    ("DSA in Java", "focus", "data structures and algorithms"),
+    ("Software Engineering", "focus", "practical full-stack software development"),
 ]
 
 STATS = [
     ("DEGREE", "B.TECH", "CSE · AI & ML"),
-    ("DSA", "350+", "LeetCode practice"),
+    ("DSA", "200+", "LeetCode practice"),
+    ("FOCUS", "AI · ML", "DL · Java · Full-Stack"),
     ("LOCATION", "LUCKNOW", "Uttar Pradesh · India"),
 ]
 
@@ -249,7 +250,7 @@ def render() -> str:
         f'<text x="{panel_x}" y="143" '
         f'font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" '
         f'font-size="14" fill="#7d8590" font-style="italic" letter-spacing="0.3">'
-        f'four headline projects with active commits this week</text>'
+        f'AI/ML, full-stack, DSA, and software engineering</text>'
     )
 
     # Project rows
