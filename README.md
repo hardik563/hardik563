@@ -7,6 +7,7 @@
   </a>
 </p>
 
+
 <!-- 🐙 PROFESSIONAL GITHUB IDENTIFIER — pulsing brand-red halo + Invertocat -->
 <p align="center">
   <a href="https://github.com/hardik563" aria-label="GitHub profile">
