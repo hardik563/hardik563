@@ -19,7 +19,7 @@
 
 <p align="center">
   <a href="https://github.com/hardik563">
-    <img src="https://img.shields.io/badge/%40hardik563-F90001?style=for-the-badge&logo=github&logoColor=white&labelColor=0D1117&v=20260923" alt="@hardik563" />
+    <img src="https://img.shields.io/badge/%40hardik563-F90001?style=for-the-badge&logo=github&logoColor=white&labelColor=0D1117&v=20260924" alt="@hardik563" />
   </a>
 </p>
 
@@ -34,17 +34,17 @@
 
 <!-- 🏷️ PROFESSIONAL BADGES — stats row -->
 <p align="center">
-  <a href="https://github.com/hardik563"><img src="https://komarev.com/ghpvc/?username=hardik563&label=PROFILE%20VIEWS&color=F90001&style=for-the-badge&v=20260923" alt="Profile views" /></a>
-  <a href="https://github.com/hardik563?tab=followers"><img src="https://img.shields.io/github/followers/hardik563?label=FOLLOWERS&style=for-the-badge&color=F90001&logo=github&logoColor=white&v=20260923" alt="GitHub followers" /></a>
-  <a href="https://github.com/hardik563"><img src="https://img.shields.io/github/stars/hardik563?affiliations=OWNER&label=TOTAL%20STARS&style=for-the-badge&color=F90001&logo=github&logoColor=white&v=20260923" alt="Total stars" /></a>
+  <a href="https://github.com/hardik563"><img src="https://komarev.com/ghpvc/?username=hardik563&label=PROFILE%20VIEWS&color=F90001&style=for-the-badge&v=20260924" alt="Profile views" /></a>
+  <a href="https://github.com/hardik563?tab=followers"><img src="https://img.shields.io/github/followers/hardik563?label=FOLLOWERS&style=for-the-badge&color=F90001&logo=github&logoColor=white&v=20260924" alt="GitHub followers" /></a>
+  <a href="https://github.com/hardik563"><img src="https://img.shields.io/github/stars/hardik563?affiliations=OWNER&label=TOTAL%20STARS&style=for-the-badge&color=F90001&logo=github&logoColor=white&v=20260924" alt="Total stars" /></a>
 </p>
 
 <!-- 🏷️ PROFESSIONAL BADGES — contact / profile row -->
 <p align="center">
-  <a href="https://www.linkedin.com/in/hardik-dhamija-35932228b/"><img src="https://img.shields.io/badge/LINKEDIN-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white&v=20260923" alt="LinkedIn" /></a>
-  <a href="https://leetcode.com/u/hardikdhamija_/"><img src="https://img.shields.io/badge/LEETCODE-FFA116?style=for-the-badge&logo=leetcode&logoColor=white&v=20260923" alt="LeetCode" /></a>
-  <a href="https://codolio.com/profile/hardikdhamija"><img src="https://img.shields.io/badge/CODOLIO-181717?style=for-the-badge&logo=codeforces&logoColor=white&v=20260923" alt="Codolio" /></a>
-  <a href="https://github.com/hardik563"><img src="https://img.shields.io/badge/GITHUB-hardik563-181717?style=for-the-badge&logo=github&logoColor=white&v=20260923" alt="GitHub" /></a>
+  <a href="https://www.linkedin.com/in/hardik-dhamija-35932228b/"><img src="https://img.shields.io/badge/LINKEDIN-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white&v=20260924" alt="LinkedIn" /></a>
+  <a href="https://leetcode.com/u/hardikdhamija_/"><img src="https://img.shields.io/badge/LEETCODE-FFA116?style=for-the-badge&logo=leetcode&logoColor=white&v=20260924" alt="LeetCode" /></a>
+  <a href="https://codolio.com/profile/hardikdhamija"><img src="https://img.shields.io/badge/CODOLIO-181717?style=for-the-badge&logo=codeforces&logoColor=white&v=20260924" alt="Codolio" /></a>
+  <a href="https://github.com/hardik563"><img src="https://img.shields.io/badge/GITHUB-hardik563-181717?style=for-the-badge&logo=github&logoColor=white&v=20260924" alt="GitHub" /></a>
 </p>
 
 <div align="center">
@@ -141,7 +141,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <div align="center">
   <img src="./assets/redline.gif" width="100%" alt=""/>
   <a href="https://github.com/hardik563">
-    <img src="https://img.shields.io/badge/SKILLS-EXPERTISE-181717?style=flat-square&color=red&logo=github&logoColor=red&v=20260923" alt="Technical Expertise" width="200">
+    <img src="https://img.shields.io/badge/SKILLS-EXPERTISE-181717?style=flat-square&color=red&logo=github&logoColor=red&v=20260924" alt="Technical Expertise" width="200">
   </a>
   <img src="./assets/redline.gif" width="100%" alt=""/>
 </div>
@@ -198,9 +198,9 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 </p>
 
 <p align="center">
-  <a href="https://hardik563.github.io/hardik563/"><img src="https://img.shields.io/badge/🖱️_Explore_in_Interactive_3D-F90001?style=for-the-badge&labelColor=0D1117&logo=three.js&logoColor=white&v=20260923" alt="Interactive 3D — drag to rotate" /></a>
+  <a href="https://hardik563.github.io/hardik563/"><img src="https://img.shields.io/badge/🖱️_Explore_in_Interactive_3D-F90001?style=for-the-badge&labelColor=0D1117&logo=three.js&logoColor=white&v=20260924" alt="Interactive 3D — drag to rotate" /></a>
   &nbsp;
-  <a href="https://commons.wikimedia.org/wiki/File:Human-brain.SVG"><img src="https://img.shields.io/badge/Anatomy-Hugh_Guiney_·_CC--BY--SA_3.0-7C3AED?style=for-the-badge&labelColor=0D1117&v=20260923" alt="Brain anatomy attribution"/></a>
+  <a href="https://commons.wikimedia.org/wiki/File:Human-brain.SVG"><img src="https://img.shields.io/badge/Anatomy-Hugh_Guiney_·_CC--BY--SA_3.0-7C3AED?style=for-the-badge&labelColor=0D1117&v=20260924" alt="Brain anatomy attribution"/></a>
 </p>
 
 <p align="center"><sub><i>🖱️ The interactive 3D version (above) extrudes every anatomical path into a 3D mesh with neon emissive shaders. Drag to rotate, scroll to zoom, right-drag to pan, auto-rotates when idle.</i></sub></p>
@@ -212,24 +212,24 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 
 <table align="center" width="100%">
 <tr>
-<td align="center" width="33%" valign="top"><h4>🧠 Paradigms &amp; Architecture</h4><p><img src="https://img.shields.io/badge/OOP-3333FF?style=for-the-badge&logoColor=white&v=20260923" alt="OOP"> <img src="https://img.shields.io/badge/ORM-111111?style=for-the-badge&logo=database&logoColor=white&v=20260923" alt="ORM"> <img src="https://img.shields.io/badge/Microservices-34D399?style=for-the-badge&logoColor=white&v=20260923" alt="Microservices"> <img src="https://img.shields.io/badge/Event--Driven-F90001?style=for-the-badge&logoColor=white&v=20260923" alt="Event-Driven"> <img src="https://img.shields.io/badge/Domain--Driven-FF652F?style=for-the-badge&logoColor=white&v=20260923" alt="Domain-Driven"> <img src="https://img.shields.io/badge/Version_Control-111111?style=for-the-badge&logo=git&logoColor=F05032&v=20260923" alt="Version Control"></p></td>
-<td align="center" width="33%" valign="top"><h4>🖥️ Operating Systems &amp; Shells</h4><p><img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black&v=20260923" alt="Linux"> <img src="https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white&v=20260923" alt="Ubuntu"> <img src="https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white&v=20260923" alt="Windows"> <img src="https://img.shields.io/badge/Bash-4EAA25?style=for-the-badge&logo=gnubash&logoColor=white&v=20260923" alt="Bash"> <img src="https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white&v=20260923" alt="PowerShell"></p></td>
-<td align="center" width="33%" valign="top"><h4>🔄 Async &amp; Messaging</h4><p><img src="https://img.shields.io/badge/Celery-37814A?style=for-the-badge&logo=celery&logoColor=white&v=20260923" alt="Celery"> <img src="https://img.shields.io/badge/RabbitMQ-FF6600?style=for-the-badge&logo=rabbitmq&logoColor=white&v=20260923" alt="RabbitMQ"> <img src="https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&logoColor=white&v=20260923" alt="Socket.io"> <img src="https://img.shields.io/badge/AJAX-111111?style=for-the-badge&logo=ajax&logoColor=white&v=20260923" alt="AJAX"></p></td>
+<td align="center" width="33%" valign="top"><h4>🧠 Paradigms &amp; Architecture</h4><p><img src="https://img.shields.io/badge/OOP-3333FF?style=for-the-badge&logoColor=white&v=20260924" alt="OOP"> <img src="https://img.shields.io/badge/ORM-111111?style=for-the-badge&logo=database&logoColor=white&v=20260924" alt="ORM"> <img src="https://img.shields.io/badge/Microservices-34D399?style=for-the-badge&logoColor=white&v=20260924" alt="Microservices"> <img src="https://img.shields.io/badge/Event--Driven-F90001?style=for-the-badge&logoColor=white&v=20260924" alt="Event-Driven"> <img src="https://img.shields.io/badge/Domain--Driven-FF652F?style=for-the-badge&logoColor=white&v=20260924" alt="Domain-Driven"> <img src="https://img.shields.io/badge/Version_Control-111111?style=for-the-badge&logo=git&logoColor=F05032&v=20260924" alt="Version Control"></p></td>
+<td align="center" width="33%" valign="top"><h4>🖥️ Operating Systems &amp; Shells</h4><p><img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black&v=20260924" alt="Linux"> <img src="https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white&v=20260924" alt="Ubuntu"> <img src="https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white&v=20260924" alt="Windows"> <img src="https://img.shields.io/badge/Bash-4EAA25?style=for-the-badge&logo=gnubash&logoColor=white&v=20260924" alt="Bash"> <img src="https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white&v=20260924" alt="PowerShell"></p></td>
+<td align="center" width="33%" valign="top"><h4>🔄 Async &amp; Messaging</h4><p><img src="https://img.shields.io/badge/Celery-37814A?style=for-the-badge&logo=celery&logoColor=white&v=20260924" alt="Celery"> <img src="https://img.shields.io/badge/RabbitMQ-FF6600?style=for-the-badge&logo=rabbitmq&logoColor=white&v=20260924" alt="RabbitMQ"> <img src="https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&logoColor=white&v=20260924" alt="Socket.io"> <img src="https://img.shields.io/badge/AJAX-111111?style=for-the-badge&logo=ajax&logoColor=white&v=20260924" alt="AJAX"></p></td>
 </tr>
 <tr>
-<td align="center" width="33%" valign="top"><h4>🧩 UI Frameworks</h4><p><img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black&v=20260923" alt="React"> <img src="https://img.shields.io/badge/Vuetify-1867C0?style=for-the-badge&logo=vuetify&logoColor=AEDDFF&v=20260923" alt="Vuetify"> <img src="https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white&v=20260923" alt="jQuery"> <img src="https://img.shields.io/badge/Htmx-FF4700?style=for-the-badge&logo=htmx&logoColor=white&v=20260923" alt="Htmx"> <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white&v=20260923" alt="Bootstrap"></p></td>
-<td align="center" width="33%" valign="top"><h4>📊 Data Science</h4><p><img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=PyTorch&logoColor=white&v=20260923" alt="PyTorch"> <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white&v=20260923" alt="TensorFlow"> <img src="https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white&v=20260923" alt="NumPy"> <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white&v=20260923" alt="Pandas"> <img src="https://img.shields.io/badge/Matplotlib-3F4F75?style=for-the-badge&logo=Matplotlib&logoColor=white&v=20260923" alt="Matplotlib"></p></td>
-<td align="center" width="33%" valign="top"><h4>🔧 IDEs &amp; Notebooks</h4><p><img src="https://img.shields.io/badge/Jupyter-FA0F00?style=for-the-badge&logo=jupyter&logoColor=white&v=20260923" alt="Jupyter"> <img src="https://img.shields.io/badge/Colab-F9AB00?style=for-the-badge&logo=googlecolab&color=525252&v=20260923" alt="Colab"> <img src="https://img.shields.io/badge/VS_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white&v=20260923" alt="VS Code"> <img src="https://img.shields.io/badge/PyCharm-143?style=for-the-badge&logo=pycharm&logoColor=black&color=black&labelColor=green&v=20260923" alt="PyCharm"></p></td>
+<td align="center" width="33%" valign="top"><h4>🧩 UI Frameworks</h4><p><img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black&v=20260924" alt="React"> <img src="https://img.shields.io/badge/Vuetify-1867C0?style=for-the-badge&logo=vuetify&logoColor=AEDDFF&v=20260924" alt="Vuetify"> <img src="https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white&v=20260924" alt="jQuery"> <img src="https://img.shields.io/badge/Htmx-FF4700?style=for-the-badge&logo=htmx&logoColor=white&v=20260924" alt="Htmx"> <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white&v=20260924" alt="Bootstrap"></p></td>
+<td align="center" width="33%" valign="top"><h4>📊 Data Science</h4><p><img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=PyTorch&logoColor=white&v=20260924" alt="PyTorch"> <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white&v=20260924" alt="TensorFlow"> <img src="https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white&v=20260924" alt="NumPy"> <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white&v=20260924" alt="Pandas"> <img src="https://img.shields.io/badge/Matplotlib-3F4F75?style=for-the-badge&logo=Matplotlib&logoColor=white&v=20260924" alt="Matplotlib"></p></td>
+<td align="center" width="33%" valign="top"><h4>🔧 IDEs &amp; Notebooks</h4><p><img src="https://img.shields.io/badge/Jupyter-FA0F00?style=for-the-badge&logo=jupyter&logoColor=white&v=20260924" alt="Jupyter"> <img src="https://img.shields.io/badge/Colab-F9AB00?style=for-the-badge&logo=googlecolab&color=525252&v=20260924" alt="Colab"> <img src="https://img.shields.io/badge/VS_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white&v=20260924" alt="VS Code"> <img src="https://img.shields.io/badge/PyCharm-143?style=for-the-badge&logo=pycharm&logoColor=black&color=black&labelColor=green&v=20260924" alt="PyCharm"></p></td>
 </tr>
 <tr>
-<td align="center" width="33%" valign="top"><h4>🔐 APIs &amp; Security</h4><p><img src="https://img.shields.io/badge/REST_APIs-111111?style=for-the-badge&logo=api&logoColor=white&v=20260923" alt="REST APIs"> <img src="https://img.shields.io/badge/GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white&v=20260923" alt="GraphQL"> <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black&v=20260923" alt="Swagger"> <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white&v=20260923" alt="Postman"> <img src="https://img.shields.io/badge/JWT-323330?style=for-the-badge&logo=json-web-tokens&logoColor=pink&v=20260923" alt="JWT"></p></td>
-<td align="center" width="33%" valign="top"><h4>🎨 Design &amp; Docs</h4><p><img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white&v=20260923" alt="Figma"> <img src="https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white&v=20260923" alt="Markdown"> <img src="https://img.shields.io/badge/Canva-00C4CC?style=for-the-badge&logo=canva&logoColor=white&v=20260923" alt="Canva"></p></td>
-<td align="center" width="33%" valign="top"><h4>☕ Core Languages</h4><p><img src="https://img.shields.io/badge/Java-Core-F90001?style=for-the-badge&logo=openjdk&logoColor=white&v=20260923" alt="Java"> <img src="https://img.shields.io/badge/C++-DSA-00599C?style=for-the-badge&logo=cplusplus&logoColor=white&v=20260923" alt="C++"> <img src="https://img.shields.io/badge/Python-AI%2FML-3776AB?style=for-the-badge&logo=python&logoColor=white&v=20260923" alt="Python"> <img src="https://img.shields.io/badge/JavaScript-Full--Stack-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black&v=20260923" alt="JavaScript"></p></td>
+<td align="center" width="33%" valign="top"><h4>🔐 APIs &amp; Security</h4><p><img src="https://img.shields.io/badge/REST_APIs-111111?style=for-the-badge&logo=api&logoColor=white&v=20260924" alt="REST APIs"> <img src="https://img.shields.io/badge/GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white&v=20260924" alt="GraphQL"> <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black&v=20260924" alt="Swagger"> <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white&v=20260924" alt="Postman"> <img src="https://img.shields.io/badge/JWT-323330?style=for-the-badge&logo=json-web-tokens&logoColor=pink&v=20260924" alt="JWT"></p></td>
+<td align="center" width="33%" valign="top"><h4>🎨 Design &amp; Docs</h4><p><img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white&v=20260924" alt="Figma"> <img src="https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white&v=20260924" alt="Markdown"> <img src="https://img.shields.io/badge/Canva-00C4CC?style=for-the-badge&logo=canva&logoColor=white&v=20260924" alt="Canva"></p></td>
+<td align="center" width="33%" valign="top"><h4>☕ Core Languages</h4><p><img src="https://img.shields.io/badge/Java-Core-F90001?style=for-the-badge&logo=openjdk&logoColor=white&v=20260924" alt="Java"> <img src="https://img.shields.io/badge/C++-DSA-00599C?style=for-the-badge&logo=cplusplus&logoColor=white&v=20260924" alt="C++"> <img src="https://img.shields.io/badge/Python-AI%2FML-3776AB?style=for-the-badge&logo=python&logoColor=white&v=20260924" alt="Python"> <img src="https://img.shields.io/badge/JavaScript-Full--Stack-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black&v=20260924" alt="JavaScript"></p></td>
 </tr>
 <tr>
-<td align="center" width="33%" valign="top"><h4>🟢 Backend Runtimes</h4><p><img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white&v=20260923" alt="Python"> <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white&v=20260923" alt="Node.js"></p></td>
-<td align="center" width="33%" valign="top"><h4>🗄️ Databases</h4><p><img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white&v=20260923" alt="PostgreSQL"> <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white&v=20260923" alt="MySQL"> <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white&v=20260923" alt="Redis"> <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white&v=20260923" alt="SQLite"> <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white&v=20260923" alt="MongoDB"></p></td>
-<td align="center" width="33%" valign="top"><h4>☸️ Cloud Native</h4><p><img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white&v=20260923" alt="Docker"> <img src="https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white&v=20260923" alt="Kubernetes"> <img src="https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white&v=20260923" alt="Nginx"></p></td>
+<td align="center" width="33%" valign="top"><h4>🟢 Backend Runtimes</h4><p><img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white&v=20260924" alt="Python"> <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white&v=20260924" alt="Node.js"></p></td>
+<td align="center" width="33%" valign="top"><h4>🗄️ Databases</h4><p><img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white&v=20260924" alt="PostgreSQL"> <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white&v=20260924" alt="MySQL"> <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white&v=20260924" alt="Redis"> <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white&v=20260924" alt="SQLite"> <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white&v=20260924" alt="MongoDB"></p></td>
+<td align="center" width="33%" valign="top"><h4>☸️ Cloud Native</h4><p><img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white&v=20260924" alt="Docker"> <img src="https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white&v=20260924" alt="Kubernetes"> <img src="https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white&v=20260924" alt="Nginx"></p></td>
 </tr>
 </table>
 
@@ -239,7 +239,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <div align="center">
   <img src="./assets/redline.gif" width="100%" alt=""/>
   <a href="https://github.com/hardik563">
-    <img src="https://img.shields.io/badge/CURRENT-FOCUS-181717?style=flat-square&color=red&logo=target&logoColor=red&v=20260923" alt="Current Focus" width="200">
+    <img src="https://img.shields.io/badge/CURRENT-FOCUS-181717?style=flat-square&color=red&logo=target&logoColor=red&v=20260924" alt="Current Focus" width="200">
   </a>
   <img src="./assets/redline.gif" width="100%" alt=""/>
 </div>
@@ -254,7 +254,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <div align="center">
   <img src="./assets/redline.gif" width="100%" alt=""/>
   <a href="https://github.com/hardik563">
-    <img src="https://img.shields.io/badge/YEARLY-HIGHLIGHTS-181717?style=flat-square&color=red&logo=star&logoColor=red&v=20260923" alt="Yearly Highlights" width="200">
+    <img src="https://img.shields.io/badge/YEARLY-HIGHLIGHTS-181717?style=flat-square&color=red&logo=star&logoColor=red&v=20260924" alt="Yearly Highlights" width="200">
   </a>
   <img src="./assets/redline.gif" width="100%" alt=""/>
 </div>
@@ -269,7 +269,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <p align="center"><b>📊 This year, live from GitHub</b></p>
 
 <!-- HIGHLIGHTS_STATS:START -->
-<p align="center"><img src="https://img.shields.io/badge/Commits-385-red?style=for-the-badge&logo=git&logoColor=white&v=20260923" alt="Commits" /> <img src="https://img.shields.io/badge/PRs-0-red?style=for-the-badge&logo=github&logoColor=white&v=20260923" alt="PRs" /> <img src="https://img.shields.io/badge/New_Repos-9-red?style=for-the-badge&logo=github&logoColor=white&v=20260923" alt="New repos" /> <img src="https://img.shields.io/badge/Active_in-10_repos-red?style=for-the-badge&logo=github&logoColor=white&v=20260923" alt="Active repos" /></p>
+<p align="center"><img src="https://img.shields.io/badge/Commits-391-red?style=for-the-badge&logo=git&logoColor=white&v=20260924" alt="Commits" /> <img src="https://img.shields.io/badge/PRs-0-red?style=for-the-badge&logo=github&logoColor=white&v=20260924" alt="PRs" /> <img src="https://img.shields.io/badge/New_Repos-9-red?style=for-the-badge&logo=github&logoColor=white&v=20260924" alt="New repos" /> <img src="https://img.shields.io/badge/Active_in-10_repos-red?style=for-the-badge&logo=github&logoColor=white&v=20260924" alt="Active repos" /></p>
 <!-- HIGHLIGHTS_STATS:END -->
 
 <!-- The narrative bullets are still updated separately by you — kept as a marker
@@ -282,7 +282,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <div align="center">
   <img src="./assets/redline.gif" width="100%" alt=""/>
   <a href="https://github.com/hardik563">
-    <img src="https://img.shields.io/badge/GITHUB-STATS-181717?style=flat-square&color=red&logo=github&logoColor=red&v=20260923" alt="GitHub Stats" width="200">
+    <img src="https://img.shields.io/badge/GITHUB-STATS-181717?style=flat-square&color=red&logo=github&logoColor=red&v=20260924" alt="GitHub Stats" width="200">
   </a>
   <img src="./assets/redline.gif" width="100%" alt=""/>
 </div>
@@ -325,7 +325,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <div align="center">
   <img src="./assets/redline.gif" width="100%" alt=""/>
   <a href="https://github.com/hardik563">
-    <img src="https://img.shields.io/badge/RECENT-ACTIVITY-181717?style=flat-square&color=red&logo=githubactions&logoColor=red&v=20260923" alt="Recent Activity" width="200">
+    <img src="https://img.shields.io/badge/RECENT-ACTIVITY-181717?style=flat-square&color=red&logo=githubactions&logoColor=red&v=20260924" alt="Recent Activity" width="200">
   </a>
   <img src="./assets/redline.gif" width="100%" alt=""/>
 </div>
@@ -344,12 +344,19 @@ gitGraph
    commit id: "c1"
    checkout main
    merge hardik563
+   branch DSA-ROAD-TO-PLACEMENT-
+   checkout DSA-ROAD-TO-PLACEMENT-
+   commit id: "c1"
+   checkout main
+   merge DSA-ROAD-TO-PLACEMENT-
 ```
 <!-- GITGRAPH:END -->
 
 <h3 align="center">📜 Event Log</h3>
 
 <!-- ACTIVITY:START -->
+- ⬆️ Pushed 1 commit to [`hardik563/hardik563`](https://github.com/hardik563/hardik563)
+- ⬆️ Pushed 1 commit to [`hardik563/DSA-ROAD-TO-PLACEMENT-`](https://github.com/hardik563/DSA-ROAD-TO-PLACEMENT-)
 - ⬆️ Pushed 1 commit to [`hardik563/hardik563`](https://github.com/hardik563/hardik563)
 - ⬆️ Pushed 1 commit to [`hardik563/hardik563`](https://github.com/hardik563/hardik563)
 - ⬆️ Pushed 1 commit to [`hardik563/hardik563`](https://github.com/hardik563/hardik563)
@@ -362,7 +369,7 @@ gitGraph
 <div align="center">
   <img src="./assets/redline.gif" width="100%" alt=""/>
   <a href="https://github.com/hardik563">
-    <img src="https://img.shields.io/badge/LATEST-RELEASES-181717?style=flat-square&color=red&logo=semver&logoColor=red&v=20260923" alt="Latest Releases" width="200">
+    <img src="https://img.shields.io/badge/LATEST-RELEASES-181717?style=flat-square&color=red&logo=semver&logoColor=red&v=20260924" alt="Latest Releases" width="200">
   </a>
   <img src="./assets/redline.gif" width="100%" alt=""/>
 </div>
@@ -377,7 +384,7 @@ _No releases yet._
 <div align="center">
   <img src="./assets/redline.gif" width="100%" alt=""/>
   <a href="https://github.com/hardik563">
-    <img src="https://img.shields.io/badge/FEATURED-PROJECTS-181717?style=flat-square&color=red&logo=github&logoColor=red&v=20260923" alt="Featured Projects" width="200">
+    <img src="https://img.shields.io/badge/FEATURED-PROJECTS-181717?style=flat-square&color=red&logo=github&logoColor=red&v=20260924" alt="Featured Projects" width="200">
   </a>
   <img src="./assets/redline.gif" width="100%" alt=""/>
 </div>
@@ -429,7 +436,7 @@ _No releases yet._
 <p align="center"><sub>🔄 Auto-refreshed daily from GitHub's pinned-repos GraphQL API. Tracks new pins automatically.</sub></p>
 
 <!-- PINNED_REPOS:START -->
-<p align="center"><sub>🔄 Auto-refreshed daily · <b>10</b> active repos shown across <b>3</b> categories. Last updated 2026-09-23.</sub></p>
+<p align="center"><sub>🔄 Auto-refreshed daily · <b>10</b> active repos shown across <b>3</b> categories. Last updated 2026-09-24.</sub></p>
 
 <details>
 <summary align="center"><b>🛠️ Developer Tools</b> <sub>· 1</sub></summary>
@@ -482,7 +489,7 @@ _No releases yet._
 <div align="center">
   <img src="./assets/redline.gif" width="100%" alt=""/>
   <a href="https://github.com/hardik563">
-    <img src="https://img.shields.io/badge/DEVELOPER-PROFILES-181717?style=flat-square&color=red&logo=github&logoColor=red&v=20260923" alt="Developer Profiles" width="200">
+    <img src="https://img.shields.io/badge/DEVELOPER-PROFILES-181717?style=flat-square&color=red&logo=github&logoColor=red&v=20260924" alt="Developer Profiles" width="200">
   </a>
   <img src="./assets/redline.gif" width="100%" alt=""/>
 </div>
@@ -491,16 +498,16 @@ _No releases yet._
 
 <p align="center">
   <a href="https://leetcode.com/u/hardikdhamija_/">
-    <img src="https://img.shields.io/badge/LeetCode-hardikdhamija__-FFA116?style=for-the-badge&logo=leetcode&logoColor=white&v=20260923" alt="LeetCode" />
+    <img src="https://img.shields.io/badge/LeetCode-hardikdhamija__-FFA116?style=for-the-badge&logo=leetcode&logoColor=white&v=20260924" alt="LeetCode" />
   </a>
   <a href="https://codolio.com/profile/hardikdhamija">
-    <img src="https://img.shields.io/badge/Codolio-hardikdhamija-181717?style=for-the-badge&logo=codeforces&logoColor=white&v=20260923" alt="Codolio" />
+    <img src="https://img.shields.io/badge/Codolio-hardikdhamija-181717?style=for-the-badge&logo=codeforces&logoColor=white&v=20260924" alt="Codolio" />
   </a>
   <a href="https://www.linkedin.com/in/hardik-dhamija-35932228b/">
-    <img src="https://img.shields.io/badge/LinkedIn-Hardik%20Dhamija-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white&v=20260923" alt="LinkedIn" />
+    <img src="https://img.shields.io/badge/LinkedIn-Hardik%20Dhamija-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white&v=20260924" alt="LinkedIn" />
   </a>
   <a href="https://github.com/hardik563">
-    <img src="https://img.shields.io/badge/GitHub-hardik563-181717?style=for-the-badge&logo=github&logoColor=white&v=20260923" alt="GitHub" />
+    <img src="https://img.shields.io/badge/GitHub-hardik563-181717?style=for-the-badge&logo=github&logoColor=white&v=20260924" alt="GitHub" />
   </a>
 </p>
 
@@ -508,7 +515,7 @@ _No releases yet._
 <div align="center">
   <img src="./assets/redline.gif" width="100%" alt=""/>
   <a href="https://github.com/hardik563">
-    <img src="https://img.shields.io/badge/CONTRIBUTION-GRAPH-181717?style=flat-square&color=red&logo=github&logoColor=red&v=20260923" alt="Contribution Graph" width="200">
+    <img src="https://img.shields.io/badge/CONTRIBUTION-GRAPH-181717?style=flat-square&color=red&logo=github&logoColor=red&v=20260924" alt="Contribution Graph" width="200">
   </a>
   <img src="./assets/redline.gif" width="100%" alt=""/>
 </div>
@@ -576,11 +583,11 @@ _No releases yet._
 <h3 align="center">📍 Lucknow · 3D City</h3>
 <p align="center"><sub>My home city — Lucknow, Uttar Pradesh, India.</sub></p>
 <<<<<<< HEAD
-<p align="center"><a href="https://hardik563.github.io/hardik563/"><img src="https://img.shields.io/badge/🖱️_OPEN_REAL--TIME_3D_LUCKNOW-F90001?style=for-the-badge&labelColor=0D1117&v=20260923" alt="Open interactive 3D Lucknow city" /></a></p>
+<p align="center"><a href="https://hardik563.github.io/hardik563/"><img src="https://img.shields.io/badge/🖱️_OPEN_REAL--TIME_3D_LUCKNOW-F90001?style=for-the-badge&labelColor=0D1117&v=20260924" alt="Open interactive 3D Lucknow city" /></a></p>
 <p align="center"><em>Interactive real-time 3D Lucknow: drag to rotate, wheel to zoom, right-drag to pan, with animated traffic, lights, landmarks and day/night motion.</em></p>
 =======
 <p align="center"><img src="./assets/lucknow-3d.gif" width="100%" alt="Animated 3D-style Lucknow city visual for Hardik Dhamija" /></p>
-<p align="center"><a href="https://hardik563.github.io/hardik563/"><img src="https://img.shields.io/badge/🖱️_OPEN_INTERACTIVE_3D_LUCKNOW-F90001?style=for-the-badge&labelColor=0D1117&v=20260923" alt="Open interactive 3D Lucknow city" /></a></p>
+<p align="center"><a href="https://hardik563.github.io/hardik563/"><img src="https://img.shields.io/badge/🖱️_OPEN_INTERACTIVE_3D_LUCKNOW-F90001?style=for-the-badge&labelColor=0D1117&v=20260924" alt="Open interactive 3D Lucknow city" /></a></p>
 <p align="center"><em>Drag, rotate, zoom and pan the interactive Lucknow city. The README preview above is animated; the button opens the real 3D version.</em></p>
 >>>>>>> aab107707075b9657f3ccafb804bb7547c8260e0
 
@@ -588,7 +595,7 @@ _No releases yet._
 <div align="center">
   <img src="./assets/redline.gif" width="100%" alt=""/>
   <a href="https://github.com/hardik563">
-    <img src="https://img.shields.io/badge/CONNECT-WITH_ME-181717?style=flat-square&color=red&logo=earth&logoColor=red&v=20260923" alt="Connect Me" width="200">
+    <img src="https://img.shields.io/badge/CONNECT-WITH_ME-181717?style=flat-square&color=red&logo=earth&logoColor=red&v=20260924" alt="Connect Me" width="200">
   </a>
   <img src="./assets/redline.gif" width="100%" alt=""/>
 </div>
@@ -596,10 +603,10 @@ _No releases yet._
 <h2 id="connect" align="center">🌍 Connect With Me</h2>
 
 <p align="center">
-  <a href="https://www.linkedin.com/in/hardik-dhamija-35932228b/" aria-label="LinkedIn"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white&v=20260923" width="140" alt="LinkedIn"></a>
-  <a href="https://leetcode.com/u/hardikdhamija_/" aria-label="LeetCode"><img src="https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=white&v=20260923" width="140" alt="LeetCode"></a>
-  <a href="https://codolio.com/profile/hardikdhamija" aria-label="Codolio"><img src="https://img.shields.io/badge/Codolio-181717?style=for-the-badge&logo=codeforces&logoColor=white&v=20260923" width="140" alt="Codolio"></a>
-  <a href="https://github.com/hardik563" aria-label="GitHub"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white&v=20260923" width="140" alt="GitHub"></a>
+  <a href="https://www.linkedin.com/in/hardik-dhamija-35932228b/" aria-label="LinkedIn"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white&v=20260924" width="140" alt="LinkedIn"></a>
+  <a href="https://leetcode.com/u/hardikdhamija_/" aria-label="LeetCode"><img src="https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=white&v=20260924" width="140" alt="LeetCode"></a>
+  <a href="https://codolio.com/profile/hardikdhamija" aria-label="Codolio"><img src="https://img.shields.io/badge/Codolio-181717?style=for-the-badge&logo=codeforces&logoColor=white&v=20260924" width="140" alt="Codolio"></a>
+  <a href="https://github.com/hardik563" aria-label="GitHub"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white&v=20260924" width="140" alt="GitHub"></a>
 </p>
 
 <!-- 📝 GUESTBOOK — visitors leave a message via a pre-filled issue template -->
@@ -616,11 +623,11 @@ _No releases yet._
 
 <p align="center">
   <a href="https://github.com/hardik563/hardik563/issues/new?template=guestbook.yml">
-    <img src="https://img.shields.io/badge/Sign_the_Guestbook-F90001?style=for-the-badge&logo=githubactions&logoColor=white&labelColor=0D1117&v=20260923" alt="Sign the guestbook" />
+    <img src="https://img.shields.io/badge/Sign_the_Guestbook-F90001?style=for-the-badge&logo=githubactions&logoColor=white&labelColor=0D1117&v=20260924" alt="Sign the guestbook" />
   </a>
   &nbsp;
   <a href="https://github.com/hardik563/hardik563/issues?q=label%3Aguestbook">
-    <img src="https://img.shields.io/badge/Read_Past_Entries-FF652F?style=for-the-badge&logo=read.cv&logoColor=white&labelColor=0D1117&v=20260923" alt="Read past entries" />
+    <img src="https://img.shields.io/badge/Read_Past_Entries-FF652F?style=for-the-badge&logo=read.cv&logoColor=white&labelColor=0D1117&v=20260924" alt="Read past entries" />
   </a>
 </p>
 
@@ -628,7 +635,7 @@ _No releases yet._
 <div align="center">
   <img src="./assets/redline.gif" width="100%" alt=""/>
   <a href="https://github.com/hardik563">
-    <img src="https://img.shields.io/badge/SUPPORT-ME-181717?style=flat-square&color=red&logo=buymeacoffee&logoColor=red&v=20260923" alt="Support Me" width="200">
+    <img src="https://img.shields.io/badge/SUPPORT-ME-181717?style=flat-square&color=red&logo=buymeacoffee&logoColor=red&v=20260924" alt="Support Me" width="200">
   </a>
   <img src="./assets/redline.gif" width="100%" alt=""/>
 </div>
