@@ -401,8 +401,8 @@ _No releases yet._
 <p align="center"><sub>🔥 Top 9 most-active repos · rich cards with topics, last-updated, watchers · ranked by recent commits + stars. Last updated 2026-09-28.</sub></p>
 
 <div align="center">
-  <a href="https://github.com/hardik563/DSA-ROAD-TO-PLACEMENT-"><img src="./assets/featured/DSA-ROAD-TO-PLACEMENT-.svg" width="49%" alt="DSA-ROAD-TO-PLACEMENT- — featured project card" /></a>
   <a href="https://github.com/hardik563/RAZORPAY-CLONE--FRONTEND-PROJECT"><img src="./assets/featured/RAZORPAY-CLONE--FRONTEND-PROJECT.svg" width="49%" alt="RAZORPAY-CLONE--FRONTEND-PROJECT — featured project card" /></a>
+  <a href="https://github.com/hardik563/DSA-ROAD-TO-PLACEMENT-"><img src="./assets/featured/DSA-ROAD-TO-PLACEMENT-.svg" width="49%" alt="DSA-ROAD-TO-PLACEMENT- — featured project card" /></a>
 </div>
 <div align="center">
   <a href="https://github.com/hardik563/CALLIVO"><img src="./assets/featured/CALLIVO.svg" width="49%" alt="CALLIVO — featured project card" /></a>
