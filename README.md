@@ -405,8 +405,8 @@ _No releases yet._
   <a href="https://github.com/hardik563/RAZORPAY-CLONE--FRONTEND-PROJECT"><img src="./assets/featured/RAZORPAY-CLONE--FRONTEND-PROJECT.svg" width="49%" alt="RAZORPAY-CLONE--FRONTEND-PROJECT — featured project card" /></a>
 </div>
 <div align="center">
-  <a href="https://github.com/hardik563/TAILWIND-WEB-DEVELOPMENT-JOURNEY"><img src="./assets/featured/TAILWIND-WEB-DEVELOPMENT-JOURNEY.svg" width="49%" alt="TAILWIND-WEB-DEVELOPMENT-JOURNEY — featured project card" /></a>
   <a href="https://github.com/hardik563/CALLIVO"><img src="./assets/featured/CALLIVO.svg" width="49%" alt="CALLIVO — featured project card" /></a>
+  <a href="https://github.com/hardik563/TAILWIND-WEB-DEVELOPMENT-JOURNEY"><img src="./assets/featured/TAILWIND-WEB-DEVELOPMENT-JOURNEY.svg" width="49%" alt="TAILWIND-WEB-DEVELOPMENT-JOURNEY — featured project card" /></a>
 </div>
 <div align="center">
   <a href="https://github.com/hardik563/CODSOFT"><img src="./assets/featured/CODSOFT.svg" width="49%" alt="CODSOFT — featured project card" /></a>
