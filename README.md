@@ -276,7 +276,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <p align="center"><b>📊 This year, live from GitHub</b></p>
 
 <!-- HIGHLIGHTS_STATS:START -->
-<p align="center"><img src="https://img.shields.io/badge/Commits-414-red?style=for-the-badge&logo=git&logoColor=white&v=20261005" alt="Commits" /> <img src="https://img.shields.io/badge/PRs-0-red?style=for-the-badge&logo=github&logoColor=white&v=20261005" alt="PRs" /> <img src="https://img.shields.io/badge/New_Repos-9-red?style=for-the-badge&logo=github&logoColor=white&v=20261005" alt="New repos" /> <img src="https://img.shields.io/badge/Active_in-10_repos-red?style=for-the-badge&logo=github&logoColor=white&v=20261005" alt="Active repos" /></p>
+<p align="center"><img src="https://img.shields.io/badge/Commits-417-red?style=for-the-badge&logo=git&logoColor=white&v=20261005" alt="Commits" /> <img src="https://img.shields.io/badge/PRs-0-red?style=for-the-badge&logo=github&logoColor=white&v=20261005" alt="PRs" /> <img src="https://img.shields.io/badge/New_Repos-9-red?style=for-the-badge&logo=github&logoColor=white&v=20261005" alt="New repos" /> <img src="https://img.shields.io/badge/Active_in-10_repos-red?style=for-the-badge&logo=github&logoColor=white&v=20261005" alt="Active repos" /></p>
 <!-- HIGHLIGHTS_STATS:END -->
 
 <!-- The narrative bullets are still updated separately by you — kept as a marker
@@ -402,23 +402,23 @@ _No releases yet._
 <!-- 🔥 AUTO-RANKED FEATURED PROJECTS — refreshed weekly by readme.yml -->
 <!-- ============================================================ -->
 <!-- FEATURED_PROJECTS:START -->
-<p align="center"><sub>🔥 Top 9 most-active repos · rich cards with topics, last-updated, watchers · ranked by recent commits + stars. Last updated 2026-09-28.</sub></p>
+<p align="center"><sub>🔥 Top 9 most-active repos · rich cards with topics, last-updated, watchers · ranked by recent commits + stars. Last updated 2026-10-05.</sub></p>
 
 <div align="center">
-  <a href="https://github.com/hardik563/RAZORPAY-CLONE--FRONTEND-PROJECT"><img src="./assets/featured/RAZORPAY-CLONE--FRONTEND-PROJECT.svg" width="49%" alt="RAZORPAY-CLONE--FRONTEND-PROJECT — featured project card" /></a>
   <a href="https://github.com/hardik563/DSA-ROAD-TO-PLACEMENT-"><img src="./assets/featured/DSA-ROAD-TO-PLACEMENT-.svg" width="49%" alt="DSA-ROAD-TO-PLACEMENT- — featured project card" /></a>
-</div>
-<div align="center">
   <a href="https://github.com/hardik563/CALLIVO"><img src="./assets/featured/CALLIVO.svg" width="49%" alt="CALLIVO — featured project card" /></a>
-  <a href="https://github.com/hardik563/TAILWIND-WEB-DEVELOPMENT-JOURNEY"><img src="./assets/featured/TAILWIND-WEB-DEVELOPMENT-JOURNEY.svg" width="49%" alt="TAILWIND-WEB-DEVELOPMENT-JOURNEY — featured project card" /></a>
 </div>
 <div align="center">
   <a href="https://github.com/hardik563/CODSOFT"><img src="./assets/featured/CODSOFT.svg" width="49%" alt="CODSOFT — featured project card" /></a>
-  <a href="https://github.com/hardik563/WEB-DEVELOPNMENT-AND-PROJECT"><img src="./assets/featured/WEB-DEVELOPNMENT-AND-PROJECT.svg" width="49%" alt="WEB-DEVELOPNMENT-AND-PROJECT — featured project card" /></a>
+  <a href="https://github.com/hardik563/PORTFOLIO-PROJECT"><img src="./assets/featured/PORTFOLIO-PROJECT.svg" width="49%" alt="PORTFOLIO-PROJECT — featured project card" /></a>
 </div>
 <div align="center">
-  <a href="https://github.com/hardik563/PORTFOLIO-PROJECT"><img src="./assets/featured/PORTFOLIO-PROJECT.svg" width="49%" alt="PORTFOLIO-PROJECT — featured project card" /></a>
+  <a href="https://github.com/hardik563/RAZORPAY-CLONE--FRONTEND-PROJECT"><img src="./assets/featured/RAZORPAY-CLONE--FRONTEND-PROJECT.svg" width="49%" alt="RAZORPAY-CLONE--FRONTEND-PROJECT — featured project card" /></a>
+  <a href="https://github.com/hardik563/TAILWIND-WEB-DEVELOPMENT-JOURNEY"><img src="./assets/featured/TAILWIND-WEB-DEVELOPMENT-JOURNEY.svg" width="49%" alt="TAILWIND-WEB-DEVELOPMENT-JOURNEY — featured project card" /></a>
+</div>
+<div align="center">
   <a href="https://github.com/hardik563/BAVORA"><img src="./assets/featured/BAVORA.svg" width="49%" alt="BAVORA — featured project card" /></a>
+  <a href="https://github.com/hardik563/WEB-DEVELOPNMENT-AND-PROJECT"><img src="./assets/featured/WEB-DEVELOPNMENT-AND-PROJECT.svg" width="49%" alt="WEB-DEVELOPNMENT-AND-PROJECT — featured project card" /></a>
 </div>
 <div align="center">
   <a href="https://github.com/hardik563/WEB_DEVELOPMENT_ASSIGNMENT"><img src="./assets/featured/WEB_DEVELOPMENT_ASSIGNMENT.svg" width="49%" alt="WEB_DEVELOPMENT_ASSIGNMENT — featured project card" /></a>
@@ -463,7 +463,7 @@ _No releases yet._
 <p align="center"><sub>🔄 Auto-refreshed daily from GitHub's pinned-repos GraphQL API. Tracks new pins automatically.</sub></p>
 
 <!-- PINNED_REPOS:START -->
-<p align="center"><sub>🔄 Auto-refreshed daily · <b>10</b> active repos shown across <b>3</b> categories. Last updated 2026-10-04.</sub></p>
+<p align="center"><sub>🔄 Auto-refreshed daily · <b>10</b> active repos shown across <b>3</b> categories. Last updated 2026-10-05.</sub></p>
 
 <details>
 <summary align="center"><b>🛠️ Developer Tools</b> <sub>· 1</sub></summary>
