@@ -400,11 +400,11 @@ _No releases yet._
 <!-- 🔥 AUTO-RANKED FEATURED PROJECTS — refreshed weekly by readme.yml -->
 <!-- ============================================================ -->
 <!-- FEATURED_PROJECTS:START -->
-<p align="center"><sub>🔥 Top 9 most-active repos · rich cards with topics, last-updated, watchers · ranked by recent commits + stars. Last updated 2026-10-05.</sub></p>
+<p align="center"><sub>🔥 Top 9 most-active repos · rich cards with topics, last-updated, watchers · ranked by recent commits + stars. Last updated 2026-10-12.</sub></p>
 
 <div align="center">
-  <a href="https://github.com/hardik563/DSA-ROAD-TO-PLACEMENT-"><img src="./assets/featured/DSA-ROAD-TO-PLACEMENT-.svg" width="49%" alt="DSA-ROAD-TO-PLACEMENT- — featured project card" /></a>
   <a href="https://github.com/hardik563/CALLIVO"><img src="./assets/featured/CALLIVO.svg" width="49%" alt="CALLIVO — featured project card" /></a>
+  <a href="https://github.com/hardik563/DSA-ROAD-TO-PLACEMENT-"><img src="./assets/featured/DSA-ROAD-TO-PLACEMENT-.svg" width="49%" alt="DSA-ROAD-TO-PLACEMENT- — featured project card" /></a>
 </div>
 <div align="center">
   <a href="https://github.com/hardik563/CODSOFT"><img src="./assets/featured/CODSOFT.svg" width="49%" alt="CODSOFT — featured project card" /></a>
@@ -461,7 +461,7 @@ _No releases yet._
 <p align="center"><sub>🔄 Auto-refreshed daily from GitHub's pinned-repos GraphQL API. Tracks new pins automatically.</sub></p>
 
 <!-- PINNED_REPOS:START -->
-<p align="center"><sub>🔄 Auto-refreshed daily · <b>10</b> active repos shown across <b>3</b> categories. Last updated 2026-10-11.</sub></p>
+<p align="center"><sub>🔄 Auto-refreshed daily · <b>10</b> active repos shown across <b>3</b> categories. Last updated 2026-10-12.</sub></p>
 
 <details>
 <summary align="center"><b>🛠️ Developer Tools</b> <sub>· 1</sub></summary>
