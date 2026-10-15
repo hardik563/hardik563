@@ -277,7 +277,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <p align="center"><b>📊 This year, live from GitHub</b></p>
 
 <!-- HIGHLIGHTS_STATS:START -->
-<p align="center"><img src="https://img.shields.io/badge/Commits-432-red?style=for-the-badge&logo=git&logoColor=white&v=20261015" alt="Commits" /> <img src="https://img.shields.io/badge/PRs-0-red?style=for-the-badge&logo=github&logoColor=white&v=20261015" alt="PRs" /> <img src="https://img.shields.io/badge/New_Repos-9-red?style=for-the-badge&logo=github&logoColor=white&v=20261015" alt="New repos" /> <img src="https://img.shields.io/badge/Active_in-10_repos-red?style=for-the-badge&logo=github&logoColor=white&v=20261015" alt="Active repos" /></p>
+<p align="center"><img src="https://img.shields.io/badge/Commits-434-red?style=for-the-badge&logo=git&logoColor=white&v=20261015" alt="Commits" /> <img src="https://img.shields.io/badge/PRs-0-red?style=for-the-badge&logo=github&logoColor=white&v=20261015" alt="PRs" /> <img src="https://img.shields.io/badge/New_Repos-10-red?style=for-the-badge&logo=github&logoColor=white&v=20261015" alt="New repos" /> <img src="https://img.shields.io/badge/Active_in-11_repos-red?style=for-the-badge&logo=github&logoColor=white&v=20261015" alt="Active repos" /></p>
 <!-- HIGHLIGHTS_STATS:END -->
 
 <!-- The narrative bullets are still updated separately by you — kept as a marker
@@ -464,7 +464,7 @@ _No releases yet._
 <p align="center"><sub>🔄 Auto-refreshed daily from GitHub's pinned-repos GraphQL API. Tracks new pins automatically.</sub></p>
 
 <!-- PINNED_REPOS:START -->
-<p align="center"><sub>🔄 Auto-refreshed daily · <b>10</b> active repos shown across <b>3</b> categories. Last updated 2026-10-15.</sub></p>
+<p align="center"><sub>🔄 Auto-refreshed daily · <b>11</b> active repos shown across <b>3</b> categories. Last updated 2026-10-15.</sub></p>
 
 <details>
 <summary align="center"><b>🛠️ Developer Tools</b> <sub>· 1</sub></summary>
@@ -478,7 +478,7 @@ _No releases yet._
 </details>
 
 <details>
-<summary align="center"><b>🌐 Backend / API</b> <sub>· 3</sub></summary>
+<summary align="center"><b>🌐 Backend / API</b> <sub>· 4</sub></summary>
 
 <p align="center"><sub><i>Django / DRF systems and reference APIs</i></sub></p>
 
@@ -487,6 +487,7 @@ _No releases yet._
   <a href="https://github.com/hardik563/DSA-ROAD-TO-PLACEMENT-"><img src="./assets/pins/DSA-ROAD-TO-PLACEMENT-.svg" width="49%" alt="DSA-ROAD-TO-PLACEMENT-" /></a>
 </div>
 <div align="center">
+  <a href="https://github.com/hardik563/EduSphere-AI"><img src="./assets/pins/EduSphere-AI.svg" width="49%" alt="EduSphere-AI" /></a>
   <a href="https://github.com/hardik563/WEB_DEVELOPMENT_ASSIGNMENT"><img src="./assets/pins/WEB_DEVELOPMENT_ASSIGNMENT.svg" width="49%" alt="WEB_DEVELOPMENT_ASSIGNMENT" /></a>
 </div>
 
