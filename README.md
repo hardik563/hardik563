@@ -344,6 +344,11 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 ```mermaid
 gitGraph
    commit id: "main"
+   branch EduSphere-AI
+   checkout EduSphere-AI
+   commit id: "c1"
+   checkout main
+   merge EduSphere-AI
    branch hardik563
    checkout hardik563
    commit id: "c1"
@@ -360,7 +365,7 @@ gitGraph
 <h3 align="center">📜 Event Log</h3>
 
 <!-- ACTIVITY:START -->
-- ⬆️ Pushed 1 commit to [`hardik563/hardik563`](https://github.com/hardik563/hardik563)
+- ⬆️ Pushed 1 commit to [`hardik563/EduSphere-AI`](https://github.com/hardik563/EduSphere-AI)
 - ⬆️ Pushed 1 commit to [`hardik563/hardik563`](https://github.com/hardik563/hardik563)
 - ⬆️ Pushed 1 commit to [`hardik563/hardik563`](https://github.com/hardik563/hardik563)
 - ⬆️ Pushed 1 commit to [`hardik563/hardik563`](https://github.com/hardik563/hardik563)
