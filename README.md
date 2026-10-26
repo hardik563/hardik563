@@ -400,14 +400,14 @@ _No releases yet._
 <!-- 🔥 AUTO-RANKED FEATURED PROJECTS — refreshed weekly by readme.yml -->
 <!-- ============================================================ -->
 <!-- FEATURED_PROJECTS:START -->
-<p align="center"><sub>🔥 Top 10 most-active repos · rich cards with topics, last-updated, watchers · ranked by recent commits + stars. Last updated 2026-10-19.</sub></p>
+<p align="center"><sub>🔥 Top 10 most-active repos · rich cards with topics, last-updated, watchers · ranked by recent commits + stars. Last updated 2026-10-26.</sub></p>
 
 <div align="center">
-  <a href="https://github.com/hardik563/DSA-ROAD-TO-PLACEMENT-"><img src="./assets/featured/DSA-ROAD-TO-PLACEMENT-.svg" width="49%" alt="DSA-ROAD-TO-PLACEMENT- — featured project card" /></a>
   <a href="https://github.com/hardik563/CODSOFT"><img src="./assets/featured/CODSOFT.svg" width="49%" alt="CODSOFT — featured project card" /></a>
+  <a href="https://github.com/hardik563/EduSphere-AI"><img src="./assets/featured/EduSphere-AI.svg" width="49%" alt="EduSphere-AI — featured project card" /></a>
 </div>
 <div align="center">
-  <a href="https://github.com/hardik563/EduSphere-AI"><img src="./assets/featured/EduSphere-AI.svg" width="49%" alt="EduSphere-AI — featured project card" /></a>
+  <a href="https://github.com/hardik563/DSA-ROAD-TO-PLACEMENT-"><img src="./assets/featured/DSA-ROAD-TO-PLACEMENT-.svg" width="49%" alt="DSA-ROAD-TO-PLACEMENT- — featured project card" /></a>
   <a href="https://github.com/hardik563/PORTFOLIO-PROJECT"><img src="./assets/featured/PORTFOLIO-PROJECT.svg" width="49%" alt="PORTFOLIO-PROJECT — featured project card" /></a>
 </div>
 <div align="center">
@@ -415,8 +415,8 @@ _No releases yet._
   <a href="https://github.com/hardik563/TAILWIND-WEB-DEVELOPMENT-JOURNEY"><img src="./assets/featured/TAILWIND-WEB-DEVELOPMENT-JOURNEY.svg" width="49%" alt="TAILWIND-WEB-DEVELOPMENT-JOURNEY — featured project card" /></a>
 </div>
 <div align="center">
-  <a href="https://github.com/hardik563/BAVORA"><img src="./assets/featured/BAVORA.svg" width="49%" alt="BAVORA — featured project card" /></a>
   <a href="https://github.com/hardik563/WEB-DEVELOPNMENT-AND-PROJECT"><img src="./assets/featured/WEB-DEVELOPNMENT-AND-PROJECT.svg" width="49%" alt="WEB-DEVELOPNMENT-AND-PROJECT — featured project card" /></a>
+  <a href="https://github.com/hardik563/BAVORA"><img src="./assets/featured/BAVORA.svg" width="49%" alt="BAVORA — featured project card" /></a>
 </div>
 <div align="center">
   <a href="https://github.com/hardik563/CALLIVO"><img src="./assets/featured/CALLIVO.svg" width="49%" alt="CALLIVO — featured project card" /></a>
@@ -462,7 +462,7 @@ _No releases yet._
 <p align="center"><sub>🔄 Auto-refreshed daily from GitHub's pinned-repos GraphQL API. Tracks new pins automatically.</sub></p>
 
 <!-- PINNED_REPOS:START -->
-<p align="center"><sub>🔄 Auto-refreshed daily · <b>11</b> active repos shown across <b>3</b> categories. Last updated 2026-10-25.</sub></p>
+<p align="center"><sub>🔄 Auto-refreshed daily · <b>11</b> active repos shown across <b>3</b> categories. Last updated 2026-10-26.</sub></p>
 
 <details>
 <summary align="center"><b>🛠️ Developer Tools</b> <sub>· 1</sub></summary>
