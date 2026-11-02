@@ -404,7 +404,7 @@ _No releases yet._
 <!-- 🔥 AUTO-RANKED FEATURED PROJECTS — refreshed weekly by readme.yml -->
 <!-- ============================================================ -->
 <!-- FEATURED_PROJECTS:START -->
-<p align="center"><sub>🔥 Top 10 most-active repos · rich cards with topics, last-updated, watchers · ranked by recent commits + stars. Last updated 2026-10-26.</sub></p>
+<p align="center"><sub>🔥 Top 10 most-active repos · rich cards with topics, last-updated, watchers · ranked by recent commits + stars. Last updated 2026-11-02.</sub></p>
 
 <div align="center">
   <a href="https://github.com/hardik563/CODSOFT"><img src="./assets/featured/CODSOFT.svg" width="49%" alt="CODSOFT — featured project card" /></a>
@@ -466,7 +466,7 @@ _No releases yet._
 <p align="center"><sub>🔄 Auto-refreshed daily from GitHub's pinned-repos GraphQL API. Tracks new pins automatically.</sub></p>
 
 <!-- PINNED_REPOS:START -->
-<p align="center"><sub>🔄 Auto-refreshed daily · <b>11</b> active repos shown across <b>3</b> categories. Last updated 2026-11-01.</sub></p>
+<p align="center"><sub>🔄 Auto-refreshed daily · <b>11</b> active repos shown across <b>3</b> categories. Last updated 2026-11-02.</sub></p>
 
 <details>
 <summary align="center"><b>🛠️ Developer Tools</b> <sub>· 1</sub></summary>
