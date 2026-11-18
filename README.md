@@ -278,7 +278,7 @@ print(me.philosophy())  # → Learn → Build → Practice → Improve.
 <p align="center"><b>📊 This year, live from GitHub</b></p>
 
 <!-- HIGHLIGHTS_STATS:START -->
-<p align="center"><img src="https://img.shields.io/badge/Commits-452-red?style=for-the-badge&logo=git&logoColor=white&v=20261118" alt="Commits" /> <img src="https://img.shields.io/badge/PRs-0-red?style=for-the-badge&logo=github&logoColor=white&v=20261118" alt="PRs" /> <img src="https://img.shields.io/badge/New_Repos-10-red?style=for-the-badge&logo=github&logoColor=white&v=20261118" alt="New repos" /> <img src="https://img.shields.io/badge/Active_in-11_repos-red?style=for-the-badge&logo=github&logoColor=white&v=20261118" alt="Active repos" /></p>
+<p align="center"><img src="https://img.shields.io/badge/Commits-455-red?style=for-the-badge&logo=git&logoColor=white&v=20261118" alt="Commits" /> <img src="https://img.shields.io/badge/PRs-0-red?style=for-the-badge&logo=github&logoColor=white&v=20261118" alt="PRs" /> <img src="https://img.shields.io/badge/New_Repos-11-red?style=for-the-badge&logo=github&logoColor=white&v=20261118" alt="New repos" /> <img src="https://img.shields.io/badge/Active_in-12_repos-red?style=for-the-badge&logo=github&logoColor=white&v=20261118" alt="Active repos" /></p>
 <!-- HIGHLIGHTS_STATS:END -->
 
 <!-- The narrative bullets are still updated separately by you — kept as a marker
@@ -461,7 +461,7 @@ _No releases yet._
 <p align="center"><sub>🔄 Auto-refreshed daily from GitHub's pinned-repos GraphQL API. Tracks new pins automatically.</sub></p>
 
 <!-- PINNED_REPOS:START -->
-<p align="center"><sub>🔄 Auto-refreshed daily · <b>11</b> active repos shown across <b>3</b> categories. Last updated 2026-11-17.</sub></p>
+<p align="center"><sub>🔄 Auto-refreshed daily · <b>12</b> active repos shown across <b>3</b> categories. Last updated 2026-11-18.</sub></p>
 
 <details>
 <summary align="center"><b>🛠️ Developer Tools</b> <sub>· 1</sub></summary>
@@ -491,7 +491,7 @@ _No releases yet._
 </details>
 
 <details>
-<summary align="center"><b>🎨 Frontend / UI</b> <sub>· 6</sub></summary>
+<summary align="center"><b>🎨 Frontend / UI</b> <sub>· 7</sub></summary>
 
 <p align="center"><sub><i>Vue, Nuxt, and design-forward web apps</i></sub></p>
 
@@ -506,6 +506,9 @@ _No releases yet._
 <div align="center">
   <a href="https://github.com/hardik563/BAVORA"><img src="./assets/pins/BAVORA.svg" width="49%" alt="BAVORA" /></a>
   <a href="https://github.com/hardik563/CALLIVO"><img src="./assets/pins/CALLIVO.svg" width="49%" alt="CALLIVO" /></a>
+</div>
+<div align="center">
+  <a href="https://github.com/hardik563/hardik-portfolio"><img src="./assets/pins/hardik-portfolio.svg" width="49%" alt="hardik-portfolio" /></a>
 </div>
 
 </details>
